@@ -7,7 +7,8 @@ import { SpeciesPage } from "./pages/Species";
 import { StarshipsPage } from "./pages/Starships";
 import { VehiclesPage } from "./pages/Vehicles";
 import { RootLayout } from "./layout/RootLayout";
-import { DetailFilmsPage } from "./pages/DetailFilms";
+import { DetailsFilmPage } from "./pages/DetailsFilm";
+import { PeopleDetailsPage } from "./pages/PeopleDetails";
 
 function App() {
   const router = createBrowserRouter([
@@ -16,8 +17,9 @@ function App() {
       element: <RootLayout />,
       children: [
         { path: "/", index: true, element: <FilmsPage /> },
-        { path: "/films/:id", element: <DetailFilmsPage /> },
+        { path: "/films/:id", element: <DetailsFilmPage /> },
         { path: "/people", element: <PeoplePage /> },
+        { path: "/people/:id", element: <PeopleDetailsPage /> },
         { path: "/planets", element: <PlanetsPage /> },
         { path: "/species", element: <SpeciesPage /> },
         { path: "/starships", element: <StarshipsPage /> },

@@ -1,5 +1,10 @@
 import axios from "axios";
-import type { DataResBase, ProductDetailsResponse } from "./ApiRes.types";
+import type {
+  DataResBase,
+  DataResDetailFilm,
+  DataResFilm,
+  DataResPeople,
+} from "./ApiRes.types";
 
 // Create a new axios instance
 const instance = axios.create({
@@ -17,9 +22,17 @@ export const get = async <T>(endpoint: string) => {
 };
 
 export const getFilms = async () => {
-  return get<DataResBase>("/films");
+  return get<DataResBase<DataResFilm[]>>("/films");
 };
 
-export const getProductDetails = async (id: number) => {
-  return get<ProductDetailsResponse>("/products/" + id);
+export const getFilmDetails = async (id: number) => {
+  return get<DataResDetailFilm>("/films/" + id);
+};
+
+export const getPeople = async () => {
+  return get<DataResBase<DataResPeople[]>>("/people");
+};
+
+export const getPeopleDetails = async (id: number) => {
+  return get<DataResPeople>("/people/" + id);
 };

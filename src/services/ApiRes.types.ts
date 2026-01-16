@@ -7,9 +7,9 @@
 
 // types for requests payloads
 
-export interface DataResBase {
-  current_page: 1;
-  data: DataResFilm[];
+export interface DataResBase<T> {
+  current_page: number;
+  data: T;
   first_page_url: string;
   from: number;
   last_page: number;
@@ -51,14 +51,42 @@ interface DataResFilmsError {
   error: string;
 }
 
-type DataResDetailBase = Pick<DataResFilm, "id" | "title">;
+export interface LinkData extends Pick<DataResFilm, "id"> {
+  name: string;
+}
 
-interface DataResDetailFilm extends Omit<DataResFilm, "characters_count"> {
-  characters: DataResDetailBase[];
-  planets: DataResDetailBase[];
-  starships: DataResDetailBase[];
-  vehicles: DataResDetailBase[];
-  species: DataResDetailBase[];
+export interface DataResDetailFilm
+  extends Omit<DataResFilm, "characters_count"> {
+  characters: LinkData[];
+  planets: LinkData[];
+  starships: LinkData[];
+  vehicles: LinkData[];
+  species: LinkData[];
+}
+
+//People data type
+export interface DataResPeople {
+  id: number;
+  name: string;
+  birth_year: string;
+  eye_color: string;
+  hair_color: string;
+  height: string;
+  mass: string;
+  skin_color: string;
+  wiki_link: string;
+  image_url: string;
+  affiliations: string[];
+  created: string;
+  edited: string;
+  films_count: number;
+  species_count: number;
+  starships_count: number;
+  vehicles_count: number;
+  homeworld: {
+    id: number;
+    name: string;
+  };
 }
 
 export interface ProductOrderPayload {
@@ -109,6 +137,6 @@ type SuccessData = {
   order_items: ProductOrderPayload[];
 };
 
-export type ProductsResponse = ResponseData<Product[]>;
+/* export type ProductsResponse = ResponseData<Product[]>;
 export type ProductDetailsResponse = ResponseData<Product>;
-export type CreateOrderResponse = ResponseData<ErrorMessage | SuccessData>;
+export type CreateOrderResponse = ResponseData<ErrorMessage | SuccessData>; */

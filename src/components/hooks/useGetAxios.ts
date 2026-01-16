@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import * as FilmsAPI from "../../services/ApiRes";
 
-export function useAxiosGet<T>(operation: string) {
-  const [dataResBase, setDataResBase] = useState<T | null>(null);
+export function useAxiosGet<T>(operation: string, id?: number) {
+  const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -14,8 +14,22 @@ export function useAxiosGet<T>(operation: string) {
           setLoading(true);
           resData = await FilmsAPI.getFilms();
         }
-        setDataResBase(resData as T);
+        if (operation === "GET_FILM_DETAILS") {
+          setLoading(true);
+          resData = await FilmsAPI.getFilmDetails(id!);
+        }
 
+        if (operation === "GET_PEOPLE") {
+          setLoading(true);
+          resData = await FilmsAPI.getPeople();
+        }
+
+        if (operation === "GET_PEOPLE_DETAILS") {
+          setLoading(true);
+          resData = await FilmsAPI.getPeopleDetails(id!);
+        }
+
+        setData(resData as T);
         console.log("Fetched films:", resData);
       } catch (error) {
         console.log("Error fetching films:", error);
@@ -29,5 +43,5 @@ export function useAxiosGet<T>(operation: string) {
     fetchData();
   }, [operation]);
 
-  return { dataResBase, loading, error };
+  return { data, loading, error };
 }

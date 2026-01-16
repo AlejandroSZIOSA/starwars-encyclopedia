@@ -1,11 +1,16 @@
 import type { FC } from "react";
-import { type DataResBase } from "../services/ApiRes.types";
+import { type DataResBase, type DataResFilm } from "../services/ApiRes.types";
 import { useAxiosGet } from "../components/hooks/useGetAxios";
+import { Card } from "../components/Card/Card";
 
 export const FilmsPage: FC = () => {
-  const { dataResBase, loading, error } = useAxiosGet<DataResBase>("GET_FILMS");
+  const {
+    data: dataRes,
+    loading,
+    error,
+  } = useAxiosGet<DataResBase<DataResFilm[]>>("GET_FILMS");
 
-  const { data } = dataResBase || {};
+  const { data } = dataRes || {};
 
   console.log(data);
 
@@ -21,9 +26,7 @@ export const FilmsPage: FC = () => {
       <h2>Films Page</h2>
       <ol>
         {data?.map((film) => (
-          <li key={film.id}>
-            {film.title} - Released on: {film.release_date}
-          </li>
+          <Card key={film.id} movie={film} />
         ))}
       </ol>
     </>
