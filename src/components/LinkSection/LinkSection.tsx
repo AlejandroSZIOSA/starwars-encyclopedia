@@ -15,7 +15,7 @@ export const LinkSection: FC<LinkSectionProps> = ({ title, links }) => {
         {links.map((link) => (
           <li key={link.id}>
             <p>{link.name}</p>
-            <Link to={`/people/${link.id}`}>Details</Link>
+            <Link to={`/character/${link.id}`}>Details</Link>
           </li>
         ))}
       </ul>

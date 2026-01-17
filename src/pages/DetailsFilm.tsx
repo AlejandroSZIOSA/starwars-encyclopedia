@@ -1,21 +1,21 @@
 import { type FC } from "react";
 import { useParams } from "react-router-dom";
 import type { DataResDetailFilm } from "../services/ApiRes.types";
-import { useAxiosGet } from "../components/hooks/useGetAxios";
+import { useAxiosGet } from "../components/hooks/useGetWithParams";
 import { LinkSection } from "../components/LinkSection/LinkSection";
 
 export const DetailsFilmPage: FC = () => {
   const { id } = useParams<{ id: string }>();
   const numericId = Number(id);
 
-  const { data, loading, error } = useAxiosGet<DataResDetailFilm>(
+  const { data: film } = useAxiosGet<DataResDetailFilm>(
     "GET_FILM_DETAILS",
-    numericId
+    numericId,
   );
 
-  const { planets, characters } = data || {};
+  const { planets, characters } = film || {};
 
-  console.log(data);
+  console.log(film);
   return (
     <>
       <h2>DetailFilms</h2>

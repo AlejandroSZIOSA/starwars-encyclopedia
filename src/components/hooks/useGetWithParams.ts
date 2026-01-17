@@ -13,20 +13,28 @@ export function useAxiosGet<T>(operation: string, params?: string | number) {
     const fetchData = async () => {
       let resData;
       try {
-        if (operation === "GET_PEOPLE") {
+        if (operation === "GET_FILMS") {
           setLoading(true);
-          resData = await FilmsAPI.getPeople(params as string);
-
+          resData = await FilmsAPI.getFilms(params as string);
           setNextPage(resData.next_page_url);
           setPrevPage(resData.prev_page_url);
         }
 
-        if (operation === "GET_FILMS") {
+        if (operation === "GET_FILM_DETAILS") {
           setLoading(true);
-          resData = await FilmsAPI.getFilms(params as string);
+          resData = await FilmsAPI.getFilmDetails(params as number);
+        }
 
+        if (operation === "GET_PEOPLE") {
+          setLoading(true);
+          resData = await FilmsAPI.getPeople(params as string);
           setNextPage(resData.next_page_url);
           setPrevPage(resData.prev_page_url);
+        }
+
+        if (operation === "GET_CHARACTER_DETAILS") {
+          setLoading(true);
+          resData = await FilmsAPI.getCharacterDetails(params as number);
         }
 
         setData(resData as T);

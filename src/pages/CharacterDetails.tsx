@@ -1,17 +1,17 @@
 import { type FC } from "react";
 import { useParams } from "react-router-dom";
-import { useAxiosGet } from "../components/hooks/useGetAxios";
+import { useAxiosGet } from "../components/hooks/useGetWithParams";
 import type { DataResPeople } from "../services/ApiRes.types";
 
-export const PeopleDetailsPage: FC = () => {
+export const CharacterDetailsPage: FC = () => {
   const { id } = useParams<{ id: string }>();
   const numericId = Number(id);
 
-  const { data, loading, error } = useAxiosGet<DataResPeople>(
-    "GET_PEOPLE_DETAILS",
-    numericId
+  const { data: character } = useAxiosGet<DataResPeople>(
+    "GET_CHARACTER_DETAILS",
+    numericId,
   );
 
-  console.log(data);
+  console.log(character);
   return <div>PeopleDetails</div>;
 };

@@ -8,7 +8,7 @@ import { StarshipsPage } from "./pages/Starships";
 import { VehiclesPage } from "./pages/Vehicles";
 import { RootLayout } from "./layout/RootLayout";
 import { DetailsFilmPage } from "./pages/DetailsFilm";
-import { PeopleDetailsPage } from "./pages/PeopleDetails";
+import { CharacterDetailsPage } from "./pages/CharacterDetails";
 
 function App() {
   const router = createBrowserRouter([
@@ -19,7 +19,7 @@ function App() {
         { path: "/", index: true, element: <FilmsPage /> },
         { path: "/film/:id", element: <DetailsFilmPage /> },
         { path: "/people", element: <PeoplePage /> },
-        { path: "/character/:id", element: <PeopleDetailsPage /> },
+        { path: "/character/:id", element: <CharacterDetailsPage /> },
         { path: "/planets", element: <PlanetsPage /> },
         { path: "/species", element: <SpeciesPage /> },
         { path: "/starships", element: <StarshipsPage /> },

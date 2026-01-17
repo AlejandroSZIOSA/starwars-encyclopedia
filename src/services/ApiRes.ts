@@ -35,6 +35,6 @@ export const getPeople = async (params?: string) => {
   return get<DataResBase<DataResPeople[]>>(endpoint);
 };
 
-export const getPeopleDetails = async (id: number) => {
+export const getCharacterDetails = async (id: number) => {
   return get<DataResPeople>("/people/" + id);
 };

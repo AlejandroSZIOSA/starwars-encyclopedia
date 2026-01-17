@@ -8,17 +8,11 @@ export const PeoplePage: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   //custom hook get api
-  const {
-    data: dataRes,
-    nextPage,
-    prevPage,
-    loading,
-    error,
-  } = useAxiosGet<DataResBase<DataResPeople[]>>(
-    "GET_PEOPLE",
-    `people/?page=${currentPage}`,
-  );
-  const { data } = dataRes || {};
+  const { data, nextPage, prevPage, loading, error } = useAxiosGet<
+    DataResBase<DataResPeople[]>
+  >("GET_PEOPLE", `people?page=${currentPage}`);
+
+  const { data: people } = data || {};
 
   const handleNextPage = () => {
     if (nextPage === null) return;
@@ -40,9 +34,15 @@ export const PeoplePage: FC = () => {
         handleNextPage={handleNextPage}
         handlePrevPage={handlePrevPage}
       >
-        {data?.map((c) => (
-          <Card key={c.id} data={c} variant="character" />
-        ))}
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : !people ? (
+          <p>Empty List</p>
+        ) : (
+          people.map((c) => <Card key={c.id} data={c} variant="character" />)
+        )}
       </ResultSection>
     </>
   );

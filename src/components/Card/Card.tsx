@@ -1,8 +1,5 @@
 import { type FC } from "react";
-import {
-  type DataResFilm,
-  type DataResPeople,
-} from "../../services/ApiRes.types";
+import type { DataResFilm, DataResPeople } from "../../services/ApiRes.types";
 import { Link } from "react-router-dom";
 
 interface CardProps<T> {
@@ -14,7 +11,9 @@ export const Card: FC<CardProps<DataResFilm | DataResPeople>> = ({
   data,
   variant,
 }) => {
-  const { id, title, episode_id, name, birth_year } = data;
+  const { id } = data;
+  const { title, episode_id } = data as DataResFilm;
+  const { name, birth_year } = data as DataResPeople;
 
   return (
     <div>

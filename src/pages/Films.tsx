@@ -9,20 +9,13 @@ export const FilmsPage: FC = () => {
 
   //custom hook get api
 
-  const {
-    data: dataRes,
-    loading,
-    error,
-    nextPage,
-    prevPage,
-  } = useAxiosGet<DataResBase<DataResFilm[]>>(
-    "GET_FILMS",
-    `films/?page=${currentPage}`,
-  );
+  const { data, loading, error, nextPage, prevPage } = useAxiosGet<
+    DataResBase<DataResFilm[]>
+  >("GET_FILMS", `films?page=${currentPage}`);
 
-  const { data } = dataRes || {};
+  const { data: films } = data || {};
 
-  console.log(data);
+  console.log(films);
 
   if (loading) {
     console.log(loading);
@@ -51,9 +44,15 @@ export const FilmsPage: FC = () => {
         handleNextPage={handleNextPage}
         handlePrevPage={handlePrevPage}
       >
-        {data?.map((f) => (
-          <Card key={f.id} data={f} variant="film" />
-        ))}
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : !films ? (
+          <p>Empty List</p>
+        ) : (
+          films.map((f) => <Card key={f.id} data={f} variant="film" />)
+        )}
       </ResultSection>
     </>
   );
