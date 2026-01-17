@@ -17,9 +17,9 @@ function App() {
       element: <RootLayout />,
       children: [
         { path: "/", index: true, element: <FilmsPage /> },
-        { path: "/films/:id", element: <DetailsFilmPage /> },
+        { path: "/film/:id", element: <DetailsFilmPage /> },
         { path: "/people", element: <PeoplePage /> },
-        { path: "/people/:id", element: <PeopleDetailsPage /> },
+        { path: "/character/:id", element: <PeopleDetailsPage /> },
         { path: "/planets", element: <PlanetsPage /> },
         { path: "/species", element: <SpeciesPage /> },
         { path: "/starships", element: <StarshipsPage /> },

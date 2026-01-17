@@ -21,16 +21,18 @@ export const get = async <T>(endpoint: string) => {
   return res.data;
 };
 
-export const getFilms = async () => {
-  return get<DataResBase<DataResFilm[]>>("/films");
+export const getFilms = async (params?: string) => {
+  const endpoint = params ? `/${params}` : "/films";
+  return get<DataResBase<DataResFilm[]>>(endpoint);
 };
 
 export const getFilmDetails = async (id: number) => {
   return get<DataResDetailFilm>("/films/" + id);
 };
 
-export const getPeople = async () => {
-  return get<DataResBase<DataResPeople[]>>("/people");
+export const getPeople = async (params?: string) => {
+  const endpoint = params ? `/${params}` : "/people";
+  return get<DataResBase<DataResPeople[]>>(endpoint);
 };
 
 export const getPeopleDetails = async (id: number) => {

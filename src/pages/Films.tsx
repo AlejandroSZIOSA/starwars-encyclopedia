@@ -1,14 +1,24 @@
-import type { FC } from "react";
+import { useState, type FC } from "react";
 import { type DataResBase, type DataResFilm } from "../services/ApiRes.types";
-import { useAxiosGet } from "../components/hooks/useGetAxios";
+import { useAxiosGet } from "../components/hooks/useGetWithParams";
 import { Card } from "../components/Card/Card";
+import { ResultSection } from "../components/ResultSection/ResultSection";
 
 export const FilmsPage: FC = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  //custom hook get api
+
   const {
     data: dataRes,
     loading,
     error,
-  } = useAxiosGet<DataResBase<DataResFilm[]>>("GET_FILMS");
+    nextPage,
+    prevPage,
+  } = useAxiosGet<DataResBase<DataResFilm[]>>(
+    "GET_FILMS",
+    `films/?page=${currentPage}`,
+  );
 
   const { data } = dataRes || {};
 
@@ -21,14 +31,30 @@ export const FilmsPage: FC = () => {
     console.log(error);
   }
 
+  const handleNextPage = () => {
+    if (nextPage === null) return;
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    if (prevPage === null) return;
+    setCurrentPage(currentPage - 1);
+  };
+
   return (
     <>
       <h2>Films Page</h2>
-      <ol>
-        {data?.map((film) => (
-          <Card key={film.id} movie={film} />
+      <ResultSection
+        currentPage={currentPage}
+        nextPage={nextPage}
+        prevPage={prevPage}
+        handleNextPage={handleNextPage}
+        handlePrevPage={handlePrevPage}
+      >
+        {data?.map((f) => (
+          <Card key={f.id} data={f} variant="film" />
         ))}
-      </ol>
+      </ResultSection>
     </>
   );
 };
