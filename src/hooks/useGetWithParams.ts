@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import * as FilmsAPI from "../../services/ApiRes";
+import * as FilmsAPI from "../services/ApiRes";
 
 export function useAxiosGet<T>(operation: string, params?: string | number) {
   const [data, setData] = useState<T | null>(null);

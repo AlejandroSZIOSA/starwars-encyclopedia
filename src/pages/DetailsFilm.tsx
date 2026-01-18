@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import { useParams } from "react-router-dom";
 import type { DataResDetailFilm } from "../services/ApiRes.types";
-import { useAxiosGet } from "../components/hooks/useGetWithParams";
+import { useAxiosGet } from "../hooks/useGetWithParams";
 import { LinkSection } from "../components/LinkSection/LinkSection";
 
 export const DetailsFilmPage: FC = () => {
@@ -13,7 +13,7 @@ export const DetailsFilmPage: FC = () => {
     numericId,
   );
 
-  const { planets, characters } = film || {};
+  const { characters } = film || {};
 
   console.log(film);
   return (

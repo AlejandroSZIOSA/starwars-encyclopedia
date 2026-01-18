@@ -1,6 +1,6 @@
 import { useState, type FC } from "react";
 import { type DataResBase, type DataResFilm } from "../services/ApiRes.types";
-import { useAxiosGet } from "../components/hooks/useGetWithParams";
+import { useAxiosGet } from "../hooks/useGetWithParams";
 import { Card } from "../components/Card/Card";
 import { ResultSection } from "../components/ResultSection/ResultSection";
 import { useSearchParams } from "react-router-dom";

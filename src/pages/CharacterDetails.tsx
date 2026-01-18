@@ -1,6 +1,6 @@
 import { type FC } from "react";
 import { useParams } from "react-router-dom";
-import { useAxiosGet } from "../components/hooks/useGetWithParams";
+import { useAxiosGet } from "../hooks/useGetWithParams";
 import type { DataResPeople } from "../services/ApiRes.types";
 
 export const CharacterDetailsPage: FC = () => {

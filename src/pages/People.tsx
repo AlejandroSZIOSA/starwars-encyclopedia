@@ -1,5 +1,5 @@
 import { useState, type FC } from "react";
-import { useAxiosGet } from "../components/hooks/useGetWithParams";
+import { useAxiosGet } from "../hooks/useGetWithParams";
 import type { DataResBase, DataResPeople } from "../services/ApiRes.types";
 import { ResultSection } from "../components/ResultSection/ResultSection";
 import { Card } from "../components/Card/Card";
