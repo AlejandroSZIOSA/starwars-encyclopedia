@@ -4,6 +4,7 @@ import type {
   DataResDetailFilm,
   DataResFilm,
   DataResPeople,
+  DataResPlanet,
 } from "./ApiRes.types";
 
 // Create a new axios instance
@@ -37,4 +38,13 @@ export const getPeople = async (params?: string) => {
 
 export const getCharacterDetails = async (id: number) => {
   return get<DataResPeople>("/people/" + id);
+};
+
+export const getPlanets = async (params?: string) => {
+  const endpoint = params ? `/${params}` : "/planets";
+  return get<DataResBase<DataResPlanet[]>>(endpoint);
+};
+
+export const getPlanetDetails = async (id: number) => {
+  return get<DataResPlanet>("/planets/" + id);
 };

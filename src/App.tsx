@@ -9,6 +9,7 @@ import { VehiclesPage } from "./pages/Vehicles";
 import { RootLayout } from "./layout/RootLayout";
 import { DetailsFilmPage } from "./pages/DetailsFilm";
 import { CharacterDetailsPage } from "./pages/CharacterDetails";
+import { PlanetDetailsPage } from "./pages/PlanetDetails";
 
 function App() {
   const router = createBrowserRouter([
@@ -21,6 +22,7 @@ function App() {
         { path: "/people", element: <PeoplePage /> },
         { path: "/character/:id", element: <CharacterDetailsPage /> },
         { path: "/planets", element: <PlanetsPage /> },
+        { path: "/planet/:id", element: <PlanetDetailsPage /> },
         { path: "/species", element: <SpeciesPage /> },
         { path: "/starships", element: <StarshipsPage /> },
         { path: "/vehicles", element: <VehiclesPage /> },

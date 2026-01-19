@@ -1,16 +1,15 @@
 import { type FC } from "react";
-import { useGetAndSearch } from "../hooks/useGetAndSearch";
+import { useGetAndSearchAPI } from "../hooks/useGetAndSearchAPI";
 import type { DataResBase, DataResPeople } from "../services/ApiRes.types";
 import { Card } from "../components/Card/Card";
 import { Pagination } from "../components/Pagination/Pagination";
 
-import { usePeopleParams } from "../hooks/usePeopleParams";
+import { usePaginationParams } from "../hooks/usePaginationParams";
 import { SearchBar } from "../components/searchbar/SearchBar";
 
 export const PeoplePage: FC = () => {
-  const { page, query, setParams } = usePeopleParams();
-
-  const { data, loading, error, nextPage } = useGetAndSearch<
+  const { page, query, setParams } = usePaginationParams();
+  const { data, loading, error, nextPage } = useGetAndSearchAPI<
     DataResBase<DataResPeople[]>
   >("PEOPLE", `people?page=${page}&search=${encodeURIComponent(query)}`);
 

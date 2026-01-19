@@ -19,7 +19,7 @@ export interface DataResBase<T> {
       url: null; //preguntar?
       label: string;
       active: boolean;
-    }
+    },
   ];
   next_page_url: null;
   path: string;
@@ -51,17 +51,19 @@ interface DataResFilmsError {
   error: string;
 }
 
-export interface LinkData extends Pick<DataResFilm, "id"> {
+export interface LinkFilmType extends Pick<DataResFilm, "id"> {
   name: string;
 }
 
-export interface DataResDetailFilm
-  extends Omit<DataResFilm, "characters_count"> {
-  characters: LinkData[];
-  planets: LinkData[];
-  starships: LinkData[];
-  vehicles: LinkData[];
-  species: LinkData[];
+export interface DataResDetailFilm extends Omit<
+  DataResFilm,
+  "characters_count"
+> {
+  characters: LinkFilmType[];
+  planets: LinkFilmType[];
+  starships: LinkFilmType[];
+  vehicles: LinkFilmType[];
+  species: LinkFilmType[];
 }
 
 //People data type
@@ -89,7 +91,42 @@ export interface DataResPeople {
   };
 }
 
-export interface ProductOrderPayload {
+export interface DataResPlanet {
+  id: number;
+  name: string;
+  rotation_period: string;
+  orbital_period: string;
+  diameter: string;
+  climate: string;
+  gravity: string;
+  terrain: string;
+  surface_water: string;
+  population: string;
+  created: string;
+  edited: string;
+  residents_count: number;
+  films_count: number;
+}
+
+export type ResidentType = Omit<
+  DataResPeople,
+  "films_count" | "starships_count" | "vehicles_count" | "homeworld"
+>;
+
+export interface FilmType {
+  id: number;
+  title: string;
+}
+
+export interface DataResDetailPlanet extends Omit<
+  DataResPlanet,
+  "residents_count" | "films_count"
+> {
+  residents: ResidentType[];
+  films: FilmType[];
+}
+
+/* export interface ProductOrderPayload {
   product_id: number;
   name: string;
   qty: number;
@@ -107,10 +144,10 @@ export interface UserOrderPayload {
   customer_phone: string;
   order_total: number;
   order_items: ProductOrderPayload[];
-}
+} */
 
 //response types
-type ResponseData<T> = {
+/* type ResponseData<T> = {
   status: string;
   message?: string;
   data?: T;
@@ -135,7 +172,7 @@ type SuccessData = {
   created_at: string;
   updated_at: string;
   order_items: ProductOrderPayload[];
-};
+}; */
 
 /* export type ProductsResponse = ResponseData<Product[]>;
 export type ProductDetailsResponse = ResponseData<Product>;

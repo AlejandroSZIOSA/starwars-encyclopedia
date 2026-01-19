@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import * as EnciclopediaAPIs from "../services/ApiRes";
 
-type VariantType = "FILMS" | "PEOPLE";
+type VariantType = "FILMS" | "PEOPLE" | "PLANETS";
 
-export function useGetAndSearch<T>(operation: VariantType, params?: string) {
+export function useGetAndSearchAPI<T>(operation: VariantType, params: string) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -28,6 +28,15 @@ export function useGetAndSearch<T>(operation: VariantType, params?: string) {
         if (operation === "PEOPLE") {
           setLoading(true);
           resData = await EnciclopediaAPIs.getPeople(params);
+
+          setCurrentPage(resData.current_page);
+          setNextPage(resData.next_page_url);
+          setPrevPage(resData.prev_page_url);
+        }
+
+        if (operation === "PLANETS") {
+          setLoading(true);
+          resData = await EnciclopediaAPIs.getPlanets(params);
 
           setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);

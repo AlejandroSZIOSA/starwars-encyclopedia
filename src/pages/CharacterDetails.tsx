@@ -1,13 +1,13 @@
 import { type FC } from "react";
 import { useParams } from "react-router-dom";
 import type { DataResPeople } from "../services/ApiRes.types";
-import { useGetDetails } from "../hooks/useGetDetails";
+import { useGetDetailsAPI } from "../hooks/useGetDetailsAPI";
 
 export const CharacterDetailsPage: FC = () => {
   const { id } = useParams<{ id: string }>();
   const numericId = Number(id);
 
-  const { data: character } = useGetDetails<DataResPeople>(
+  const { data: character } = useGetDetailsAPI<DataResPeople>(
     "CHARACTER",
     numericId,
   );

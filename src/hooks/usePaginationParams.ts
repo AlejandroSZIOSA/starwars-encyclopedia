@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 
-export function usePeopleParams() {
+export function usePaginationParams() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const page = Number(searchParams.get("page")) || 1;

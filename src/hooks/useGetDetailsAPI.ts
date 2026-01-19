@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import * as FilmsAPI from "../services/ApiRes";
+import * as EnciclopediaAPIs from "../services/ApiRes";
 
-type VariantType = "FILM" | "CHARACTER";
+type VariantType = "FILM" | "CHARACTER" | "PLANET";
 
-export function useGetDetails<T>(variant: VariantType, params: number) {
+export function useGetDetailsAPI<T>(variant: VariantType, params: number) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -14,12 +14,17 @@ export function useGetDetails<T>(variant: VariantType, params: number) {
       try {
         if (variant === "FILM") {
           setLoading(true);
-          resData = await FilmsAPI.getFilmDetails(params);
+          resData = await EnciclopediaAPIs.getFilmDetails(params);
         }
 
         if (variant === "CHARACTER") {
           setLoading(true);
-          resData = await FilmsAPI.getCharacterDetails(params);
+          resData = await EnciclopediaAPIs.getCharacterDetails(params);
+        }
+
+        if (variant === "PLANET") {
+          setLoading(true);
+          resData = await EnciclopediaAPIs.getPlanetDetails(params);
         }
 
         setData(resData as T);
