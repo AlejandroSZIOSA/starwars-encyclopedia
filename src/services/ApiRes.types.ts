@@ -52,7 +52,7 @@ interface DataResFilmsError {
 }
 
 export interface LinkFilmType extends Pick<DataResFilm, "id"> {
-  name: string;
+  name: string; //TODO: change to title?
 }
 
 export interface DataResDetailFilm extends Omit<
