@@ -47,17 +47,22 @@ export interface DataResFilm {
   species_count: number;
 }
 
-interface DataResFilmsError {
+/* interface DataResFilmsError {
   error: string;
-}
+} */
 
-export interface LinkFilmType extends Pick<DataResFilm, "id"> {
-  name: string; //TODO: change to title?
-}
+/* export interface LinkFilmType extends Pick<DataResFilm, "id"> {
+  title: string; //TODO: change to title?
+} */
+export type LinkFilmType = Pick<DataResFilm, "id"> & { name: string };
 
 export interface DataResDetailFilm extends Omit<
   DataResFilm,
-  "characters_count"
+  | "characters_count"
+  | "planets_count"
+  | "starships_count"
+  | "vehicles_count"
+  | "species_count"
 > {
   characters: LinkFilmType[];
   planets: LinkFilmType[];
@@ -66,6 +71,7 @@ export interface DataResDetailFilm extends Omit<
   species: LinkFilmType[];
 }
 
+type homeworldType = LinkFilmType;
 //People data type
 export interface DataResPeople {
   id: number;
@@ -85,12 +91,23 @@ export interface DataResPeople {
   species_count: number;
   starships_count: number;
   vehicles_count: number;
-  homeworld: {
-    id: number;
-    name: string;
-  };
+  homeworld: homeworldType;
 }
 
+export type LinkPeopleFilmsType = Pick<DataResFilm, "id" | "title">;
+export type MachinesType = Pick<DataResPeople, "id" | "name">;
+
+export interface DataResDetailPeople extends Omit<
+  DataResPeople,
+  "films_count" | "species_count" | "starships_count" | "vehicles_count"
+> {
+  films: LinkPeopleFilmsType[];
+  species: MachinesType[];
+  starships: MachinesType[];
+  vehicles: MachinesType[];
+}
+
+//continue
 export interface DataResPlanet {
   id: number;
   name: string;
@@ -108,22 +125,23 @@ export interface DataResPlanet {
   films_count: number;
 }
 
-export type ResidentType = Omit<
+export type LinkResidentType = Omit<
   DataResPeople,
   "films_count" | "starships_count" | "vehicles_count" | "homeworld"
 >;
 
-export interface FilmType {
+/* export interface FilmType {
   id: number;
   title: string;
-}
+} */
 
+export type LinkPlanetFilmsType = LinkPeopleFilmsType;
 export interface DataResDetailPlanet extends Omit<
   DataResPlanet,
   "residents_count" | "films_count"
 > {
-  residents: ResidentType[];
-  films: FilmType[];
+  residents: LinkResidentType[];
+  films: LinkPlanetFilmsType[];
 }
 
 /* export interface ProductOrderPayload {

@@ -1,16 +1,15 @@
 import { type FC } from "react";
 import type {
-  FilmType,
   LinkFilmType,
-  ResidentType,
+  LinkPlanetFilmsType,
 } from "../../services/ApiRes.types";
 import { Link } from "react-router-dom";
 
 interface LinkSectionProps {
   title: string;
-  rootLinkAddress: "character" | "film" | "planet";
+  rootLinkAddress: "character" | "film";
 
-  links: LinkFilmType[] | ResidentType[] | FilmType[];
+  links: LinkFilmType[] | LinkPlanetFilmsType[];
 }
 
 //todo
