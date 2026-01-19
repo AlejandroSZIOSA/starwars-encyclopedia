@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent, type FC } from "react";
-import { useAxiosGet } from "../hooks/useGetWithParams";
+import { useGetAndSearch } from "../hooks/useGetAndSearch";
 import type { DataResBase, DataResPeople } from "../services/ApiRes.types";
 import { ResultSection } from "../components/ResultSection/ResultSection";
 import { Card } from "../components/Card/Card";
@@ -8,18 +8,18 @@ import { useSearchParams } from "react-router-dom";
 export const PeoplePage: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
-  //custom hook get api
-  const { data, nextPage, prevPage, loading, error } = useAxiosGet<
-    DataResBase<DataResPeople[]>
-  >("GET_PEOPLE", `people?page=${currentPage}`);
-
-  const { data: people } = data || {};
-
   //searchbar
 
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("search")?.toLowerCase() ?? "";
   //
+
+  //custom hook get api
+  const { data, loading, error, nextPage, prevPage } = useGetAndSearch<
+    DataResBase<DataResPeople[]>
+  >("PEOPLE", `people?page=${currentPage}`);
+
+  const { data: people } = data || {};
 
   const handleNextPage = () => {
     if (nextPage === null) return;

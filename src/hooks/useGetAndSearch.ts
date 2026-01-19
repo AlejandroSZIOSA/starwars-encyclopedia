@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import * as FilmsAPI from "../services/ApiRes";
 
-export function useAxiosGet<T>(operation: string, params?: string | number) {
+type VariantType = "FILMS" | "PEOPLE";
+
+export function useGetAndSearch<T>(operation: VariantType, params?: string) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [nextPage, setNextPage] = useState<string | null>(null);
   const [prevPage, setPrevPage] = useState<string | null>(null);
 
@@ -13,28 +16,22 @@ export function useAxiosGet<T>(operation: string, params?: string | number) {
     const fetchData = async () => {
       let resData;
       try {
-        if (operation === "GET_FILMS") {
+        if (operation === "FILMS") {
           setLoading(true);
-          resData = await FilmsAPI.getFilms(params as string);
+          resData = await FilmsAPI.getFilms(params);
+
+          setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);
           setPrevPage(resData.prev_page_url);
         }
 
-        if (operation === "GET_FILM_DETAILS") {
+        if (operation === "PEOPLE") {
           setLoading(true);
-          resData = await FilmsAPI.getFilmDetails(params as number);
-        }
+          resData = await FilmsAPI.getPeople(params);
 
-        if (operation === "GET_PEOPLE") {
-          setLoading(true);
-          resData = await FilmsAPI.getPeople(params as string);
+          setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);
           setPrevPage(resData.prev_page_url);
-        }
-
-        if (operation === "GET_CHARACTER_DETAILS") {
-          setLoading(true);
-          resData = await FilmsAPI.getCharacterDetails(params as number);
         }
 
         setData(resData as T);
@@ -51,5 +48,13 @@ export function useAxiosGet<T>(operation: string, params?: string | number) {
     fetchData();
   }, [operation, params]);
 
-  return { data, loading, error, nextPage, prevPage };
+  return {
+    data,
+    loading,
+    error,
+    currentPage,
+    setCurrentPage,
+    nextPage,
+    prevPage,
+  };
 }

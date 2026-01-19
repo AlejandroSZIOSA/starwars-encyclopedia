@@ -1,6 +1,6 @@
 import { useState, type FC } from "react";
 import { type DataResBase, type DataResFilm } from "../services/ApiRes.types";
-import { useAxiosGet } from "../hooks/useGetWithParams";
+import { useGetAndSearch } from "../hooks/useGetAndSearch";
 import { Card } from "../components/Card/Card";
 import { ResultSection } from "../components/ResultSection/ResultSection";
 import { useSearchParams } from "react-router-dom";
@@ -11,11 +11,11 @@ export const FilmsPage: FC = () => {
 
   //custom hook get api
 
-  const { data, loading, error, nextPage, prevPage } = useAxiosGet<
+  const { data, loading, error, nextPage, prevPage } = useGetAndSearch<
     DataResBase<DataResFilm[]>
-  >("GET_FILMS", `films?page=${currentPage}`);
+  >("FILMS", `films?page=${currentPage}`);
 
-  const { data: films } = data || {};
+  const { data: films } = data || {}; //TODO
 
   //searchbar
 
