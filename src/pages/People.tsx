@@ -1,82 +1,48 @@
-import { useState, type ChangeEvent, type FC } from "react";
+import { type FC } from "react";
 import { useGetAndSearch } from "../hooks/useGetAndSearch";
 import type { DataResBase, DataResPeople } from "../services/ApiRes.types";
-import { ResultSection } from "../components/ResultSection/ResultSection";
 import { Card } from "../components/Card/Card";
-import { useSearchParams } from "react-router-dom";
+import { Pagination } from "../components/Pagination/Pagination";
+
+import { usePeopleParams } from "../hooks/usePeopleParams";
+import { SearchBar } from "../components/searchbar/SearchBar";
 
 export const PeoplePage: FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const { page, query, setParams } = usePeopleParams();
 
-  //searchbar
-
-  const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get("search")?.toLowerCase() ?? "";
-  //
-
-  //custom hook get api
-  const { data, loading, error, nextPage, prevPage } = useGetAndSearch<
+  const { data, loading, error, nextPage } = useGetAndSearch<
     DataResBase<DataResPeople[]>
-  >("PEOPLE", `people?page=${currentPage}`);
+  >("PEOPLE", `people?page=${page}&search=${encodeURIComponent(query)}`);
 
   const { data: people } = data || {};
-
-  const handleNextPage = () => {
-    if (nextPage === null) return;
-    setCurrentPage(currentPage + 1);
-  };
-
-  const handlePrevPage = () => {
-    if (prevPage === null) return;
-    setCurrentPage(currentPage - 1);
-  };
-
-  //serchbar
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-
-    if (value) {
-      setSearchParams({ search: value });
-    } else {
-      setSearchParams({});
-    }
-  };
-
-  const filteredPeople = people?.filter((person) =>
-    person.name.toLowerCase().includes(query),
-  );
-  //
 
   return (
     <>
       <h2>People Page</h2>
-
-      <input
-        type="text"
-        placeholder="Search..."
+      <SearchBar
         value={query}
-        onChange={handleChange}
+        onChange={(value) => setParams({ query: value, page: 1 })}
       />
-
-      <ResultSection
-        currentPage={currentPage}
-        nextPage={nextPage}
-        prevPage={prevPage}
-        handleNextPage={handleNextPage}
-        handlePrevPage={handlePrevPage}
-      >
+      <ol>
         {loading ? (
           <p>Loading...</p>
         ) : error ? (
           <p>{error}</p>
-        ) : !filteredPeople || filteredPeople.length === 0 ? (
+        ) : !people || people.length === 0 ? (
           <p>Empty List</p>
         ) : (
-          filteredPeople.map((c) => (
-            <Card key={c.id} data={c} variant="character" />
-          ))
+          people.map((c) => <Card key={c.id} data={c} variant="character" />)
         )}
-      </ResultSection>
+      </ol>
+
+      <Pagination
+        page={page}
+        onNext={() => {
+          setParams({ page: page + 1 });
+        }}
+        nextPageUrl={nextPage}
+        onPrev={() => setParams({ page: Math.max(1, page - 1) })}
+      />
     </>
   );
 };

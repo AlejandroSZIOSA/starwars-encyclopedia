@@ -1,9 +1,9 @@
 import { type FC, type ReactNode } from "react";
 
 interface ResultSectionProps {
-  currentPage: number;
-  nextPage: string | null;
-  prevPage: string | null;
+  currentPage?: number;
+  nextPage?: string | null;
+  prevPage?: string | null;
   handleNextPage: () => void;
   handlePrevPage: () => void;
   children: ReactNode;

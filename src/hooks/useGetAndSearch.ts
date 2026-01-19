@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import * as FilmsAPI from "../services/ApiRes";
+import * as EnciclopediaAPIs from "../services/ApiRes";
 
 type VariantType = "FILMS" | "PEOPLE";
 
@@ -18,7 +18,7 @@ export function useGetAndSearch<T>(operation: VariantType, params?: string) {
       try {
         if (operation === "FILMS") {
           setLoading(true);
-          resData = await FilmsAPI.getFilms(params);
+          resData = await EnciclopediaAPIs.getFilms(params);
 
           setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);
@@ -27,7 +27,7 @@ export function useGetAndSearch<T>(operation: VariantType, params?: string) {
 
         if (operation === "PEOPLE") {
           setLoading(true);
-          resData = await FilmsAPI.getPeople(params);
+          resData = await EnciclopediaAPIs.getPeople(params);
 
           setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);

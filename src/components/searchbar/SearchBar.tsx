@@ -1,26 +1,15 @@
-import { useSearchParams } from "react-router-dom";
-import { type ChangeEvent } from "react";
+import { type FC } from "react";
+type Props = {
+  value: string;
+  onChange: (value: string) => void;
+};
 
-export function SearchBar() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get("q") ?? "";
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-
-    if (value) {
-      setSearchParams({ q: value });
-    } else {
-      setSearchParams({});
-    }
-  };
-
+export const SearchBar: FC<Props> = ({ value, onChange }) => {
   return (
     <input
-      type="text"
-      placeholder="Search..."
-      value={query}
-      onChange={handleChange}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      placeholder="Search people..."
     />
   );
-}
+};
