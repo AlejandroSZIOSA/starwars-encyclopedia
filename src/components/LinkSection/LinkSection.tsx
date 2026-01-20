@@ -1,15 +1,22 @@
 import { type FC } from "react";
 import type {
-  LinkFilmType,
-  LinkPlanetFilmsType,
+  LinkFilmBaseType,
+  LinkFilmsType,
+  LinkPeopleFilmsType,
 } from "../../services/ApiRes.types";
 import { Link } from "react-router-dom";
 
 interface LinkSectionProps {
   title: string;
-  rootLinkAddress: "character" | "film";
+  rootLinkAddress:
+    | "character"
+    | "film"
+    | "planet"
+    | "specie"
+    | "starship"
+    | "vehicle";
 
-  links: LinkFilmType[] | LinkPlanetFilmsType[];
+  links: LinkFilmBaseType[] | LinkFilmsType[] | LinkPeopleFilmsType[];
 }
 
 //todo
@@ -21,7 +28,9 @@ export const LinkSection: FC<LinkSectionProps> = ({
 }) => {
   return (
     <section>
-      <p>{title}</p>
+      <p>
+        <strong>{title}</strong>
+      </p>
       <ul>
         {links.map((link) => (
           <li key={link.id}>

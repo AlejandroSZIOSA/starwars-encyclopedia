@@ -16,7 +16,7 @@ export const FilmsPage: FC = () => {
   const { data: films } = data || {}; //TODO
 
   return (
-    <>
+    <div>
       <h2>Films Page</h2>
 
       <SearchBar
@@ -44,6 +44,6 @@ export const FilmsPage: FC = () => {
         nextPageUrl={nextPage}
         onPrev={() => setParams({ page: Math.max(1, page - 1) })}
       />
-    </>
+    </div>
   );
 };

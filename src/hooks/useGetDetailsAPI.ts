@@ -28,7 +28,7 @@ export function useGetDetailsAPI<T>(variant: VariantType, params: number) {
         }
 
         setData(resData as T);
-        console.log("Fetched films:", resData);
+        /*  console.log("Fetched films:", resData); */
       } catch (error) {
         console.log("Error fetching films:", error);
         setError((error as Error).message);

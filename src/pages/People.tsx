@@ -16,7 +16,7 @@ export const PeoplePage: FC = () => {
   const { data: people } = data || {};
 
   return (
-    <>
+    <div>
       <h2>People Page</h2>
       <SearchBar
         value={query}
@@ -42,6 +42,6 @@ export const PeoplePage: FC = () => {
         nextPageUrl={nextPage}
         onPrev={() => setParams({ page: Math.max(1, page - 1) })}
       />
-    </>
+    </div>
   );
 };

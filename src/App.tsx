@@ -10,6 +10,8 @@ import { RootLayout } from "./layout/RootLayout";
 import { DetailsFilmPage } from "./pages/DetailsFilm";
 import { CharacterDetailsPage } from "./pages/CharacterDetails";
 import { PlanetDetailsPage } from "./pages/PlanetDetails";
+import { SpecieDetailsPage } from "./pages/SpecieDetails";
+import { VehicleDetailsPage } from "./pages/VehicleDetails";
 
 function App() {
   const router = createBrowserRouter([
@@ -24,8 +26,10 @@ function App() {
         { path: "/planets", element: <PlanetsPage /> },
         { path: "/planet/:id", element: <PlanetDetailsPage /> },
         { path: "/species", element: <SpeciesPage /> },
+        { path: "/specie/:id", element: <SpecieDetailsPage /> },
         { path: "/starships", element: <StarshipsPage /> },
         { path: "/vehicles", element: <VehiclesPage /> },
+        { path: "/vehicle/:id", element: <VehicleDetailsPage /> },
       ],
     },
   ]);

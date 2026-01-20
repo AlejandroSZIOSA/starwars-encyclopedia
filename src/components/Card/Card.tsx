@@ -15,8 +15,9 @@ export const Card: FC<
   CardProps<DataResFilm | DataResPeople | DataResPlanet>
 > = ({ data, variant }) => {
   const { id } = data;
-  const { title, episode_id, characters_count } = data as DataResFilm;
-  const { name, homeworld, films_count } = data as DataResPeople;
+  const { title, episode_id, release_date, characters_count } =
+    data as DataResFilm;
+  const { name, birth_year, films_count } = data as DataResPeople;
   const { climate, terrain, population } = data as DataResPlanet;
 
   return (
@@ -25,13 +26,14 @@ export const Card: FC<
         <>
           <p> Title:{title}</p>
           <p>Episode: {episode_id}</p>
+          <p>Release Date: {release_date}</p>
           <p>Characters: {characters_count}</p>
         </>
       )}
       {variant === "character" && (
         <>
           <p> Name:{name}</p>
-          <p>Homeworld: {homeworld.name}</p>
+          <p>Birth Date: {birth_year}</p>
           <p>in {films_count} films</p>
         </>
       )}

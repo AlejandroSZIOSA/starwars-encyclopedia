@@ -47,16 +47,9 @@ export interface DataResFilm {
   species_count: number;
 }
 
-/* interface DataResFilmsError {
-  error: string;
-} */
+export type LinkFilmBaseType = Pick<DataResFilm, "id"> & { name: string };
 
-/* export interface LinkFilmType extends Pick<DataResFilm, "id"> {
-  title: string; //TODO: change to title?
-} */
-export type LinkFilmType = Pick<DataResFilm, "id"> & { name: string };
-
-export interface DataResDetailFilm extends Omit<
+export interface DataResDetailsFilm extends Omit<
   DataResFilm,
   | "characters_count"
   | "planets_count"
@@ -64,15 +57,16 @@ export interface DataResDetailFilm extends Omit<
   | "vehicles_count"
   | "species_count"
 > {
-  characters: LinkFilmType[];
-  planets: LinkFilmType[];
-  starships: LinkFilmType[];
-  vehicles: LinkFilmType[];
-  species: LinkFilmType[];
+  characters: LinkFilmBaseType[];
+  planets: LinkFilmBaseType[];
+  starships: LinkFilmBaseType[];
+  vehicles: LinkFilmBaseType[];
+  species: LinkFilmBaseType[];
 }
 
-type homeworldType = LinkFilmType;
 //People data type
+type HomeworldType = LinkFilmBaseType;
+
 export interface DataResPeople {
   id: number;
   name: string;
@@ -91,23 +85,24 @@ export interface DataResPeople {
   species_count: number;
   starships_count: number;
   vehicles_count: number;
-  homeworld: homeworldType;
+  homeworld: HomeworldType | null;
 }
 
 export type LinkPeopleFilmsType = Pick<DataResFilm, "id" | "title">;
-export type MachinesType = Pick<DataResPeople, "id" | "name">;
+export type LinkMachinesType = Pick<DataResPeople, "id" | "name">;
+export type LinkSpeciesType = LinkMachinesType;
 
-export interface DataResDetailPeople extends Omit<
+export interface DataResDetailsPeople extends Omit<
   DataResPeople,
   "films_count" | "species_count" | "starships_count" | "vehicles_count"
 > {
   films: LinkPeopleFilmsType[];
-  species: MachinesType[];
-  starships: MachinesType[];
-  vehicles: MachinesType[];
+  species: LinkSpeciesType[];
+  starships: LinkMachinesType[];
+  vehicles: LinkMachinesType[];
 }
 
-//continue
+//planets
 export interface DataResPlanet {
   id: number;
   name: string;
@@ -130,18 +125,100 @@ export type LinkResidentType = Omit<
   "films_count" | "starships_count" | "vehicles_count" | "homeworld"
 >;
 
-/* export interface FilmType {
-  id: number;
-  title: string;
-} */
-
-export type LinkPlanetFilmsType = LinkPeopleFilmsType;
+export type LinkFilmsType = LinkPeopleFilmsType;
 export interface DataResDetailPlanet extends Omit<
   DataResPlanet,
   "residents_count" | "films_count"
 > {
   residents: LinkResidentType[];
-  films: LinkPlanetFilmsType[];
+  films: LinkFilmsType[];
+}
+
+//species
+export interface SpeciesType {
+  id: number;
+  name: string;
+  classification: string;
+  designation: string;
+  average_height: string;
+  average_lifespan: string;
+  eye_colors: string;
+  hair_colors: string;
+  skin_colors: string;
+  language: string;
+  created: string;
+  edited: string;
+  people_count: number;
+  films_count: number;
+  homeworld: HomeworldType | null;
+}
+
+type LinkSpeciesPeopleType = LinkMachinesType;
+
+export interface SpeciesDetailsType extends Omit<
+  SpeciesType,
+  "people_count" | "films_count"
+> {
+  people: LinkSpeciesPeopleType[];
+  films: LinkFilmsType[];
+}
+
+//starships
+export interface StarshipType {
+  id: number;
+  name: string;
+  model: string;
+  starship_class: string;
+  manufacturer: string;
+  cost_in_credits: string;
+  length: string;
+  crew: string;
+  passengers: string;
+  max_atmosphering_speed: string;
+  hyperdrive_rating: string;
+  MGLT: string;
+  cargo_capacity: string;
+  consumables: string;
+  created: string;
+  edited: string;
+  pilots_count: number;
+  films_count: number;
+}
+
+export interface StarshipDetailsType extends Omit<
+  StarshipType,
+  "pilots_count" | "films_count"
+> {
+  pilots: unknown[];
+  films: LinkFilmsType[];
+}
+
+//vehicles
+export interface VehicleType {
+  id: number;
+  name: string;
+  model: string;
+  vehicle_class: string;
+  manufacturer: string;
+  length: string;
+  cost_in_credits: string;
+  crew: string;
+  passengers: string;
+  max_atmosphering_speed: string;
+  cargo_capacity: string;
+  consumables: string;
+  created: string;
+  edited: string;
+  pilots_count: number;
+  films_count: number;
+}
+
+export interface VehicleDetailsType extends Omit<
+  VehicleType,
+  "pilots_count" | "films_count"
+> {
+  pilots: unknown[];
+  films: LinkFilmsType[];
 }
 
 /* export interface ProductOrderPayload {
