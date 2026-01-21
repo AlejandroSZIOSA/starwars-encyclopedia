@@ -4,6 +4,8 @@ import type { DataResDetailsFilm } from "../services/ApiRes.types";
 import { LinkSection } from "../components/LinkSection/LinkSection";
 import { useGetDetailsAPI } from "../hooks/useGetDetailsAPI";
 
+import styles from "./DetailsFilm.module.css";
+
 export const DetailsFilmPage: FC = () => {
   const { id } = useParams<{ id: string }>();
   const numericId = Number(id);
@@ -29,7 +31,7 @@ export const DetailsFilmPage: FC = () => {
 
   console.log(film);
   return (
-    <div>
+    <div className={styles.detailsFilmRootContainer}>
       <section>
         <h2>{title}</h2>
         <article>
@@ -58,6 +60,27 @@ export const DetailsFilmPage: FC = () => {
             title="Planets"
             links={planets}
             rootLinkAddress="planet"
+          />
+        )}
+        {species && (
+          <LinkSection
+            title="Species"
+            links={species}
+            rootLinkAddress="specie"
+          />
+        )}
+        {starships && (
+          <LinkSection
+            title="Starships"
+            links={starships}
+            rootLinkAddress="starship"
+          />
+        )}
+        {vehicles && (
+          <LinkSection
+            title="Vehicles"
+            links={vehicles}
+            rootLinkAddress="vehicle"
           />
         )}
       </section>

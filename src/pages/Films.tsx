@@ -22,6 +22,7 @@ export const FilmsPage: FC = () => {
       <div className={styles.searchBarContainer}>
         <SearchBar
           value={query}
+          placeholder="Search films..."
           onChange={(value) => setParams({ query: value, page: 1 })}
         />
       </div>

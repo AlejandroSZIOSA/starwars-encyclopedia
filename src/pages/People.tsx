@@ -20,6 +20,7 @@ export const PeoplePage: FC = () => {
       <h2>People Page</h2>
       <SearchBar
         value={query}
+        placeholder="Search character..."
         onChange={(value) => setParams({ query: value, page: 1 })}
       />
       <ol>

@@ -1,0 +1,19 @@
+.titleText {
+  padding: 1rem 0;
+}
+
+.linkSectionRootContainer ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 0.8rem;
+  width: 100%;
+}
+
+.linkSectionRootContainer ul li {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  border: 2px solid black;
+}

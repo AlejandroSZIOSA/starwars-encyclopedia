@@ -6,6 +6,8 @@ import type {
 } from "../../services/ApiRes.types";
 import { Link } from "react-router-dom";
 
+import styles from "./LinkSection.module.css";
+
 interface LinkSectionProps {
   title: string;
   rootLinkAddress:
@@ -27,8 +29,8 @@ export const LinkSection: FC<LinkSectionProps> = ({
   rootLinkAddress,
 }) => {
   return (
-    <section>
-      <p>
+    <section className={styles.linkSectionRootContainer}>
+      <p className={styles.titleText}>
         <strong>{title}</strong>
       </p>
       <ul>
@@ -39,7 +41,6 @@ export const LinkSection: FC<LinkSectionProps> = ({
             ) : "name" in link ? (
               <p>{link.name}</p>
             ) : null}
-
             <Link to={`/${rootLinkAddress}/${link.id}`}>Details</Link>
           </li>
         ))}
