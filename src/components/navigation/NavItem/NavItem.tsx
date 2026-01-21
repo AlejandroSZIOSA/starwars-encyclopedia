@@ -10,9 +10,7 @@ export const NavItem: FC<NavItemProps> = ({ htmlAddress, label }) => {
   return (
     <li>
       <NavLink to={htmlAddress}>
-        <div>
-          <p>{label}</p>
-        </div>
+        <p>{label}</p>
       </NavLink>
     </li>
   );

@@ -90,14 +90,14 @@ export interface DataResPeople {
 
 export type LinkPeopleFilmsType = Pick<DataResFilm, "id" | "title">;
 export type LinkMachinesType = Pick<DataResPeople, "id" | "name">;
-export type LinkSpeciesType = LinkMachinesType;
+export type LinkDataResSpecies = LinkMachinesType;
 
 export interface DataResDetailsPeople extends Omit<
   DataResPeople,
   "films_count" | "species_count" | "starships_count" | "vehicles_count"
 > {
   films: LinkPeopleFilmsType[];
-  species: LinkSpeciesType[];
+  species: LinkDataResSpecies[];
   starships: LinkMachinesType[];
   vehicles: LinkMachinesType[];
 }
@@ -135,7 +135,7 @@ export interface DataResDetailPlanet extends Omit<
 }
 
 //species
-export interface SpeciesType {
+export interface DataResSpecies {
   id: number;
   name: string;
   classification: string;
@@ -156,7 +156,7 @@ export interface SpeciesType {
 type LinkSpeciesPeopleType = LinkMachinesType;
 
 export interface SpeciesDetailsType extends Omit<
-  SpeciesType,
+  DataResSpecies,
   "people_count" | "films_count"
 > {
   people: LinkSpeciesPeopleType[];
@@ -164,7 +164,7 @@ export interface SpeciesDetailsType extends Omit<
 }
 
 //starships
-export interface StarshipType {
+export interface DataResStarship {
   id: number;
   name: string;
   model: string;
@@ -186,7 +186,7 @@ export interface StarshipType {
 }
 
 export interface StarshipDetailsType extends Omit<
-  StarshipType,
+  DataResStarship,
   "pilots_count" | "films_count"
 > {
   pilots: unknown[];
@@ -194,7 +194,7 @@ export interface StarshipDetailsType extends Omit<
 }
 
 //vehicles
-export interface VehicleType {
+export interface DataResVehicle {
   id: number;
   name: string;
   model: string;
@@ -214,61 +214,9 @@ export interface VehicleType {
 }
 
 export interface VehicleDetailsType extends Omit<
-  VehicleType,
+  DataResVehicle,
   "pilots_count" | "films_count"
 > {
   pilots: unknown[];
   films: LinkFilmsType[];
 }
-
-/* export interface ProductOrderPayload {
-  product_id: number;
-  name: string;
-  qty: number;
-  item_price: number;
-  item_total: number;
-}
-
-export interface UserOrderPayload {
-  customer_first_name: string;
-  customer_last_name: string;
-  customer_address: string;
-  customer_postcode: string;
-  customer_city: string;
-  customer_email: string;
-  customer_phone: string;
-  order_total: number;
-  order_items: ProductOrderPayload[];
-} */
-
-//response types
-/* type ResponseData<T> = {
-  status: string;
-  message?: string;
-  data?: T;
-};
-
-type ErrorMessage = {
-  [key: string]: string[];
-};
-
-type SuccessData = {
-  id: number;
-  user_id: number;
-  order_date: string;
-  customer_first_name: string;
-  customer_last_name: string;
-  customer_address: string;
-  customer_postcode: string;
-  customer_city: string;
-  customer_email: string;
-  customer_phone: string;
-  order_total: number;
-  created_at: string;
-  updated_at: string;
-  order_items: ProductOrderPayload[];
-}; */
-
-/* export type ProductsResponse = ResponseData<Product[]>;
-export type ProductDetailsResponse = ResponseData<Product>;
-export type CreateOrderResponse = ResponseData<ErrorMessage | SuccessData>; */

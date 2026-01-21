@@ -4,7 +4,7 @@ import { usePaginationParams } from "../hooks/usePaginationParams";
 import type { DataResBase, DataResPlanet } from "../services/ApiRes.types";
 import { useGetAndSearchAPI } from "../hooks/useGetAndSearchAPI";
 import { Card } from "../components/Card/Card";
-import { Pagination } from "../components/Pagination/Pagination";
+import { PaginationPanel } from "../components/Pagination/PaginationPanel";
 
 export const PlanetsPage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
@@ -35,7 +35,7 @@ export const PlanetsPage: FC = () => {
         )}
       </ol>
 
-      <Pagination
+      <PaginationPanel
         page={page}
         onNext={() => {
           setParams({ page: page + 1 });

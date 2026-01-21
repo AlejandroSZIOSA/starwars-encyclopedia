@@ -5,6 +5,7 @@ import { PlanetsPage } from "./pages/Planets";
 import { PeoplePage } from "./pages/People";
 import { SpeciesPage } from "./pages/Species";
 import { StarshipsPage } from "./pages/Starships";
+import { StarshipDetailsPage } from "./pages/StarshipDetails";
 import { VehiclesPage } from "./pages/Vehicles";
 import { RootLayout } from "./layout/RootLayout";
 import { DetailsFilmPage } from "./pages/DetailsFilm";
@@ -28,6 +29,7 @@ function App() {
         { path: "/species", element: <SpeciesPage /> },
         { path: "/specie/:id", element: <SpecieDetailsPage /> },
         { path: "/starships", element: <StarshipsPage /> },
+        { path: "/starship/:id", element: <StarshipDetailsPage /> },
         { path: "/vehicles", element: <VehiclesPage /> },
         { path: "/vehicle/:id", element: <VehicleDetailsPage /> },
       ],

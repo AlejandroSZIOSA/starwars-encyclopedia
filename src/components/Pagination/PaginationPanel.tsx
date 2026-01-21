@@ -1,5 +1,7 @@
 import { type FC } from "react";
 
+import styles from "./PaginationPanel.module.css";
+
 type Props = {
   page: number;
   nextPageUrl: null | string;
@@ -7,18 +9,18 @@ type Props = {
   onPrev: () => void;
 };
 
-export const Pagination: FC<Props> = ({
+export const PaginationPanel: FC<Props> = ({
   page,
   nextPageUrl,
   onNext,
   onPrev,
 }) => {
   return (
-    <div>
+    <div className={styles.PaginationPanelRootContainer}>
       <button onClick={onPrev} disabled={page === 1}>
         Prev
       </button>
-      <span>Page {page}</span>
+      <div>Page {page}</div>
       <button onClick={onNext} disabled={!nextPageUrl}>
         Next
       </button>

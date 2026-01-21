@@ -1,0 +1,26 @@
+.cardRootContainer {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  margin-bottom: 1.2rem;
+}
+
+.cardInnerIntroContainer {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  /* border-radius: 4px;
+  margin-bottom: 1rem; */
+}
+.cardInnerIntroContainer img {
+  width: 240px;
+  height: auto;
+}
+
+.cartInnerInfoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}

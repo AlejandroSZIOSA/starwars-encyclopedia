@@ -6,6 +6,8 @@ import type {
 } from "../../services/ApiRes.types";
 import { Link } from "react-router-dom";
 
+import styles from "./Card.module.css";
+
 interface CardProps<T> {
   data: T;
   variant?: "film" | "character" | "planet";
@@ -15,19 +17,32 @@ export const Card: FC<
   CardProps<DataResFilm | DataResPeople | DataResPlanet>
 > = ({ data, variant }) => {
   const { id } = data;
-  const { title, episode_id, release_date, characters_count } =
+  const { title, image_url, episode_id, release_date, characters_count } =
     data as DataResFilm;
   const { name, birth_year, films_count } = data as DataResPeople;
   const { climate, terrain, population } = data as DataResPlanet;
 
   return (
-    <div>
+    <div className={styles.cardRootContainer}>
       {variant === "film" && (
         <>
-          <p> Title:{title}</p>
-          <p>Episode: {episode_id}</p>
-          <p>Release Date: {release_date}</p>
-          <p>Characters: {characters_count}</p>
+          <div className={styles.cardInnerIntroContainer}>
+            <img src={image_url} alt={title} />
+            <p>
+              <strong>{title}</strong>
+            </p>
+          </div>
+          <div className={styles.cardInnerDetailsContainer}>
+            <p>
+              <strong>Episode:</strong> {episode_id}
+            </p>
+            <p>
+              <strong>Release Date:</strong> {release_date}
+            </p>
+            <p>
+              <strong>Characters:</strong> {characters_count}
+            </p>
+          </div>
         </>
       )}
       {variant === "character" && (

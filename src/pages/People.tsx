@@ -2,7 +2,7 @@ import { type FC } from "react";
 import { useGetAndSearchAPI } from "../hooks/useGetAndSearchAPI";
 import type { DataResBase, DataResPeople } from "../services/ApiRes.types";
 import { Card } from "../components/Card/Card";
-import { Pagination } from "../components/Pagination/Pagination";
+import { PaginationPanel } from "../components/Pagination/PaginationPanel";
 
 import { usePaginationParams } from "../hooks/usePaginationParams";
 import { SearchBar } from "../components/searchbar/SearchBar";
@@ -34,7 +34,7 @@ export const PeoplePage: FC = () => {
         )}
       </ol>
 
-      <Pagination
+      <PaginationPanel
         page={page}
         onNext={() => {
           setParams({ page: page + 1 });

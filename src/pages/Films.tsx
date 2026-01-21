@@ -4,7 +4,9 @@ import { useGetAndSearchAPI } from "../hooks/useGetAndSearchAPI";
 import { Card } from "../components/Card/Card";
 import { usePaginationParams } from "../hooks/usePaginationParams";
 import { SearchBar } from "../components/searchbar/SearchBar";
-import { Pagination } from "../components/Pagination/Pagination";
+import { PaginationPanel } from "../components/Pagination/PaginationPanel";
+
+import styles from "./Films.module.css";
 
 export const FilmsPage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
@@ -13,16 +15,16 @@ export const FilmsPage: FC = () => {
     DataResBase<DataResFilm[]>
   >("FILMS", `films?page=${page}&search=${encodeURIComponent(query)}`);
 
-  const { data: films } = data || {}; //TODO
+  const { data: films } = data || {};
 
   return (
-    <div>
-      <h2>Films Page</h2>
-
-      <SearchBar
-        value={query}
-        onChange={(value) => setParams({ query: value, page: 1 })}
-      />
+    <div className={styles.filmsPageRootContainer}>
+      <div className={styles.searchBarContainer}>
+        <SearchBar
+          value={query}
+          onChange={(value) => setParams({ query: value, page: 1 })}
+        />
+      </div>
 
       <ol>
         {loading ? (
@@ -32,11 +34,15 @@ export const FilmsPage: FC = () => {
         ) : !films || films.length === 0 ? (
           <p>Empty List</p>
         ) : (
-          films.map((f) => <Card key={f.id} data={f} variant="film" />)
+          <li>
+            {films.map((f) => (
+              <Card key={f.id} data={f} variant="film" />
+            ))}
+          </li>
         )}
       </ol>
 
-      <Pagination
+      <PaginationPanel
         page={page}
         onNext={() => {
           setParams({ page: page + 1 });
