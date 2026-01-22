@@ -3,7 +3,7 @@
   border-radius: 8px;
   padding: 1rem;
   background-color: #f9f9f9;
-  margin-bottom: 1.2rem;
+  margin: 0.6rem 0;
 }
 
 .cardInnerIntroContainer {
@@ -23,4 +23,10 @@
   flex-direction: column;
   gap: 0.5rem;
   margin-top: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .cardRootContainer {
+    margin: 0;
+  }
 }

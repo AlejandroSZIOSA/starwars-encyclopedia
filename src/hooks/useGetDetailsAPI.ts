@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
 import * as EnciclopediaAPIs from "../services/ApiRes";
 
-import type { DataResDetailsFilm } from "../services/ApiRes.types";
+import type {
+  DataResDetailsCharacter,
+  DataResDetailsFilm,
+  DataResDetailPlanet,
+} from "../services/ApiRes.types";
 
 type VariantType = "FILM" | "CHARACTER" | "PLANET";
 
-type DataResTypes = DataResDetailsFilm | any; //TODO: Continue from here
+type DataResTypes =
+  | DataResDetailsFilm
+  | DataResDetailsCharacter
+  | DataResDetailPlanet; //TODO: Continue from here
 
 export function useGetDetailsAPI<T>(variant: VariantType, params: number) {
   const [data, setData] = useState<T | null>(null);
@@ -13,8 +20,8 @@ export function useGetDetailsAPI<T>(variant: VariantType, params: number) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    let resData: DataResTypes;
     const fetchData = async () => {
-      let resData: DataResTypes;
       try {
         if (variant === "FILM") {
           setLoading(true);

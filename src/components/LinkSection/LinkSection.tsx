@@ -33,6 +33,7 @@ export const LinkSection: FC<LinkSectionProps> = ({
       <p className={styles.titleText}>
         <strong>{title}</strong>
       </p>
+      {/* TODO:create a button in mobile view */}
       <ul>
         {links.map((link) => (
           <li key={link.id}>

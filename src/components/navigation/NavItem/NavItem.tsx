@@ -9,7 +9,7 @@ interface NavItemProps {
 export const NavItem: FC<NavItemProps> = ({ htmlAddress, label }) => {
   return (
     <li>
-      <NavLink to={htmlAddress}>
+      <NavLink to={htmlAddress} style={{ textDecoration: "none" }}>
         <p>{label}</p>
       </NavLink>
     </li>

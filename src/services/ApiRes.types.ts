@@ -92,7 +92,7 @@ export type LinkPeopleFilmsType = Pick<DataResFilm, "id" | "title">;
 export type LinkMachinesType = Pick<DataResPeople, "id" | "name">;
 export type LinkDataResSpecies = LinkMachinesType;
 
-export interface DataResDetailsPeople extends Omit<
+export interface DataResDetailsCharacter extends Omit<
   DataResPeople,
   "films_count" | "species_count" | "starships_count" | "vehicles_count"
 > {
@@ -124,8 +124,8 @@ export type LinkResidentType = Omit<
   DataResPeople,
   "films_count" | "starships_count" | "vehicles_count" | "homeworld"
 >;
-
 export type LinkFilmsType = LinkPeopleFilmsType;
+
 export interface DataResDetailPlanet extends Omit<
   DataResPlanet,
   "residents_count" | "films_count"

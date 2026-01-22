@@ -1,6 +1,8 @@
 import axios from "axios";
 import type {
   DataResBase,
+  DataResDetailPlanet,
+  DataResDetailsCharacter,
   DataResDetailsFilm,
   DataResFilm,
   DataResPeople,
@@ -39,7 +41,7 @@ export const getPeople = async (params?: string) => {
   return get<DataResBase<DataResPeople[]>>(endpoint);
 };
 export const getCharacterDetails = async (id: number) => {
-  return get<DataResPeople>("/people/" + id);
+  return get<DataResDetailsCharacter>("/people/" + id);
 };
 
 export const getPlanets = async (params?: string) => {
@@ -47,7 +49,7 @@ export const getPlanets = async (params?: string) => {
   return get<DataResBase<DataResPlanet[]>>(endpoint);
 };
 export const getPlanetDetails = async (id: number) => {
-  return get<DataResPlanet>("/planets/" + id);
+  return get<DataResDetailPlanet>("/planets/" + id);
 };
 
 export const getSpecies = async (params?: string) => {

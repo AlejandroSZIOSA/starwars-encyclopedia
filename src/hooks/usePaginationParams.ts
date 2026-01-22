@@ -16,11 +16,10 @@ export function usePaginationParams() {
     if (params.query !== undefined) {
       //params.query ? next.set("query", params.query) : next.delete("query");
       //Eslint: no use expresions in custom hooks
-
-      if (params.page) {
-        next.set("page", "1");
+      if (params.query) {
+        next.set("query", params.query);
       } else {
-        next.delete("page");
+        next.delete("query");
       }
     }
 

@@ -5,3 +5,12 @@
   justify-items: center;
   gap: 0.8rem;
 }
+
+@media (min-width: 1024px) {
+  .navBarInnerUl {
+    display: flex;
+    /*  width: fit-content; */
+    justify-content: center;
+    gap: 2rem;
+  }
+}
