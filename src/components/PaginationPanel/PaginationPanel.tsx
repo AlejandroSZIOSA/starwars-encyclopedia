@@ -17,11 +17,19 @@ export const PaginationPanel: FC<Props> = ({
 }) => {
   return (
     <>
-      <button onClick={onPrev} disabled={page === 1}>
+      <button
+        className={styles.paginationPanelbutton}
+        onClick={onPrev}
+        disabled={page === 1}
+      >
         Prev
       </button>
-      <div>Page {page}</div>
-      <button onClick={onNext} disabled={!nextPageUrl}>
+      <p className={styles.paginationPanelText}>Page {page}</p>
+      <button
+        className={styles.paginationPanelbutton}
+        onClick={onNext}
+        disabled={!nextPageUrl}
+      >
         Next
       </button>
     </>

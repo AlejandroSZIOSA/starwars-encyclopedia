@@ -1,1 +1,20 @@
+.paginationPanelbutton {
+  background-color: #00036e;
+  /* padding: 3px; */
+  color: white;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 5%;
+}
 
+.paginationPanelbutton:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+@media (min-width: 1024px) {
+  .paginationPanelText {
+    padding: 0 10px;
+    color: aquamarine;
+  }
+}

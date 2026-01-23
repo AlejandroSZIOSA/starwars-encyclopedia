@@ -1,0 +1,9 @@
+.titleTextMobile {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .titleTextMobile {
+    display: none;
+  }
+}

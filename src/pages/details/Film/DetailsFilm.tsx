@@ -3,17 +3,22 @@ import { useParams } from "react-router-dom";
 import type { DataResDetailsFilm } from "../../../services/ApiRes.types";
 import { LinkSection } from "../../../components/LinkSection/LinkSection";
 import { useGetDetailsAPI } from "../../../hooks/useGetDetailsAPI";
+import { AtributesSection } from "../../../components/AtributesSection/AtributesSection";
 
-import styles from "./DetailsFilm.module.css";
+export type Atribute = {
+  title: string;
+  value?: string | number;
+};
 
 export const DetailsFilmPage: FC = () => {
   const { id } = useParams<{ id: string }>();
   const numericId = Number(id);
 
-  const { data: film } = useGetDetailsAPI<DataResDetailsFilm>(
-    "FILM",
-    numericId,
-  );
+  const {
+    data: film,
+    loading,
+    error,
+  } = useGetDetailsAPI<DataResDetailsFilm>("FILM", numericId);
 
   const {
     image_url,
@@ -30,82 +35,72 @@ export const DetailsFilmPage: FC = () => {
     vehicles,
   } = film || {};
 
-  console.log(film);
-  return (
-    <div className={styles.detailsFilmRootContainer}>
-      <section className={styles.detailsFilmIntroSection}>
-        <img src={image_url} alt={title} />
-        <h2>{title}</h2>
-        <article>
-          <p>{opening_crawl}</p>
-        </article>
-      </section>
-      <section className={styles.detailsFilmAttributesSection}>
-        <h3>Atributes</h3>
-        <p>
-          <span>
-            <strong>Episode </strong>
-          </span>
-          {episode_id}
-        </p>
-        <p>
-          <span>
-            <strong>Director: </strong>
-          </span>
-          {director}
-        </p>
-        <p>
-          <span>
-            <strong>Producer: </strong>
-          </span>
-          {producer}
-        </p>
-        <p>
-          <span>
-            <strong>Release Date: </strong>
-          </span>
-          {release_date}
-        </p>
-      </section>
+  const atributes: Atribute[] = [
+    { title: "Episode", value: episode_id },
+    { title: "Director", value: director },
+    { title: "Producer", value: producer },
+    { title: "Release Date", value: release_date },
+  ];
 
-      <section>
-        <h3>Related Links</h3>
-        {characters && (
-          <LinkSection
-            title="Characters"
-            links={characters}
-            rootLinkAddress="character"
-          />
-        )}
-        {planets && (
-          <LinkSection
-            title="Planets"
-            links={planets}
-            rootLinkAddress="planet"
-          />
-        )}
-        {species && (
-          <LinkSection
-            title="Species"
-            links={species}
-            rootLinkAddress="specie"
-          />
-        )}
-        {starships && (
-          <LinkSection
-            title="Starships"
-            links={starships}
-            rootLinkAddress="starship"
-          />
-        )}
-        {vehicles && (
-          <LinkSection
-            title="Vehicles"
-            links={vehicles}
-            rootLinkAddress="vehicle"
-          />
-        )}
-      </section>
+  return (
+    <div className="detailsPage__rootContainer">
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : (
+        <>
+          <section className="detailsPage_intro__Section">
+            <img src={image_url} alt={title} />
+            <h2 className="detailsPage_introMobile__Title">{title}</h2>
+            <article>
+              <h2 className="detailsPage_introDesktop__Title">{title}</h2>
+              <p>{opening_crawl}</p>
+            </article>
+          </section>
+
+          <AtributesSection atributeList={atributes} />
+
+          <section className="detailsPage_relatedLinks__Section">
+            <h3>Related Links</h3>
+            {characters && (
+              <LinkSection
+                title="Characters"
+                links={characters}
+                rootLinkAddress="character"
+              />
+            )}
+            {planets && (
+              <LinkSection
+                title="Planets"
+                links={planets}
+                rootLinkAddress="planet"
+              />
+            )}
+            {species && (
+              <LinkSection
+                title="Species"
+                links={species}
+                rootLinkAddress="specie"
+              />
+            )}
+            {starships && (
+              <LinkSection
+                title="Starships"
+                links={starships}
+                rootLinkAddress="starship"
+              />
+            )}
+            {vehicles && (
+              <LinkSection
+                title="Vehicles"
+                links={vehicles}
+                rootLinkAddress="vehicle"
+              />
+            )}
+          </section>
+        </>
+      )}
     </div>
   );
 };

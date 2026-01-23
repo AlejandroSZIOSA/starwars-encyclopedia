@@ -1,15 +1,10 @@
 import { type FC } from "react";
-import {
-  type DataResBase,
-  type DataResFilm,
-} from "../../../services/ApiRes.types";
+import type { DataResBase, DataResFilm } from "../../../services/ApiRes.types";
 import { useGetAndSearchAPI } from "../../../hooks/useGetAndSearchAPI";
 import { Card } from "../../../components/Card/Card";
 import { usePaginationParams } from "../../../hooks/usePaginationParams";
 import { SearchBar } from "../../../components/searchbar/SearchBar";
 import { PaginationPanel } from "../../../components/PaginationPanel/PaginationPanel";
-
-import styles from "./Films.module.css";
 
 export const FilmsPage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
@@ -21,14 +16,14 @@ export const FilmsPage: FC = () => {
   const { data: films } = data || {};
 
   return (
-    <div className={styles.filmsPageRootContainer}>
-      <div className={styles.searchBarContainer}>
+    <div className="homePage__rootContainer">
+      <div className="homePage_searchBar__rootContainer">
         <SearchBar
           value={query}
           placeholder="Search films..."
           onChange={(value) => setParams({ query: value, page: 1 })}
         />
-        <div className={styles.PaginationPanelRootContainerDesktop}>
+        <div className="homePage_paginationPanelDesktop__rootContainer">
           <PaginationPanel
             page={page}
             onNext={() => {
@@ -58,7 +53,7 @@ export const FilmsPage: FC = () => {
         )}
       </ol>
 
-      <div className={styles.PaginationPanelRootContainerMobile}>
+      <div className="homePage_paginationPanelMobile__rootContainer">
         <PaginationPanel
           page={page}
           onNext={() => {

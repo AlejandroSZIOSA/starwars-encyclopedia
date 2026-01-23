@@ -24,7 +24,7 @@
 body {
   /* display: flex;
   flex-direction: column; */
-  background-color: #ececec;
+  background-color: white;
 }
 
 header {
@@ -86,12 +86,84 @@ button {
   font-size: 1rem;
 }
 
+/* search page */
+.homePage__rootContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* gap: 1.5rem; */
+  width: 100%;
+}
+
+.homePage_searchBar__rootContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: sticky;
+  top: 15%;
+  align-items: center;
+  z-index: 500;
+  background-color: #00036e;
+  padding: 0.6rem;
+}
+
+.homePage_paginationPanelMobile__rootContainer {
+  display: flex;
+  flex-direction: row;
+  position: sticky;
+  bottom: 0;
+  align-items: center;
+  z-index: 1000;
+  background-color: #9b9b9b;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.homePage_paginationPanelDesktop__rootContainer {
+  display: none;
+}
+
+/* detail page */
+.detailsPage__rootContainer {
+  padding: 0 20px 20px 20px;
+  background-color: #f0f0f0;
+}
+
+.detailsPage_intro__Section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.detailsPage_intro__Section img {
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.detailsPage_introMobile__Title {
+  display: block;
+}
+
+.detailsPage_introDesktop__Title {
+  display: none;
+}
+
+.detailsPage__rootContainer h2,
+h3 {
+  text-align: center;
+  padding: 0.4rem 0;
+}
+
 /* Global styles to Desktop or Laptop */
 @media (min-width: 1024px) {
   header {
     flex-direction: row;
     align-items: center;
-    height: 3.5vw;
+    height: 3.2vw;
     justify-content: space-between;
   }
 
@@ -120,7 +192,7 @@ button {
     flex-wrap: wrap;
     justify-content: left;
     gap: 1rem;
-    padding: 1rem;
+    padding-top: 1.5rem;
   }
 
   label {
@@ -130,5 +202,52 @@ button {
 
   input {
     font-size: 2rem;
+  }
+
+  /* search page */
+  .homePage_searchBar__rootContainer {
+    top: 5%;
+  }
+
+  .homePage_paginationPanelMobile__rootContainer {
+    display: none;
+  }
+
+  .homePage_paginationPanelDesktop__rootContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 2rem;
+  }
+
+  /* details page */
+
+  .detailsPage__rootContainer {
+    width: 50%;
+  }
+
+  .detailsPage_intro__Section {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: flex-start;
+    padding: 1.5rem 0;
+  }
+
+  .detailsPage_intro__Section img {
+    width: 400px;
+    height: auto;
+  }
+
+  .detailsPage_introMobile__Title {
+    display: none;
+  }
+
+  .detailsPage_introDesktop__Title {
+    display: block;
+  }
+
+  .detailsPage_relatedLinks__Section h3 {
+    padding: 1rem 0;
   }
 }
