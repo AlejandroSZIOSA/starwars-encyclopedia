@@ -44,11 +44,9 @@ export const FilmsPage: FC = () => {
           <p>Empty List</p>
         ) : (
           films.map((f) => (
-            <>
-              <li key={f.id}>
-                <Card key={f.id} data={f} variant="film" />
-              </li>
-            </>
+            <li key={f.id}>
+              <Card key={f.id} data={f} variant="film" />
+            </li>
           ))
         )}
       </ol>
