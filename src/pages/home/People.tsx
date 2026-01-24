@@ -16,13 +16,25 @@ export const PeoplePage: FC = () => {
   const { data: people } = data || {};
 
   return (
-    <div>
-      <h2>People Page</h2>
-      <SearchBar
-        value={query}
-        placeholder="Search character..."
-        onChange={(value) => setParams({ query: value, page: 1 })}
-      />
+    <div className="homePage__rootContainer">
+      <div className="homePage_searchBar__rootContainer">
+        <SearchBar
+          value={query}
+          placeholder="Search films..."
+          onChange={(value) => setParams({ query: value, page: 1 })}
+        />
+        <div className="homePage_paginationPanelDesktop__rootContainer">
+          <PaginationPanel
+            page={page}
+            onNext={() => {
+              setParams({ page: page + 1 });
+            }}
+            nextPageUrl={nextPage}
+            onPrev={() => setParams({ page: Math.max(1, page - 1) })}
+          />
+        </div>
+      </div>
+
       <ol>
         {loading ? (
           <p>Loading...</p>
@@ -31,18 +43,24 @@ export const PeoplePage: FC = () => {
         ) : !people || people.length === 0 ? (
           <p>Empty List</p>
         ) : (
-          people.map((c) => <Card key={c.id} data={c} variant="character" />)
+          people.map((p) => (
+            <li key={p.id}>
+              <Card key={p.id} data={p} variant="character" />
+            </li>
+          ))
         )}
       </ol>
 
-      <PaginationPanel
-        page={page}
-        onNext={() => {
-          setParams({ page: page + 1 });
-        }}
-        nextPageUrl={nextPage}
-        onPrev={() => setParams({ page: Math.max(1, page - 1) })}
-      />
+      <div className="homePage_paginationPanelMobile__rootContainer">
+        <PaginationPanel
+          page={page}
+          onNext={() => {
+            setParams({ page: page + 1 });
+          }}
+          nextPageUrl={nextPage}
+          onPrev={() => setParams({ page: Math.max(1, page - 1) })}
+        />
+      </div>
     </div>
   );
 };

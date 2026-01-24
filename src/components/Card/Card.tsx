@@ -19,7 +19,7 @@ export const Card: FC<
   const { id } = data;
   const { title, image_url, episode_id, release_date, characters_count } =
     data as DataResFilm;
-  const { name, birth_year, films_count } = data as DataResPeople;
+  const { name, birth_year, homeworld, films_count } = data as DataResPeople;
   const { climate, terrain, population } = data as DataResPlanet;
 
   return (
@@ -47,9 +47,21 @@ export const Card: FC<
       )}
       {variant === "character" && (
         <>
-          <p> Name:{name}</p>
-          <p>Birth Date: {birth_year}</p>
-          <p>in {films_count} films</p>
+          <div className={styles.cardInnerIntroContainer}>
+            <p>{name}</p>
+          </div>
+          <div className={styles.cardInnerDetailsContainer}>
+            <p>
+              <strong>Born:</strong> {birth_year}
+            </p>
+
+            <p>
+              <strong>Homeworld:</strong> {homeworld?.name}
+            </p>
+            <p>
+              In {films_count} <strong>films</strong>
+            </p>
+          </div>
         </>
       )}
       {variant === "planet" && (
