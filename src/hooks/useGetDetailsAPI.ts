@@ -1,23 +1,9 @@
 import { useEffect, useState } from "react";
 import * as EncyclopediaAPIs from "../services/ApiRes";
 
-import type {
-  DataResDetailsCharacter,
-  DataResDetailsFilm,
-  DataResDetailPlanet,
-} from "../services/ApiRes.types";
-
 type VariantType = "FILM" | "CHARACTER" | "PLANET";
 
-type DataResTypes =
-  | DataResDetailsFilm
-  | DataResDetailsCharacter
-  | DataResDetailPlanet; //TODO: Continue from here
-
-export function useGetDetailsAPI<T extends DataResTypes>(
-  variant: VariantType,
-  params: number,
-) {
+export function useGetDetailsAPI<T>(variant: VariantType, params: number) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -25,10 +11,23 @@ export function useGetDetailsAPI<T extends DataResTypes>(
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
-        const resData = await EncyclopediaAPIs.getFilmDetails(params);
-        setData(resData as T);
-        /*  console.log("Fetched films:", resData); */
+        if (variant === "FILM") {
+          setLoading(true);
+          const resData = await EncyclopediaAPIs.getFilmDetails(params);
+          setData(resData as T);
+        }
+
+        if (variant === "CHARACTER") {
+          setLoading(true);
+          const resData = await EncyclopediaAPIs.getCharacterDetails(params);
+          setData(resData as T);
+        }
+
+        if (variant === "PLANET") {
+          setLoading(true);
+          const resData = await EncyclopediaAPIs.getPlanetDetails(params);
+          setData(resData as T);
+        }
       } catch (error) {
         console.log("Error fetching films:", error);
         setError((error as Error).message);
