@@ -1,10 +1,10 @@
 import { type FC } from "react";
-import type { DataResBase, DataResFilm } from "../../../services/ApiRes.types";
-import { useGetAndSearchAPI } from "../../../hooks/useGetAndSearchAPI";
-import { Card } from "../../../components/Card/Card";
-import { usePaginationParams } from "../../../hooks/usePaginationParams";
-import { SearchBar } from "../../../components/searchbar/SearchBar";
-import { PaginationPanel } from "../../../components/PaginationPanel/PaginationPanel";
+import type { DataResBase, DataResFilm } from "../../services/ApiRes.types";
+import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
+import { Card } from "../../components/Card/Card";
+import { usePaginationParams } from "../../hooks/usePaginationParams";
+import { SearchBar } from "../../components/searchbar/SearchBar";
+import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
 
 export const FilmsPage: FC = () => {
   const { page, query, setParams } = usePaginationParams();

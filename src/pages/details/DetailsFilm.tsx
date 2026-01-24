@@ -1,9 +1,9 @@
 import { type FC } from "react";
 import { useParams } from "react-router-dom";
-import type { DataResDetailsFilm } from "../../../services/ApiRes.types";
-import { LinkSection } from "../../../components/LinkSection/LinkSection";
-import { useGetDetailsAPI } from "../../../hooks/useGetDetailsAPI";
-import { AtributesSection } from "../../../components/AtributesSection/AtributesSection";
+import type { DataResDetailsFilm } from "../../services/ApiRes.types";
+import { LinkSection } from "../../components/LinkSection/LinkSection";
+import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
+import { AtributesSection } from "../../components/AtributesSection/AtributesSection";
 
 export type Atribute = {
   title: string;

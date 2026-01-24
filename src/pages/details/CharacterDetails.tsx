@@ -1,8 +1,8 @@
 import { type FC } from "react";
 import { useParams } from "react-router-dom";
-import type { DataResDetailsCharacter } from "../../../services/ApiRes.types";
-import { useGetDetailsAPI } from "../../../hooks/useGetDetailsAPI";
-import { LinkSection } from "../../../components/LinkSection/LinkSection";
+import type { DataResDetailsCharacter } from "../../services/ApiRes.types";
+import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
+import { LinkSection } from "../../components/LinkSection/LinkSection";
 
 export const CharacterDetailsPage: FC = () => {
   const { id } = useParams<{ id: string }>();

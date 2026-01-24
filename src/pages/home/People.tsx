@@ -1,14 +1,11 @@
 import { type FC } from "react";
-import { useGetAndSearchAPI } from "../../../hooks/useGetAndSearchAPI";
-import type {
-  DataResBase,
-  DataResPeople,
-} from "../../../services/ApiRes.types";
-import { Card } from "../../../components/Card/Card";
-import { PaginationPanel } from "../../../components/PaginationPanel/PaginationPanel";
+import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
+import type { DataResBase, DataResPeople } from "../../services/ApiRes.types";
+import { Card } from "../../components/Card/Card";
+import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
 
-import { usePaginationParams } from "../../../hooks/usePaginationParams";
-import { SearchBar } from "../../../components/searchbar/SearchBar";
+import { usePaginationParams } from "../../hooks/usePaginationParams";
+import { SearchBar } from "../../components/searchbar/SearchBar";
 
 export const PeoplePage: FC = () => {
   const { page, query, setParams } = usePaginationParams();

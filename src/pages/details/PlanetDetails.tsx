@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import type { DataResDetailPlanet } from "../services/ApiRes.types";
-import { LinkSection } from "../components/LinkSection/LinkSection";
-import { useGetDetailsAPI } from "../hooks/useGetDetailsAPI";
+import type { DataResDetailPlanet } from "../../services/ApiRes.types";
+import { LinkSection } from "../../components/LinkSection/LinkSection";
+import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
 
 export const PlanetDetailsPage = () => {
   const { id } = useParams<{ id: string }>();

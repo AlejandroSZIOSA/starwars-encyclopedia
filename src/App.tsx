@@ -1,18 +1,18 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { FilmsPage } from "./pages/base/Films/Films";
-import { PlanetsPage } from "./pages/base/Planets/Planets";
-import { PeoplePage } from "./pages/base/People/People";
-import { SpeciesPage } from "./pages/Species";
-import { StarshipsPage } from "./pages/Starships";
-import { StarshipDetailsPage } from "./pages/StarshipDetails";
-import { VehiclesPage } from "./pages/Vehicles";
+import { FilmsPage } from "./pages/home/Films";
+import { PlanetsPage } from "./pages/home/Planets";
+import { PeoplePage } from "./pages/home/People";
+import { SpeciesPage } from "./pages/home/Species";
+import { StarshipsPage } from "./pages/home/Starships";
+import { StarshipDetailsPage } from "./pages/details/StarshipDetails";
+import { VehiclesPage } from "./pages/home/Vehicles";
 import { RootLayout } from "./layout/RootLayout";
-import { DetailsFilmPage } from "./pages/details/Film/DetailsFilm";
-import { CharacterDetailsPage } from "./pages/details/Character/CharacterDetails";
-import { PlanetDetailsPage } from "./pages/PlanetDetails";
-import { SpecieDetailsPage } from "./pages/SpecieDetails";
-import { VehicleDetailsPage } from "./pages/VehicleDetails";
+import { DetailsFilmPage } from "./pages/details/DetailsFilm";
+import { CharacterDetailsPage } from "./pages/details/CharacterDetails";
+import { PlanetDetailsPage } from "./pages/details/PlanetDetails";
+import { SpecieDetailsPage } from "./pages/details/SpecieDetails";
+import { VehicleDetailsPage } from "./pages/details/VehicleDetails";
 
 function App() {
   const router = createBrowserRouter([

@@ -44,13 +44,10 @@ export function useGetAndSearchAPI<T>(operation: VariantType, params: string) {
         }
 
         setData(resData as T);
-        console.log("Fetched films:", resData);
       } catch (error) {
         console.log("Error fetching films:", error);
         setError((error as Error).message);
       } finally {
-        //set loading to false
-        console.log("Fetch attempt finished.");
         setLoading(false);
       }
     };

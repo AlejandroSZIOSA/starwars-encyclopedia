@@ -1,13 +1,10 @@
 import { type FC } from "react";
-import { SearchBar } from "../../../components/searchbar/SearchBar";
-import { usePaginationParams } from "../../../hooks/usePaginationParams";
-import type {
-  DataResBase,
-  DataResPlanet,
-} from "../../../services/ApiRes.types";
-import { useGetAndSearchAPI } from "../../../hooks/useGetAndSearchAPI";
-import { Card } from "../../../components/Card/Card";
-import { PaginationPanel } from "../../../components/PaginationPanel/PaginationPanel";
+import { SearchBar } from "../../components/searchbar/SearchBar";
+import { usePaginationParams } from "../../hooks/usePaginationParams";
+import type { DataResBase, DataResPlanet } from "../../services/ApiRes.types";
+import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
+import { Card } from "../../components/Card/Card";
+import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
 
 export const PlanetsPage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
