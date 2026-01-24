@@ -3,6 +3,8 @@ import * as EnciclopediaAPIs from "../services/ApiRes";
 
 type VariantType = "FILMS" | "PEOPLE" | "PLANETS";
 
+//TODO: extends generics
+
 export function useGetAndSearchAPI<T>(operation: VariantType, params: string) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
