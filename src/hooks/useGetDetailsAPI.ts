@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import * as EnciclopediaAPIs from "../services/ApiRes";
+import * as EncyclopediaAPIs from "../services/ApiRes";
 
 import type {
   DataResDetailsCharacter,
@@ -14,30 +14,19 @@ type DataResTypes =
   | DataResDetailsCharacter
   | DataResDetailPlanet; //TODO: Continue from here
 
-export function useGetDetailsAPI<T>(variant: VariantType, params: number) {
+export function useGetDetailsAPI<T extends DataResTypes>(
+  variant: VariantType,
+  params: number,
+) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    let resData: DataResTypes;
     const fetchData = async () => {
       try {
-        if (variant === "FILM") {
-          setLoading(true);
-          resData = await EnciclopediaAPIs.getFilmDetails(params);
-        }
-
-        if (variant === "CHARACTER") {
-          setLoading(true);
-          resData = await EnciclopediaAPIs.getCharacterDetails(params);
-        }
-
-        if (variant === "PLANET") {
-          setLoading(true);
-          resData = await EnciclopediaAPIs.getPlanetDetails(params);
-        }
-
+        setLoading(true);
+        const resData = await EncyclopediaAPIs.getFilmDetails(params);
         setData(resData as T);
         /*  console.log("Fetched films:", resData); */
       } catch (error) {
