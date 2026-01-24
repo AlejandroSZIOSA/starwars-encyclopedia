@@ -16,12 +16,11 @@ export function useGetAndSearchAPI<T>(operation: VariantType, params: string) {
 
   useEffect(() => {
     const fetchData = async () => {
-      let resData;
       try {
         if (operation === "FILMS") {
           setLoading(true);
-          resData = await EnciclopediaAPIs.getFilms(params);
-
+          const resData = await EnciclopediaAPIs.getFilms(params);
+          setData(resData as T);
           setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);
           setPrevPage(resData.prev_page_url);
@@ -29,8 +28,8 @@ export function useGetAndSearchAPI<T>(operation: VariantType, params: string) {
 
         if (operation === "PEOPLE") {
           setLoading(true);
-          resData = await EnciclopediaAPIs.getPeople(params);
-
+          const resData = await EnciclopediaAPIs.getPeople(params);
+          setData(resData as T);
           setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);
           setPrevPage(resData.prev_page_url);
@@ -38,14 +37,12 @@ export function useGetAndSearchAPI<T>(operation: VariantType, params: string) {
 
         if (operation === "PLANETS") {
           setLoading(true);
-          resData = await EnciclopediaAPIs.getPlanets(params);
-
+          const resData = await EnciclopediaAPIs.getPlanets(params);
+          setData(resData as T);
           setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);
           setPrevPage(resData.prev_page_url);
         }
-
-        setData(resData as T);
       } catch (error) {
         console.log("Error fetching films:", error);
         setError((error as Error).message);
