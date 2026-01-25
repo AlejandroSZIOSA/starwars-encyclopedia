@@ -11,6 +11,7 @@ type Props = {
 export const SearchBar: FC<Props> = ({ value, placeholder, onChange }) => {
   return (
     <input
+      id="search-input"
       className={styles.searchBarInput}
       value={value}
       onChange={(e) => onChange(e.target.value)}

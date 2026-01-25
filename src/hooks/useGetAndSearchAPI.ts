@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import * as EnciclopediaAPIs from "../services/ApiRes";
 
-type VariantType = "FILMS" | "PEOPLE" | "PLANETS";
-
-//TODO: extends generics
+type VariantType = "FILMS" | "PEOPLE" | "PLANETS" | "SPECIES";
 
 export function useGetAndSearchAPI<T>(operation: VariantType, params: string) {
   const [data, setData] = useState<T | null>(null);
@@ -20,7 +18,8 @@ export function useGetAndSearchAPI<T>(operation: VariantType, params: string) {
         if (operation === "FILMS") {
           setLoading(true);
           const resData = await EnciclopediaAPIs.getFilms(params);
-          setData(resData as T);
+
+          setData(resData.data as T);
           setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);
           setPrevPage(resData.prev_page_url);
@@ -29,7 +28,8 @@ export function useGetAndSearchAPI<T>(operation: VariantType, params: string) {
         if (operation === "PEOPLE") {
           setLoading(true);
           const resData = await EnciclopediaAPIs.getPeople(params);
-          setData(resData as T);
+
+          setData(resData.data as T);
           setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);
           setPrevPage(resData.prev_page_url);
@@ -38,7 +38,18 @@ export function useGetAndSearchAPI<T>(operation: VariantType, params: string) {
         if (operation === "PLANETS") {
           setLoading(true);
           const resData = await EnciclopediaAPIs.getPlanets(params);
-          setData(resData as T);
+
+          setData(resData.data as T);
+          setCurrentPage(resData.current_page);
+          setNextPage(resData.next_page_url);
+          setPrevPage(resData.prev_page_url);
+        }
+
+        if (operation === "SPECIES") {
+          setLoading(true);
+          const resData = await EnciclopediaAPIs.getSpecies(params);
+          setData(resData.data as T);
+
           setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);
           setPrevPage(resData.prev_page_url);

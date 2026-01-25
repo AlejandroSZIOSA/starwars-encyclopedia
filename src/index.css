@@ -55,6 +55,8 @@ ul {
 
 ol {
   list-style: none;
+  width: 90vw;
+  /* margin: auto; */
 }
 
 h1 {
@@ -84,6 +86,7 @@ input {
 
 button {
   font-size: 1rem;
+  padding: 0.2rem 0.2rem;
 }
 
 /* search page */
@@ -110,7 +113,7 @@ button {
 .homePage_paginationPanelMobile__rootContainer {
   display: flex;
   flex-direction: row;
-  position: sticky;
+  position: fixed;
   bottom: 0;
   align-items: center;
   z-index: 1000;
@@ -158,6 +161,18 @@ h3 {
   padding: 0.4rem 0;
 }
 
+.detailsPage_buttonBack__Container {
+  display: flex;
+  justify-content: center;
+}
+
+.detailsPage__ButtonBack {
+  margin: 1rem 0;
+  /* padding: 0.5rem 0.5rem; */
+  background-color: #00036e;
+  color: white;
+}
+
 /* Global styles to Desktop or Laptop */
 @media (min-width: 1024px) {
   header {
@@ -193,6 +208,7 @@ h3 {
     justify-content: left;
     gap: 1rem;
     padding-top: 1.5rem;
+    width: auto;
   }
 
   label {
@@ -202,6 +218,11 @@ h3 {
 
   input {
     font-size: 2rem;
+  }
+
+  button {
+    font-size: 1.2rem;
+    padding: 0.4rem 0.4rem;
   }
 
   /* search page */
@@ -226,12 +247,25 @@ h3 {
     width: 50%;
   }
 
+  .detailsPage_character___rootContainer {
+    width: 30%;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+  }
+
   .detailsPage_intro__Section {
     display: flex;
     flex-direction: row;
     gap: 2rem;
     align-items: flex-start;
     padding: 1.5rem 0;
+  }
+
+  .detailsPage_character_intro__Section {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
   }
 
   .detailsPage_intro__Section img {

@@ -1,6 +1,6 @@
 import { type FC } from "react";
 import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
-import type { DataResBase, DataResPeople } from "../../services/ApiRes.types";
+import { type DataResPeople } from "../../services/ApiRes.types";
 import { Card } from "../../components/Card/Card";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
 
@@ -9,18 +9,22 @@ import { SearchBar } from "../../components/searchbar/SearchBar";
 
 export const PeoplePage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
-  const { data, loading, error, nextPage } = useGetAndSearchAPI<
-    DataResBase<DataResPeople[]>
-  >("PEOPLE", `people?page=${page}&search=${encodeURIComponent(query)}`);
-
-  const { data: people } = data || {};
+  const {
+    data: people,
+    loading,
+    error,
+    nextPage,
+  } = useGetAndSearchAPI<DataResPeople[]>(
+    "PEOPLE",
+    `people?page=${page}&search=${encodeURIComponent(query)}`,
+  );
 
   return (
     <div className="homePage__rootContainer">
       <div className="homePage_searchBar__rootContainer">
         <SearchBar
           value={query}
-          placeholder="Search people..."
+          placeholder="Search character..."
           onChange={(value) => setParams({ query: value, page: 1 })}
         />
         <div className="homePage_paginationPanelDesktop__rootContainer">

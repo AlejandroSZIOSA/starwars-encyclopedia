@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import * as EncyclopediaAPIs from "../services/ApiRes";
 
-type VariantType = "FILM" | "CHARACTER" | "PLANET";
+type VariantType = "FILM" | "CHARACTER" | "PLANET" | "SPECIE";
 
 export function useGetDetailsAPI<T>(variant: VariantType, params: number) {
   const [data, setData] = useState<T | null>(null);
@@ -28,12 +28,16 @@ export function useGetDetailsAPI<T>(variant: VariantType, params: number) {
           const resData = await EncyclopediaAPIs.getPlanetDetails(params);
           setData(resData as T);
         }
+
+        if (variant === "SPECIE") {
+          setLoading(true);
+          const resData = await EncyclopediaAPIs.getSpeciesDetails(params);
+          setData(resData as T);
+        }
       } catch (error) {
-        console.log("Error fetching films:", error);
         setError((error as Error).message);
       } finally {
         //set loading to false
-        console.log("Fetch attempt finished.");
         setLoading(false);
       }
     };

@@ -155,7 +155,7 @@ export interface DataResSpecies {
 
 type LinkSpeciesPeopleType = LinkMachinesType;
 
-export interface SpeciesDetailsType extends Omit<
+export interface DataResDetailsSpecie extends Omit<
   DataResSpecies,
   "people_count" | "films_count"
 > {

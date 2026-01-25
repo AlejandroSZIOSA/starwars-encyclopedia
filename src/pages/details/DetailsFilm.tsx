@@ -1,5 +1,5 @@
 import { type FC } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import type { DataResDetailsFilm } from "../../services/ApiRes.types";
 import { LinkSection } from "../../components/LinkSection/LinkSection";
 import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
@@ -13,6 +13,8 @@ export type Atribute = {
 export const DetailsFilmPage: FC = () => {
   const { id } = useParams<{ id: string }>();
   const numericId = Number(id);
+
+  const navigate = useNavigate();
 
   const {
     data: film,
@@ -59,39 +61,39 @@ export const DetailsFilmPage: FC = () => {
             </article>
           </section>
 
-          <AtributesSection atributeList={atributes} />
+          <AtributesSection atributeList={atributes} variant="details-page" />
 
           <section className="detailsPage_relatedLinks__Section">
             <h3>Related Links</h3>
-            {characters && (
+            {characters && characters.length !== 0 && (
               <LinkSection
                 title="Characters"
                 links={characters}
                 rootLinkAddress="character"
               />
             )}
-            {planets && (
+            {planets && planets.length !== 0 && (
               <LinkSection
                 title="Planets"
                 links={planets}
                 rootLinkAddress="planet"
               />
             )}
-            {species && (
+            {species && species.length !== 0 && (
               <LinkSection
                 title="Species"
                 links={species}
                 rootLinkAddress="specie"
               />
             )}
-            {starships && (
+            {starships && starships.length !== 0 && (
               <LinkSection
                 title="Starships"
                 links={starships}
                 rootLinkAddress="starship"
               />
             )}
-            {vehicles && (
+            {vehicles && vehicles.length !== 0 && (
               <LinkSection
                 title="Vehicles"
                 links={vehicles}
@@ -99,6 +101,14 @@ export const DetailsFilmPage: FC = () => {
               />
             )}
           </section>
+          <div className="detailsPage_buttonBack__Container">
+            <button
+              className="detailsPage__ButtonBack"
+              onClick={() => navigate(-1)}
+            >
+              Go Back
+            </button>
+          </div>
         </>
       )}
     </div>

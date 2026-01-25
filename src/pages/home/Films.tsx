@@ -1,5 +1,5 @@
 import { type FC } from "react";
-import type { DataResBase, DataResFilm } from "../../services/ApiRes.types";
+import { type DataResFilm } from "../../services/ApiRes.types";
 import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
 import { Card } from "../../components/Card/Card";
 import { usePaginationParams } from "../../hooks/usePaginationParams";
@@ -9,18 +9,22 @@ import { PaginationPanel } from "../../components/PaginationPanel/PaginationPane
 export const FilmsPage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
 
-  const { data, loading, error, nextPage } = useGetAndSearchAPI<
-    DataResBase<DataResFilm[]>
-  >("FILMS", `films?page=${page}&search=${encodeURIComponent(query)}`);
-
-  const { data: films } = data || {};
+  const {
+    data: films,
+    loading,
+    error,
+    nextPage,
+  } = useGetAndSearchAPI<DataResFilm[]>(
+    "FILMS",
+    `films?page=${page}&search=${encodeURIComponent(query)}`,
+  );
 
   return (
     <div className="homePage__rootContainer">
       <div className="homePage_searchBar__rootContainer">
         <SearchBar
           value={query}
-          placeholder="Search films..."
+          placeholder="Search film..."
           onChange={(value) => setParams({ query: value, page: 1 })}
         />
         <div className="homePage_paginationPanelDesktop__rootContainer">

@@ -10,11 +10,9 @@
   width: 100%;
   height: auto;
   text-align: center;
-  /* border-radius: 4px;
-  margin-bottom: 1rem; */
 }
 .cardInnerIntroContainer img {
-  width: 240px;
+  width: 245px;
   height: auto;
 }
 
@@ -25,8 +23,29 @@
   margin-top: 1rem;
 }
 
+/* using the same properties for both button containers
+ */
+.cardButtonToDetailsContainer,
+.cardButtonToDetailsNoImageCardContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.3rem;
+}
+
+/* using the same properties for both button containers
+ */
+.cardButtonToDetailsContainer button,
+.cardButtonToDetailsNoImageCardContainer button {
+  background-color: bisque;
+}
+
 @media (min-width: 1024px) {
   .cardRootContainer {
     margin: 0;
+  }
+
+  .cardButtonToDetailsNoImageCardContainer {
+    margin-top: 0.5rem;
+    justify-content: center;
   }
 }

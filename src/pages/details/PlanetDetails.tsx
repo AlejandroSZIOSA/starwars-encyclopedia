@@ -3,32 +3,70 @@ import type { DataResDetailPlanet } from "../../services/ApiRes.types";
 import { LinkSection } from "../../components/LinkSection/LinkSection";
 import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
 
+import { useNavigate } from "react-router-dom";
+
+import type { Atribute } from "./DetailsFilm";
+import { AtributesSection } from "../../components/AtributesSection/AtributesSection";
+
 export const PlanetDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
   const numericId = Number(id);
 
-  const { data: planet } = useGetDetailsAPI<DataResDetailPlanet>(
-    "PLANET",
-    numericId,
-  );
+  const navigate = useNavigate();
 
-  const { residents, films } = planet || {};
+  const {
+    data: planet,
+    loading,
+    error,
+  } = useGetDetailsAPI<DataResDetailPlanet>("PLANET", numericId);
 
-  console.log(planet);
+  const { name, diameter, climate, gravity, terrain, residents, films } =
+    planet || {};
+
+  const atributes: Atribute[] = [
+    { title: "Diameter", value: diameter },
+    { title: "Climate", value: climate },
+    { title: "Gravity", value: gravity },
+    { title: "Terrain", value: terrain },
+  ];
+
   return (
-    <>
-      <h2>DetailPlanets</h2>
-      <p>Related Links</p>
-      {residents && (
-        <LinkSection
-          title="Residents"
-          links={residents}
-          rootLinkAddress="character"
-        />
+    <div className="detailsPage__rootContainer detailsPage_character___rootContainer">
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : (
+        <>
+          <section className="detailsPage_intro__Section detailsPage_character_intro__Section">
+            <h2>{name}</h2>
+          </section>
+
+          <AtributesSection atributeList={atributes} variant="details-page" />
+
+          <section className="detailsPage_relatedLinks__Section">
+            <h3>Related Links</h3>
+            {residents && residents.length !== 0 && (
+              <LinkSection
+                title="Residents"
+                links={residents}
+                rootLinkAddress="character"
+              />
+            )}
+            {films && films.length !== 0 && (
+              <LinkSection title="Films" links={films} rootLinkAddress="film" />
+            )}
+          </section>
+          <div className="detailsPage_buttonBack__Container">
+            <button
+              className="detailsPage__ButtonBack"
+              onClick={() => navigate(-1)}
+            >
+              Go Back
+            </button>
+          </div>
+        </>
       )}
-      {films && (
-        <LinkSection title="Films" links={films} rootLinkAddress="film" />
-      )}
-    </>
+    </div>
   );
 };
