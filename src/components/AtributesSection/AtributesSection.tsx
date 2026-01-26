@@ -5,7 +5,7 @@ import styles from "./AtributesSection.module.css";
 
 interface AtributesSectionProps {
   atributeList: Atribute[];
-  variant: "films-card" | "details-page";
+  variant?: "mobile-ui";
 }
 
 export const AtributesSection: FC<AtributesSectionProps> = ({
@@ -14,7 +14,7 @@ export const AtributesSection: FC<AtributesSectionProps> = ({
 }) => {
   return (
     <section className={styles.AtributesSection}>
-      {variant === "details-page" && (
+      {variant === "mobile-ui" && (
         <h3 className={styles.titleTextMobile}>Atributes</h3>
       )}
       <ul>

@@ -11,10 +11,9 @@ export type Atribute = {
 };
 
 export const DetailsFilmPage: FC = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const numericId = Number(id);
-
-  const navigate = useNavigate();
 
   const {
     data: film,
@@ -36,7 +35,6 @@ export const DetailsFilmPage: FC = () => {
     starships,
     vehicles,
   } = film || {};
-
   const atributes: Atribute[] = [
     { title: "Episode", value: episode_id },
     { title: "Director", value: director },
@@ -61,7 +59,7 @@ export const DetailsFilmPage: FC = () => {
             </article>
           </section>
 
-          <AtributesSection atributeList={atributes} variant="details-page" />
+          <AtributesSection atributeList={atributes} variant="mobile-ui" />
 
           <section className="detailsPage_relatedLinks__Section">
             <h3>Related Links</h3>

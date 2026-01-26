@@ -19,13 +19,25 @@ export const SpecieDetailsPage: FC = () => {
     error,
   } = useGetDetailsAPI<DataResDetailsSpecie>("SPECIE", numericId);
 
-  const { name, homeworld, average_lifespan, average_height, people, films } =
-    specie || {};
+  const {
+    name,
+    homeworld,
+    classification,
+    designation,
+    average_lifespan,
+    average_height,
+    language,
+    people,
+    films,
+  } = specie || {};
 
   const atributes: Atribute[] = [
     { title: "Homeworld", value: homeworld?.name },
+    { title: "Classification", value: classification },
+    { title: "Designation", value: designation },
     { title: "Average Lifespan", value: average_lifespan },
     { title: "Average Height", value: average_height },
+    { title: "Language", value: language },
   ];
 
   return (
@@ -40,7 +52,7 @@ export const SpecieDetailsPage: FC = () => {
             <h2>{name}</h2>
           </section>
 
-          <AtributesSection atributeList={atributes} variant="details-page" />
+          <AtributesSection atributeList={atributes} variant="mobile-ui" />
 
           <section className="detailsPage_relatedLinks__Section">
             <h3>Related Links</h3>

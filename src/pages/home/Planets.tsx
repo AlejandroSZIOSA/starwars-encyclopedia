@@ -24,7 +24,7 @@ export const PlanetsPage: FC = () => {
       <div className="homePage_searchBar__rootContainer">
         <SearchBar
           value={query}
-          placeholder="Search planet..."
+          placeholder="Search Planet..."
           onChange={(value) => setParams({ query: value, page: 1 })}
         />
         <div className="homePage_paginationPanelDesktop__rootContainer">

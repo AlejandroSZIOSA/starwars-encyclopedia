@@ -42,7 +42,7 @@ export const PlanetDetailsPage = () => {
             <h2>{name}</h2>
           </section>
 
-          <AtributesSection atributeList={atributes} variant="details-page" />
+          <AtributesSection atributeList={atributes} variant="mobile-ui" />
 
           <section className="detailsPage_relatedLinks__Section">
             <h3>Related Links</h3>

@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import * as EnciclopediaAPIs from "../services/ApiRes";
 
-type VariantType = "FILMS" | "PEOPLE" | "PLANETS" | "SPECIES";
+type VariantType =
+  | "FILMS"
+  | "PEOPLE"
+  | "PLANETS"
+  | "SPECIES"
+  | "STARSHIPS"
+  | "VEHICLES";
 
 export function useGetAndSearchAPI<T>(operation: VariantType, params: string) {
   const [data, setData] = useState<T | null>(null);
@@ -50,6 +56,26 @@ export function useGetAndSearchAPI<T>(operation: VariantType, params: string) {
           const resData = await EnciclopediaAPIs.getSpecies(params);
           setData(resData.data as T);
 
+          setCurrentPage(resData.current_page);
+          setNextPage(resData.next_page_url);
+          setPrevPage(resData.prev_page_url);
+        }
+
+        if (operation === "STARSHIPS") {
+          setLoading(true);
+          const resData = await EnciclopediaAPIs.getStarships(params);
+
+          setData(resData.data as T);
+          setCurrentPage(resData.current_page);
+          setNextPage(resData.next_page_url);
+          setPrevPage(resData.prev_page_url);
+        }
+
+        if (operation === "VEHICLES") {
+          setLoading(true);
+          const resData = await EnciclopediaAPIs.getVehicles(params);
+
+          setData(resData.data as T);
           setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);
           setPrevPage(resData.prev_page_url);

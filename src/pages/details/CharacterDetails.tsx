@@ -53,9 +53,9 @@ export const CharacterDetailsPage: FC = () => {
         <>
           <section className="detailsPage_intro__Section detailsPage_character_intro__Section">
             <h2>{name}</h2>
-            <img src={image_url} alt={name} />
+            {image_url && <img src={image_url} alt={name} />}
           </section>
-          <AtributesSection atributeList={atributes} variant="details-page" />
+          <AtributesSection atributeList={atributes} variant="mobile-ui" />
           <section className="detailsPage_links__Section">
             <h3>
               <strong>Links</strong>

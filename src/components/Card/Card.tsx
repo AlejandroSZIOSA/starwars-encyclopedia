@@ -4,6 +4,8 @@ import type {
   DataResPeople,
   DataResPlanet,
   DataResSpecies,
+  DataResStarship,
+  DataResVehicles,
 } from "../../services/ApiRes.types";
 import { Link } from "react-router-dom";
 
@@ -12,17 +14,23 @@ import { AtributesSection } from "../AtributesSection/AtributesSection";
 
 interface CardProps<T> {
   data: T;
-  variant?: "film" | "character" | "planet" | "specie";
+  variant?: "film" | "character" | "planet" | "specie" | "starship" | "vehicle";
 }
 
 export const Card: FC<
-  CardProps<DataResFilm | DataResPeople | DataResPlanet | DataResSpecies>
+  CardProps<
+    | DataResFilm
+    | DataResPeople
+    | DataResPlanet
+    | DataResSpecies
+    | DataResStarship
+    | DataResVehicles
+  >
 > = ({ data, variant }) => {
   const { id } = data;
 
   const { title, image_url, episode_id, release_date, characters_count } =
     data as DataResFilm;
-
   const filmAtributes = [
     { title: "Episode", value: episode_id },
     { title: "Release Date", value: release_date },
@@ -36,20 +44,62 @@ export const Card: FC<
     homeworld,
     films_count,
   } = data as DataResPeople;
+  const characterAtributes = [
+    { title: "Born", value: birth_year },
+    { title: "Homeworld", value: homeworld?.name || "Unknown" },
+  ];
 
   const {
     name: namePlanet,
     climate,
     terrain,
-    population,
+    residents_count,
+    films_count: films_countPlanet,
   } = data as DataResPlanet;
+  const planetAtributes = [
+    { title: "Climate", value: climate },
+    { title: "Terrain", value: terrain },
+    { title: "Residents", value: residents_count },
+  ];
 
   const {
     name: nameSpecies,
     classification,
     designation,
-    language,
+    people_count,
+    films_count: filmsCountSpecies,
   } = data as DataResSpecies;
+  const specieAtributes = [
+    { title: "Classification", value: classification },
+    { title: "Designation", value: designation },
+    { title: "People", value: people_count },
+  ];
+
+  const {
+    name: nameStarship,
+    model,
+    cost_in_credits,
+    pilots_count,
+    films_count: films_countStarship,
+  } = data as DataResStarship;
+  const starshipAtributes = [
+    { title: "Model", value: model },
+    { title: "Cost", value: cost_in_credits },
+    { title: "Pilots", value: pilots_count },
+  ];
+
+  const {
+    name: nameVehicle,
+    model: modelVehicle,
+    cost_in_credits: costInCreditsVehicle,
+    pilots_count: pilotsCountVehicle,
+    films_count: filmsCountVehicle,
+  } = data as DataResVehicles;
+  const vehicleAtributes = [
+    { title: "Model", value: modelVehicle },
+    { title: "Cost", value: costInCreditsVehicle },
+    { title: "Pilots", value: pilotsCountVehicle },
+  ];
 
   return (
     <div className={styles.cardRootContainer}>
@@ -63,18 +113,9 @@ export const Card: FC<
             <hr></hr>
           </div>
 
-          <AtributesSection atributeList={filmAtributes} variant="films-card" />
-          {/* <div className={styles.cardInnerDetailsContainer}>
-            <p>
-              <strong>Episode:</strong> {episode_id}
-            </p>
-            <p>
-              <strong>Release Date:</strong> {release_date}
-            </p>
-            <p>
-              <strong>Characters:</strong> {characters_count}
-            </p>
-          </div> */}
+          <div className={styles.cardInnerDetailsContainer}>
+            <AtributesSection atributeList={filmAtributes} />
+          </div>
         </>
       )}
       {variant === "character" && (
@@ -84,14 +125,9 @@ export const Card: FC<
             <p>{name}</p>
             <hr></hr>
           </div>
-          <div className={styles.cardInnerDetailsContainer}>
-            <p>
-              <strong>Born:</strong> {birth_year}
-            </p>
 
-            <p>
-              <strong>Homeworld:</strong> {homeworld?.name}
-            </p>
+          <div className={styles.cardInnerDetailsContainer}>
+            <AtributesSection atributeList={characterAtributes} />
             <p>
               In {films_count} <strong>films</strong>
             </p>
@@ -106,15 +142,11 @@ export const Card: FC<
             </h3>
             <hr></hr>
           </div>
+
           <div className={styles.cardInnerDetailsContainer}>
+            <AtributesSection atributeList={planetAtributes} />
             <p>
-              <strong>Climate:</strong> {climate}
-            </p>
-            <p>
-              <strong>Terrain:</strong> {terrain}
-            </p>
-            <p>
-              <strong>Population:</strong> {population}
+              In {films_countPlanet} <strong>films</strong>
             </p>
           </div>
         </>
@@ -127,15 +159,46 @@ export const Card: FC<
             </h3>
             <hr></hr>
           </div>
+
           <div className={styles.cardInnerDetailsContainer}>
+            <AtributesSection atributeList={specieAtributes} />
             <p>
-              <strong>Classification:</strong> {classification}
+              In {filmsCountSpecies} <strong>films</strong>
             </p>
+          </div>
+        </>
+      )}
+
+      {variant === "starship" && (
+        <>
+          <div className={styles.cardInnerIntroContainer}>
+            <h3>
+              <strong>{nameStarship}</strong>
+            </h3>
+            <hr></hr>
+          </div>
+
+          <div className={styles.cardInnerDetailsContainer}>
+            <AtributesSection atributeList={starshipAtributes} />
             <p>
-              <strong>Designation:</strong> {designation}
+              In {films_countStarship} <strong>films</strong>
             </p>
+          </div>
+        </>
+      )}
+      {variant === "vehicle" && (
+        <>
+          <div className={styles.cardInnerIntroContainer}>
+            <h3>
+              <strong>{nameVehicle}</strong>
+            </h3>
+            <hr></hr>
+          </div>
+
+          <div className={styles.cardInnerDetailsContainer}>
+            <AtributesSection atributeList={vehicleAtributes} />
             <p>
-              <strong>Language:</strong> {language}
+              In {filmsCountVehicle} <strong>films</strong>
             </p>
           </div>
         </>

@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import * as EncyclopediaAPIs from "../services/ApiRes";
 
-type VariantType = "FILM" | "CHARACTER" | "PLANET" | "SPECIE";
+type VariantType =
+  | "FILM"
+  | "CHARACTER"
+  | "PLANET"
+  | "SPECIE"
+  | "STARSHIP"
+  | "VEHICLE";
 
 export function useGetDetailsAPI<T>(variant: VariantType, params: number) {
   const [data, setData] = useState<T | null>(null);
@@ -32,6 +38,18 @@ export function useGetDetailsAPI<T>(variant: VariantType, params: number) {
         if (variant === "SPECIE") {
           setLoading(true);
           const resData = await EncyclopediaAPIs.getSpeciesDetails(params);
+          setData(resData as T);
+        }
+
+        if (variant === "STARSHIP") {
+          setLoading(true);
+          const resData = await EncyclopediaAPIs.getStarshipDetails(params);
+          setData(resData as T);
+        }
+
+        if (variant === "VEHICLE") {
+          setLoading(true);
+          const resData = await EncyclopediaAPIs.getVehicleDetails(params);
           setData(resData as T);
         }
       } catch (error) {

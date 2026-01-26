@@ -4,12 +4,15 @@ import type {
   DataResDetailPlanet,
   DataResDetailsCharacter,
   DataResDetailsFilm,
+  DataResDetailsStarship,
+  DataResDetailsSpecie,
   DataResFilm,
   DataResPeople,
   DataResPlanet,
   DataResSpecies,
   DataResStarship,
-  DataResVehicle,
+  DataResDetailsVehicle,
+  DataResVehicles,
 } from "./ApiRes.types";
 
 // Create a new axios instance
@@ -57,7 +60,7 @@ export const getSpecies = async (params?: string) => {
   return get<DataResBase<DataResSpecies[]>>(endpoint);
 };
 export const getSpeciesDetails = async (id: number) => {
-  return get<DataResSpecies>("/species/" + id);
+  return get<DataResDetailsSpecie>("/species/" + id);
 };
 
 export const getStarships = async (params?: string) => {
@@ -65,13 +68,13 @@ export const getStarships = async (params?: string) => {
   return get<DataResBase<DataResStarship[]>>(endpoint);
 };
 export const getStarshipDetails = async (id: number) => {
-  return get<DataResStarship>("/starships/" + id);
+  return get<DataResDetailsStarship>("/starships/" + id);
 };
 
 export const getVehicles = async (params?: string) => {
   const endpoint = params ? `/${params}` : "/vehicles";
-  return get<DataResBase<DataResVehicle[]>>(endpoint);
+  return get<DataResBase<DataResVehicles[]>>(endpoint);
 };
 export const getVehicleDetails = async (id: number) => {
-  return get<DataResVehicle>("/vehicles/" + id);
+  return get<DataResDetailsVehicle>("/vehicles/" + id);
 };

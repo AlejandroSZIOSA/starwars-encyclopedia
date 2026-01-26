@@ -154,6 +154,7 @@ export interface DataResSpecies {
 }
 
 type LinkSpeciesPeopleType = LinkMachinesType;
+type LinkPilotType = LinkMachinesType;
 
 export interface DataResDetailsSpecie extends Omit<
   DataResSpecies,
@@ -185,16 +186,16 @@ export interface DataResStarship {
   films_count: number;
 }
 
-export interface StarshipDetailsType extends Omit<
+export interface DataResDetailsStarship extends Omit<
   DataResStarship,
   "pilots_count" | "films_count"
 > {
-  pilots: unknown[];
+  pilots: LinkPilotType[];
   films: LinkFilmsType[];
 }
 
 //vehicles
-export interface DataResVehicle {
+export interface DataResVehicles {
   id: number;
   name: string;
   model: string;
@@ -213,10 +214,10 @@ export interface DataResVehicle {
   films_count: number;
 }
 
-export interface VehicleDetailsType extends Omit<
-  DataResVehicle,
+export interface DataResDetailsVehicle extends Omit<
+  DataResVehicles,
   "pilots_count" | "films_count"
 > {
-  pilots: unknown[];
+  pilots: LinkPilotType[];
   films: LinkFilmsType[];
 }
