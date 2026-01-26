@@ -8,9 +8,8 @@ import type {
   DataResVehicles,
 } from "../../services/ApiRes.types";
 import { Link } from "react-router-dom";
-
-import styles from "./Card.module.css";
 import { AtributesSection } from "../AtributesSection/AtributesSection";
+import styles from "./Card.module.css";
 
 interface CardProps<T> {
   data: T;
@@ -27,8 +26,9 @@ export const Card: FC<
     | DataResVehicles
   >
 > = ({ data, variant }) => {
-  const { id } = data;
+  const { id } = data; //extract any type ids
 
+  //prepare atributes for film variant
   const { title, image_url, episode_id, release_date, characters_count } =
     data as DataResFilm;
   const filmAtributes = [
@@ -37,6 +37,7 @@ export const Card: FC<
     { title: "Characters", value: characters_count },
   ];
 
+  //prepare atributes for character variant
   const {
     name,
     image_url: imageUrlCharacter,
@@ -49,6 +50,7 @@ export const Card: FC<
     { title: "Homeworld", value: homeworld?.name || "Unknown" },
   ];
 
+  //prepare atributes for planet variant
   const {
     name: namePlanet,
     climate,
@@ -62,6 +64,7 @@ export const Card: FC<
     { title: "Residents", value: residents_count },
   ];
 
+  //prepare atributes for specie variant
   const {
     name: nameSpecies,
     classification,
@@ -75,6 +78,7 @@ export const Card: FC<
     { title: "People", value: people_count },
   ];
 
+  //prepare atributes for starship variant
   const {
     name: nameStarship,
     model,
@@ -88,6 +92,7 @@ export const Card: FC<
     { title: "Pilots", value: pilots_count },
   ];
 
+  //prepare atributes for vehicle variant
   const {
     name: nameVehicle,
     model: modelVehicle,

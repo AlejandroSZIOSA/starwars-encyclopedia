@@ -13,17 +13,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Development in Windows 10. Chrome browser
-   Global Styles - Mobile = Samsung Galaxy S8 */
+/* Development in Windows 10. 
+   -Using Chrome browser
+   -Dev mode Mobile = Samsung Galaxy S8 (360*740) 
+   -Using vanilla CSS only in [Pages]
+   -Using CSS modules only on [Custom Components]
+   */
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
+/* Global styles Mobile */
 body {
-  /* display: flex;
-  flex-direction: column; */
   background-color: white;
 }
 
@@ -89,12 +93,11 @@ button {
   padding: 0.2rem 0.2rem;
 }
 
-/* search page */
+/* Home pages shared Mobile */
 .homePage__rootContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* gap: 1.5rem; */
   width: 100%;
 }
 
@@ -127,7 +130,7 @@ button {
   display: none;
 }
 
-/* detail page */
+/* Details pages shared Mobile */
 .detailsPage__rootContainer {
   padding: 0 20px 20px 20px;
   background-color: #f0f0f0;
@@ -168,13 +171,12 @@ h3 {
 
 .detailsPage__ButtonBack {
   margin: 1rem 0;
-  /* padding: 0.5rem 0.5rem; */
   background-color: #00036e;
   color: white;
 }
 
-/* Global styles to Desktop or Laptop */
 @media (min-width: 1024px) {
+  /* Global styles Desktop */
   header {
     flex-direction: row;
     align-items: center;
@@ -225,7 +227,7 @@ h3 {
     padding: 0.4rem 0.4rem;
   }
 
-  /* search page */
+  /* Home pages shared */
   .homePage_searchBar__rootContainer {
     top: 5%;
   }
@@ -241,8 +243,7 @@ h3 {
     margin-left: 2rem;
   }
 
-  /* details page */
-
+  /* Details pages shared */
   .detailsPage__rootContainer {
     width: 50%;
   }

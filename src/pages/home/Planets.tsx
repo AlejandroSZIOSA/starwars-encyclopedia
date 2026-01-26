@@ -8,7 +8,6 @@ import { PaginationPanel } from "../../components/PaginationPanel/PaginationPane
 
 export const PlanetsPage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
-
   const {
     data: planets,
     loading,

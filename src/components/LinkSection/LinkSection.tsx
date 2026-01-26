@@ -5,7 +5,6 @@ import type {
   LinkPeopleFilmsType,
 } from "../../services/ApiRes.types";
 import { Link } from "react-router-dom";
-
 import styles from "./LinkSection.module.css";
 
 interface LinkSectionProps {
@@ -21,8 +20,6 @@ interface LinkSectionProps {
   links: LinkFilmBaseType[] | LinkFilmsType[] | LinkPeopleFilmsType[];
 }
 
-//todo
-
 export const LinkSection: FC<LinkSectionProps> = ({
   title,
   links,
@@ -33,7 +30,6 @@ export const LinkSection: FC<LinkSectionProps> = ({
       <p className={styles.titleText}>
         <strong>{title}</strong>
       </p>
-      {/* TODO:create a button in mobile view */}
       <ul>
         {links.map((link) => (
           <li key={link.id}>

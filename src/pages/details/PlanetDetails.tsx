@@ -9,10 +9,9 @@ import type { Atribute } from "./DetailsFilm";
 import { AtributesSection } from "../../components/AtributesSection/AtributesSection";
 
 export const PlanetDetailsPage = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const numericId = Number(id);
-
-  const navigate = useNavigate();
 
   const {
     data: planet,

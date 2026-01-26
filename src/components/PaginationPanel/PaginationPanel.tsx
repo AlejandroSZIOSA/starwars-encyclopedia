@@ -1,5 +1,4 @@
 import { type FC } from "react";
-
 import styles from "./PaginationPanel.module.css";
 
 type Props = {

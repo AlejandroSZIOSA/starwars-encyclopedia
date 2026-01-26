@@ -7,10 +7,9 @@ import { LinkSection } from "../../components/LinkSection/LinkSection";
 import { AtributesSection } from "../../components/AtributesSection/AtributesSection";
 
 export const VehicleDetailsPage: FC = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const numericId = Number(id);
-
-  const navigate = useNavigate();
 
   const {
     data: vehicle,

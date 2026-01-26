@@ -1,3 +1,4 @@
+//IMPORTANT: This page model is similar to other [details pages] (Character, Planet, Starship, Vehicle, Specie)
 import { type FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import type { DataResDetailsFilm } from "../../services/ApiRes.types";
@@ -35,6 +36,7 @@ export const DetailsFilmPage: FC = () => {
     starships,
     vehicles,
   } = film || {};
+
   const atributes: Atribute[] = [
     { title: "Episode", value: episode_id },
     { title: "Director", value: director },

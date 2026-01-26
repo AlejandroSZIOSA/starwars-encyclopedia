@@ -1,3 +1,4 @@
+//IMPORTANT:This page model is used in all [home pages] (Films, Characters, Planets, Starships, Vehicles)
 import { type FC } from "react";
 import { type DataResFilm } from "../../services/ApiRes.types";
 import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
@@ -7,8 +8,10 @@ import { SearchBar } from "../../components/searchbar/SearchBar";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
 
 export const FilmsPage: FC = () => {
+  // Custom hook thats manage some pagination and query logic
   const { page, query, setParams } = usePaginationParams();
 
+  // Custom hook to fetch films with pagination and search logic
   const {
     data: films,
     loading,

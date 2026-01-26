@@ -1,6 +1,5 @@
 import { type FC } from "react";
 import { NavItem } from "../NavItem/NavItem";
-
 import styles from "./NavBar.module.css";
 
 export const NavBar: FC = () => {

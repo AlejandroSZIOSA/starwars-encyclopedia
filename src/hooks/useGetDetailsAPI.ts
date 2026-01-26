@@ -22,31 +22,26 @@ export function useGetDetailsAPI<T>(variant: VariantType, params: number) {
           const resData = await EncyclopediaAPIs.getFilmDetails(params);
           setData(resData as T);
         }
-
         if (variant === "CHARACTER") {
           setLoading(true);
           const resData = await EncyclopediaAPIs.getCharacterDetails(params);
           setData(resData as T);
         }
-
         if (variant === "PLANET") {
           setLoading(true);
           const resData = await EncyclopediaAPIs.getPlanetDetails(params);
           setData(resData as T);
         }
-
         if (variant === "SPECIE") {
           setLoading(true);
           const resData = await EncyclopediaAPIs.getSpeciesDetails(params);
           setData(resData as T);
         }
-
         if (variant === "STARSHIP") {
           setLoading(true);
           const resData = await EncyclopediaAPIs.getStarshipDetails(params);
           setData(resData as T);
         }
-
         if (variant === "VEHICLE") {
           setLoading(true);
           const resData = await EncyclopediaAPIs.getVehicleDetails(params);
@@ -55,7 +50,6 @@ export function useGetDetailsAPI<T>(variant: VariantType, params: number) {
       } catch (error) {
         setError((error as Error).message);
       } finally {
-        //set loading to false
         setLoading(false);
       }
     };

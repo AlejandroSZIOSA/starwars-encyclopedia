@@ -4,12 +4,10 @@ import { type DataResSpecies } from "../../services/ApiRes.types";
 import { Card } from "../../components/Card/Card";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
 import { SearchBar } from "../../components/searchbar/SearchBar";
-
 import { usePaginationParams } from "../../hooks/usePaginationParams";
 
 export const SpeciesPage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
-
   const {
     data: species,
     loading,

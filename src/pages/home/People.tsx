@@ -3,7 +3,6 @@ import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
 import { type DataResPeople } from "../../services/ApiRes.types";
 import { Card } from "../../components/Card/Card";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
-
 import { usePaginationParams } from "../../hooks/usePaginationParams";
 import { SearchBar } from "../../components/searchbar/SearchBar";
 

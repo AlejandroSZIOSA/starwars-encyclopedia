@@ -8,9 +8,9 @@ import { AtributesSection } from "../../components/AtributesSection/AtributesSec
 import type { Atribute } from "../../pages/details/DetailsFilm";
 
 export const CharacterDetailsPage: FC = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const numericId = Number(id);
-  const navigate = useNavigate();
 
   const {
     data: character,

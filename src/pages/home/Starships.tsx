@@ -8,7 +8,6 @@ import { Card } from "../../components/Card/Card";
 
 export const StarshipsPage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
-
   const {
     data: starships,
     loading,

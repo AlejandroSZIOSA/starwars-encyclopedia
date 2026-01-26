@@ -24,57 +24,46 @@ export function useGetAndSearchAPI<T>(operation: VariantType, params: string) {
         if (operation === "FILMS") {
           setLoading(true);
           const resData = await EnciclopediaAPIs.getFilms(params);
-
           setData(resData.data as T);
           setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);
           setPrevPage(resData.prev_page_url);
         }
-
         if (operation === "PEOPLE") {
           setLoading(true);
           const resData = await EnciclopediaAPIs.getPeople(params);
-
           setData(resData.data as T);
           setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);
           setPrevPage(resData.prev_page_url);
         }
-
         if (operation === "PLANETS") {
           setLoading(true);
           const resData = await EnciclopediaAPIs.getPlanets(params);
-
           setData(resData.data as T);
           setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);
           setPrevPage(resData.prev_page_url);
         }
-
         if (operation === "SPECIES") {
           setLoading(true);
           const resData = await EnciclopediaAPIs.getSpecies(params);
           setData(resData.data as T);
-
           setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);
           setPrevPage(resData.prev_page_url);
         }
-
         if (operation === "STARSHIPS") {
           setLoading(true);
           const resData = await EnciclopediaAPIs.getStarships(params);
-
           setData(resData.data as T);
           setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);
           setPrevPage(resData.prev_page_url);
         }
-
         if (operation === "VEHICLES") {
           setLoading(true);
           const resData = await EnciclopediaAPIs.getVehicles(params);
-
           setData(resData.data as T);
           setCurrentPage(resData.current_page);
           setNextPage(resData.next_page_url);
