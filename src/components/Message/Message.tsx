@@ -1,14 +1,15 @@
 import { type FC } from "react";
+import styles from "./Message.module.css";
 
 interface MessageProps {
   message: string;
-  variant: "loading" | "error";
+  variant: "loading" | "error" | "info";
 }
 
 export const Message: FC<MessageProps> = ({ message, variant }) => {
   return (
-    <>
-      <h2>{message}</h2>
-    </>
+    <div className={styles.messageRootContainer}>
+      {variant === "loading" ? <h2>Loading...</h2> : <h2>{message}</h2>}
+    </div>
   );
 };

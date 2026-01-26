@@ -6,6 +6,7 @@ import { Card } from "../../components/Card/Card";
 import { usePaginationParams } from "../../hooks/usePaginationParams";
 import { SearchBar } from "../../components/searchbar/SearchBar";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
+import { Message } from "../../components/Message/Message";
 
 export const FilmsPage: FC = () => {
   // Custom hook thats manage some pagination and query logic
@@ -44,11 +45,11 @@ export const FilmsPage: FC = () => {
 
       <ol>
         {loading ? (
-          <p>Loading...</p>
+          <Message message="Loading..." variant="loading" />
         ) : error ? (
-          <p>{error}</p>
+          <Message message={error} variant="error" />
         ) : !films || films.length === 0 ? (
-          <p>Empty List</p>
+          <Message message="No films found." variant="info" />
         ) : (
           films.map((f) => (
             <li key={f.id}>

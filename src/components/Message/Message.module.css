@@ -1,0 +1,14 @@
+.messageRootContainer {
+  width: auto;
+  height: 2vh;
+}
+
+.messageRootContainerLoading {
+  background-color: yellow;
+}
+.messageRootContainerError {
+  background-color: red;
+}
+.messageRootContainerInfo {
+  background-color: blue;
+}
