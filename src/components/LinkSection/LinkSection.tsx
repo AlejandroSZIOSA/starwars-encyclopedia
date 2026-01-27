@@ -2,7 +2,6 @@ import { type FC } from "react";
 import type {
   LinkFilmBaseType,
   LinkFilmsType,
-  LinkPeopleFilmsType,
 } from "../../services/ApiRes.types";
 import { Link } from "react-router-dom";
 import styles from "./LinkSection.module.css";
@@ -17,7 +16,7 @@ interface LinkSectionProps {
     | "starship"
     | "vehicle";
 
-  links: LinkFilmBaseType[] | LinkFilmsType[] | LinkPeopleFilmsType[];
+  links: LinkFilmBaseType[] | LinkFilmsType[];
 }
 
 export const LinkSection: FC<LinkSectionProps> = ({
