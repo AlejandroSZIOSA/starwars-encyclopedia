@@ -6,6 +6,7 @@ import { usePaginationParams } from "../../hooks/usePaginationParams";
 import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
 import { type DataResStarship } from "../../services/ApiRes.types";
 import { Card } from "../../components/Card/Card";
+import { Message } from "../../components/Message/Message";
 
 export const StarshipsPage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
@@ -41,11 +42,13 @@ export const StarshipsPage: FC = () => {
 
       <ol>
         {loading ? (
-          <p>Loading...</p>
+          <Message message="Loading..." variant="loading" />
         ) : error ? (
-          <p>{error}</p>
-        ) : !starships || starships.length === 0 ? (
-          <p>Empty List</p>
+          <Message message={error} variant="error" />
+        ) : !starships ? (
+          <Message message="No starships data." variant="info" />
+        ) : starships.length === 0 ? (
+          <Message message="Not found." variant="loading" />
         ) : (
           starships.map((s) => (
             <li key={s.id}>

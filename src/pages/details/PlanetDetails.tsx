@@ -7,6 +7,7 @@ import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
 import { useNavigate } from "react-router-dom";
 import type { Atribute } from "./DetailsFilm";
 import { AtributesSection } from "../../components/AtributesSection/AtributesSection";
+import { Message } from "../../components/Message/Message";
 
 export const PlanetDetailsPage: FC = () => {
   const navigate = useNavigate();
@@ -30,13 +31,13 @@ export const PlanetDetailsPage: FC = () => {
   ];
 
   return (
-    <div className="detailsPage__rootContainer detailsPage_character___rootContainer">
+    <>
       {loading ? (
-        <p>Loading...</p>
+        <Message message="Loading..." variant="loading" />
       ) : error ? (
-        <p>{error}</p>
+        <Message message={error} variant="error" />
       ) : (
-        <>
+        <div className="detailsPage__rootContainer detailsPage_character___rootContainer">
           <section className="detailsPage_intro__Section detailsPage_character_intro__Section">
             <h2>{name}</h2>
           </section>
@@ -64,8 +65,8 @@ export const PlanetDetailsPage: FC = () => {
               Go Back
             </button>
           </div>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };

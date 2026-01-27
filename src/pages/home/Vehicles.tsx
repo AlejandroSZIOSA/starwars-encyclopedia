@@ -6,6 +6,7 @@ import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
 import { usePaginationParams } from "../../hooks/usePaginationParams";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
 import { Card } from "../../components/Card/Card";
+import { Message } from "../../components/Message/Message";
 
 export const VehiclesPage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
@@ -41,11 +42,13 @@ export const VehiclesPage: FC = () => {
 
       <ol>
         {loading ? (
-          <p>Loading...</p>
+          <Message message="Loading..." variant="loading" />
         ) : error ? (
-          <p>{error}</p>
-        ) : !vehicles || vehicles.length === 0 ? (
-          <p>Empty List</p>
+          <Message message={error} variant="error" />
+        ) : !vehicles ? (
+          <Message message="No vehicles data." variant="info" />
+        ) : vehicles.length === 0 ? (
+          <Message message="Not found." variant="loading" />
         ) : (
           vehicles.map((v) => (
             <li key={v.id}>

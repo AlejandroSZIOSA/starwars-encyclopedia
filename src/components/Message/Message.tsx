@@ -8,8 +8,8 @@ interface MessageProps {
 
 export const Message: FC<MessageProps> = ({ message, variant }) => {
   return (
-    <div className={styles.messageRootContainer}>
-      {variant === "loading" ? <h3>Loading...</h3> : <h3>{message}</h3>}
+    <div className={`${styles.messageRootContainer} ${styles[variant]}`}>
+      <h3>{message}</h3>
     </div>
   );
 };

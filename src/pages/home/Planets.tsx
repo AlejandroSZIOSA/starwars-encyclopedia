@@ -6,6 +6,7 @@ import { type DataResPlanet } from "../../services/ApiRes.types";
 import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
 import { Card } from "../../components/Card/Card";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
+import { Message } from "../../components/Message/Message";
 
 export const PlanetsPage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
@@ -41,11 +42,13 @@ export const PlanetsPage: FC = () => {
 
       <ol>
         {loading ? (
-          <p>Loading...</p>
+          <Message message="Loading..." variant="loading" />
         ) : error ? (
-          <p>{error}</p>
-        ) : !planets || planets.length === 0 ? (
-          <p>Empty List</p>
+          <Message message={error} variant="error" />
+        ) : !planets ? (
+          <Message message="No planets data." variant="info" />
+        ) : planets.length === 0 ? (
+          <Message message="Not found." variant="loading" />
         ) : (
           planets.map((p) => (
             <li key={p.id}>

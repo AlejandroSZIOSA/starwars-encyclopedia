@@ -6,6 +6,7 @@ import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
 import { useNavigate, useParams } from "react-router-dom";
 import { LinkSection } from "../../components/LinkSection/LinkSection";
 import { AtributesSection } from "../../components/AtributesSection/AtributesSection";
+import { Message } from "../../components/Message/Message";
 
 export const VehicleDetailsPage: FC = () => {
   const navigate = useNavigate();
@@ -29,13 +30,13 @@ export const VehicleDetailsPage: FC = () => {
   ];
 
   return (
-    <div className="detailsPage__rootContainer detailsPage_character___rootContainer">
+    <>
       {loading ? (
-        <p>Loading...</p>
+        <Message message="Loading..." variant="loading" />
       ) : error ? (
-        <p>{error}</p>
+        <Message message={error} variant="error" />
       ) : (
-        <>
+        <div className="detailsPage__rootContainer detailsPage_character___rootContainer">
           <section className="detailsPage_intro__Section detailsPage_character_intro__Section">
             <h2>{name}</h2>
           </section>
@@ -63,8 +64,8 @@ export const VehicleDetailsPage: FC = () => {
               Go Back
             </button>
           </div>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };

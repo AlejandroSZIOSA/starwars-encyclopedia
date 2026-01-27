@@ -21,10 +21,10 @@ const instance = axios.create({
   headers: {
     Accept: "application/json",
   },
-  timeout: 10000, // 10 seconds
+  timeout: 10000,
 });
 
-// Make a generic HTTP GET request
+// make a generic HTTP GET request
 export const get = async <T>(endpoint: string) => {
   const res = await instance.get<T>(endpoint);
   return res.data;

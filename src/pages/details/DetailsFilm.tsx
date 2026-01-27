@@ -5,6 +5,7 @@ import type { DataResDetailsFilm } from "../../services/ApiRes.types";
 import { LinkSection } from "../../components/LinkSection/LinkSection";
 import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
 import { AtributesSection } from "../../components/AtributesSection/AtributesSection";
+import { Message } from "../../components/Message/Message";
 
 export type Atribute = {
   title: string;
@@ -45,13 +46,13 @@ export const DetailsFilmPage: FC = () => {
   ];
 
   return (
-    <div className="detailsPage__rootContainer">
+    <>
       {loading ? (
-        <p>Loading...</p>
+        <Message message="Loading..." variant="loading" />
       ) : error ? (
-        <p>{error}</p>
+        <Message message={error} variant="error" />
       ) : (
-        <>
+        <div className="detailsPage__rootContainer">
           <section className="detailsPage_intro__Section">
             <img src={image_url} alt={title} />
             <h2 className="detailsPage_introMobile__Title">{title}</h2>
@@ -109,8 +110,8 @@ export const DetailsFilmPage: FC = () => {
               Go Back
             </button>
           </div>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };

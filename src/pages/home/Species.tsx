@@ -6,6 +6,7 @@ import { Card } from "../../components/Card/Card";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
 import { SearchBar } from "../../components/searchbar/SearchBar";
 import { usePaginationParams } from "../../hooks/usePaginationParams";
+import { Message } from "../../components/Message/Message";
 
 export const SpeciesPage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
@@ -41,11 +42,13 @@ export const SpeciesPage: FC = () => {
 
       <ol>
         {loading ? (
-          <p>Loading...</p>
+          <Message message="Loading..." variant="loading" />
         ) : error ? (
-          <p>{error}</p>
-        ) : !species || species.length === 0 ? (
-          <p>Empty List</p>
+          <Message message={error} variant="error" />
+        ) : !species ? (
+          <Message message="No species data." variant="info" />
+        ) : species.length === 0 ? (
+          <Message message="Not found." variant="loading" />
         ) : (
           species.map((s) => (
             <li key={s.id}>

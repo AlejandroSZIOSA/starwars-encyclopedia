@@ -7,6 +7,7 @@ import { LinkSection } from "../../components/LinkSection/LinkSection";
 import { AtributesSection } from "../../components/AtributesSection/AtributesSection";
 
 import type { Atribute } from "../../pages/details/DetailsFilm";
+import { Message } from "../../components/Message/Message";
 
 export const CharacterDetailsPage: FC = () => {
   const navigate = useNavigate();
@@ -45,13 +46,13 @@ export const CharacterDetailsPage: FC = () => {
   ];
 
   return (
-    <div className="detailsPage__rootContainer detailsPage_character___rootContainer">
+    <>
       {loading ? (
-        <p>Loading...</p>
+        <Message message="Loading..." variant="loading" />
       ) : error ? (
-        <p>{error}</p>
+        <Message message={error} variant="error" />
       ) : (
-        <>
+        <div className="detailsPage__rootContainer detailsPage_character___rootContainer">
           <section className="detailsPage_intro__Section detailsPage_character_intro__Section">
             <h2>{name}</h2>
             {image_url && <img src={image_url} alt={name} />}
@@ -98,8 +99,8 @@ export const CharacterDetailsPage: FC = () => {
               Go Back
             </button>
           </div>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };

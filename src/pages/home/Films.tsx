@@ -51,7 +51,7 @@ export const FilmsPage: FC = () => {
         ) : !films ? (
           <Message message="No films data." variant="info" />
         ) : films.length === 0 ? (
-          <Message message="No film found." variant="info" />
+          <Message message="Not found." variant="loading" />
         ) : (
           films.map((f) => (
             <li key={f.id}>

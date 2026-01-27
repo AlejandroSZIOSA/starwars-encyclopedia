@@ -99,6 +99,7 @@ button {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin-bottom: 3rem; /* TODO:create a new breakpoint */
 }
 
 .homePage_searchBar__rootContainer {
