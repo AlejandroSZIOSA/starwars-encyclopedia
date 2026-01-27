@@ -1,12 +1,3 @@
-// import type { ProductCtx } from "../types/shared";
-
-/* export interface Product extends Pick<ProductCtx, "id" | "name" | "price"> {
-  description?: string;
-  images: { thumbnail: string; large: string };
-} */
-
-// types for requests payloads
-
 export interface DataResBase<T> {
   current_page: number;
   data: T;

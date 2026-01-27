@@ -1,3 +1,4 @@
+//IMPORTANT:This page model is used in all [details pages]
 import { type FC } from "react";
 import type { Atribute } from "./DetailsFilm";
 import type { DataResDetailsVehicle } from "../../services/ApiRes.types";

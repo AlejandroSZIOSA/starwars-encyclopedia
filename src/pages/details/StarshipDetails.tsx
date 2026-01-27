@@ -1,3 +1,4 @@
+//IMPORTANT:This page model is used in all [details pages]
 import { type FC } from "react";
 import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
 import type { DataResDetailsStarship } from "../../services/ApiRes.types";

@@ -1,3 +1,4 @@
+//IMPORTANT:This page model is used in all [details pages]
 import { type FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import type { DataResDetailsCharacter } from "../../services/ApiRes.types";

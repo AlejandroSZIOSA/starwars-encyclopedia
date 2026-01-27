@@ -1,4 +1,4 @@
-//IMPORTANT: This page model is similar to other [details pages] (Character, Planet, Starship, Vehicle, Specie)
+//IMPORTANT:This page model is used in all [details pages]
 import { type FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import type { DataResDetailsFilm } from "../../services/ApiRes.types";

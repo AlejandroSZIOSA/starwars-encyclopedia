@@ -1,7 +1,7 @@
+//IMPORTANT:This page model is used in all [details pages]
 import { type FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
-
 import type { DataResDetailsSpecie } from "../../services/ApiRes.types";
 import { LinkSection } from "../../components/LinkSection/LinkSection";
 import { AtributesSection } from "../../components/AtributesSection/AtributesSection";

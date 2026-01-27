@@ -1,3 +1,4 @@
+//IMPORTANT:This page model is used in all [home pages]
 import { type FC } from "react";
 import { SearchBar } from "../../components/searchbar/SearchBar";
 import type { DataResVehicles } from "../../services/ApiRes.types";

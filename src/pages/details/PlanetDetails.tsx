@@ -1,14 +1,14 @@
+//IMPORTANT:This page model is used in all [details pages]
+import { type FC } from "react";
 import { useParams } from "react-router-dom";
 import type { DataResDetailPlanet } from "../../services/ApiRes.types";
 import { LinkSection } from "../../components/LinkSection/LinkSection";
 import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
-
 import { useNavigate } from "react-router-dom";
-
 import type { Atribute } from "./DetailsFilm";
 import { AtributesSection } from "../../components/AtributesSection/AtributesSection";
 
-export const PlanetDetailsPage = () => {
+export const PlanetDetailsPage: FC = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const numericId = Number(id);

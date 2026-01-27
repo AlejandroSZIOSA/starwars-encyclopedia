@@ -1,4 +1,4 @@
-//IMPORTANT:This page model is used in all [home pages] (Films, Characters, Planets, Starships, Vehicles)
+//IMPORTANT:This page model is used in all [home pages]
 import { type FC } from "react";
 import { type DataResFilm } from "../../services/ApiRes.types";
 import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
@@ -48,8 +48,10 @@ export const FilmsPage: FC = () => {
           <Message message="Loading..." variant="loading" />
         ) : error ? (
           <Message message={error} variant="error" />
-        ) : !films || films.length === 0 ? (
-          <Message message="No films found." variant="info" />
+        ) : !films ? (
+          <Message message="No films data." variant="info" />
+        ) : films.length === 0 ? (
+          <Message message="No film found." variant="info" />
         ) : (
           films.map((f) => (
             <li key={f.id}>

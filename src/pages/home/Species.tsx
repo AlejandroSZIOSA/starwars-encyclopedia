@@ -1,3 +1,4 @@
+//IMPORTANT:This page model is used in all [home pages]
 import { type FC } from "react";
 import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
 import { type DataResSpecies } from "../../services/ApiRes.types";
