@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react";
 import * as EnciclopediaAPIs from "../services/ApiRes";
 
-type VariantType =
-  | "FILMS"
-  | "PEOPLE"
-  | "PLANETS"
-  | "SPECIES"
-  | "STARSHIPS"
-  | "VEHICLES";
-
-export function useGetAndSearchAPI<T>(operation: VariantType, params: string) {
+export function useGetAndSearchAPI<T>(params: string) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -21,54 +13,13 @@ export function useGetAndSearchAPI<T>(operation: VariantType, params: string) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (operation === "FILMS") {
-          setLoading(true);
-          const resData = await EnciclopediaAPIs.getFilms(params);
-          setData(resData.data as T);
-          setCurrentPage(resData.current_page);
-          setNextPage(resData.next_page_url);
-          setPrevPage(resData.prev_page_url);
-        }
-        if (operation === "PEOPLE") {
-          setLoading(true);
-          const resData = await EnciclopediaAPIs.getPeople(params);
-          setData(resData.data as T);
-          setCurrentPage(resData.current_page);
-          setNextPage(resData.next_page_url);
-          setPrevPage(resData.prev_page_url);
-        }
-        if (operation === "PLANETS") {
-          setLoading(true);
-          const resData = await EnciclopediaAPIs.getPlanets(params);
-          setData(resData.data as T);
-          setCurrentPage(resData.current_page);
-          setNextPage(resData.next_page_url);
-          setPrevPage(resData.prev_page_url);
-        }
-        if (operation === "SPECIES") {
-          setLoading(true);
-          const resData = await EnciclopediaAPIs.getSpecies(params);
-          setData(resData.data as T);
-          setCurrentPage(resData.current_page);
-          setNextPage(resData.next_page_url);
-          setPrevPage(resData.prev_page_url);
-        }
-        if (operation === "STARSHIPS") {
-          setLoading(true);
-          const resData = await EnciclopediaAPIs.getStarships(params);
-          setData(resData.data as T);
-          setCurrentPage(resData.current_page);
-          setNextPage(resData.next_page_url);
-          setPrevPage(resData.prev_page_url);
-        }
-        if (operation === "VEHICLES") {
-          setLoading(true);
-          const resData = await EnciclopediaAPIs.getVehicles(params);
-          setData(resData.data as T);
-          setCurrentPage(resData.current_page);
-          setNextPage(resData.next_page_url);
-          setPrevPage(resData.prev_page_url);
-        }
+        setLoading(true);
+        //fixed: infers datatypes
+        const resData = await EnciclopediaAPIs.getData<T>(params);
+        setData(resData.data as T);
+        setCurrentPage(resData.current_page);
+        setNextPage(resData.next_page_url);
+        setPrevPage(resData.prev_page_url);
       } catch (error) {
         console.log("Error fetching films:", error);
         setError((error as Error).message);
@@ -77,7 +28,7 @@ export function useGetAndSearchAPI<T>(operation: VariantType, params: string) {
       }
     };
     fetchData();
-  }, [operation, params]);
+  }, [params]);
 
   return {
     data,

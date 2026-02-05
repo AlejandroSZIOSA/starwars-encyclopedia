@@ -18,7 +18,7 @@ export const PlanetDetailsPage: FC = () => {
     data: planet,
     loading,
     error,
-  } = useGetDetailsAPI<DataResDetailPlanet>("PLANET", numericId);
+  } = useGetDetailsAPI<DataResDetailPlanet>("/planets/" + numericId);
 
   const { name, diameter, climate, gravity, terrain, residents, films } =
     planet || {};

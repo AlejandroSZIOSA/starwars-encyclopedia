@@ -17,7 +17,7 @@ export const StarshipDetailsPage: FC = () => {
     data: starship,
     loading,
     error,
-  } = useGetDetailsAPI<DataResDetailsStarship>("STARSHIP", numericId);
+  } = useGetDetailsAPI<DataResDetailsStarship>("/starships/" + numericId);
 
   const { name, model, starship_class, manufacturer, crew, pilots, films } =
     starship || {};

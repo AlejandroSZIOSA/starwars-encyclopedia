@@ -17,7 +17,7 @@ export const SpecieDetailsPage: FC = () => {
     data: specie,
     loading,
     error,
-  } = useGetDetailsAPI<DataResDetailsSpecie>("SPECIE", numericId);
+  } = useGetDetailsAPI<DataResDetailsSpecie>("/species/" + numericId);
 
   const {
     name,

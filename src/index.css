@@ -52,7 +52,7 @@ nav {
   padding: 0.5rem 0;
   background-color: #9b9b9b;
   font-size: medium;
-  font-weight: 500;
+  /*   font-weight: 500; */
 }
 
 ul {
@@ -190,6 +190,7 @@ h3 {
   nav {
     width: fit-content;
     padding-right: 1rem;
+    font-weight: 500;
     font-size: larger;
   }
   h1 {
@@ -233,7 +234,7 @@ h3 {
 
   /* Home pages shared */
   .homePage_searchBar__rootContainer {
-    top: 5%;
+    top: 6%;
   }
 
   .homePage_paginationPanelMobile__rootContainer {

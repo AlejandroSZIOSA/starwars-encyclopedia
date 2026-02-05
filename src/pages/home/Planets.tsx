@@ -1,6 +1,6 @@
 //IMPORTANT:This page model is used in all [home pages]
 import { type FC } from "react";
-import { SearchBar } from "../../components/searchbar/SearchBar";
+import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { usePaginationParams } from "../../hooks/usePaginationParams";
 import { type DataResPlanet } from "../../services/ApiRes.types";
 import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
@@ -16,7 +16,6 @@ export const PlanetsPage: FC = () => {
     error,
     nextPage,
   } = useGetAndSearchAPI<DataResPlanet[]>(
-    "PLANETS",
     `planets?page=${page}&search=${encodeURIComponent(query)}`,
   );
 

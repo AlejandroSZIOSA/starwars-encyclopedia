@@ -4,7 +4,7 @@ import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
 import { type DataResSpecies } from "../../services/ApiRes.types";
 import { Card } from "../../components/Card/Card";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
-import { SearchBar } from "../../components/searchbar/SearchBar";
+import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { usePaginationParams } from "../../hooks/usePaginationParams";
 import { Message } from "../../components/Message/Message";
 
@@ -16,7 +16,6 @@ export const SpeciesPage: FC = () => {
     error,
     nextPage,
   } = useGetAndSearchAPI<DataResSpecies[]>(
-    "SPECIES",
     `species?page=${page}&search=${encodeURIComponent(query)}`,
   );
 

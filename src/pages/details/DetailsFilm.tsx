@@ -21,7 +21,7 @@ export const DetailsFilmPage: FC = () => {
     data: film,
     loading,
     error,
-  } = useGetDetailsAPI<DataResDetailsFilm>("FILM", numericId);
+  } = useGetDetailsAPI<DataResDetailsFilm>("/films/" + numericId);
 
   const {
     image_url,

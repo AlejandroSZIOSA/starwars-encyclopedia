@@ -1,6 +1,6 @@
 //IMPORTANT:This page model is used in all [home pages]
 import { type FC } from "react";
-import { SearchBar } from "../../components/searchbar/SearchBar";
+import { SearchBar } from "../../components/SearchBar/SearchBar";
 import type { DataResVehicles } from "../../services/ApiRes.types";
 import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
 import { usePaginationParams } from "../../hooks/usePaginationParams";
@@ -16,7 +16,6 @@ export const VehiclesPage: FC = () => {
     error,
     nextPage,
   } = useGetAndSearchAPI<DataResVehicles[]>(
-    "VEHICLES",
     `vehicles?page=${page}&search=${encodeURIComponent(query)}`,
   );
 

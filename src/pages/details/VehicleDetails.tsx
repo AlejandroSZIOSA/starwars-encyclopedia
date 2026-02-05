@@ -17,7 +17,7 @@ export const VehicleDetailsPage: FC = () => {
     data: vehicle,
     loading,
     error,
-  } = useGetDetailsAPI<DataResDetailsVehicle>("VEHICLE", numericId);
+  } = useGetDetailsAPI<DataResDetailsVehicle>("/vehicles/" + numericId);
 
   const { name, vehicle_class, length, crew, passengers, pilots, films } =
     vehicle || {};

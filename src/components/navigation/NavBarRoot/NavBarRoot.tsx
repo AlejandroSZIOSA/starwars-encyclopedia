@@ -5,7 +5,7 @@ import { type NavItemProps } from "../NavItem/NavItem";
 import { NavItem } from "../NavItem/NavItem";
 
 type NavBarRootProps = {
-  children?: ReactNode;
+  children: ReactNode;
 };
 
 type NavBarComponent = FC<NavBarRootProps> & {

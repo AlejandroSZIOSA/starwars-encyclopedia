@@ -18,7 +18,7 @@ export const CharacterDetailsPage: FC = () => {
     data: character,
     loading,
     error,
-  } = useGetDetailsAPI<DataResDetailsCharacter>("CHARACTER", numericId);
+  } = useGetDetailsAPI<DataResDetailsCharacter>("/people/" + numericId);
 
   const {
     image_url,
