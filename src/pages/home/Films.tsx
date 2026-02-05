@@ -4,7 +4,7 @@ import { type DataResFilm } from "../../services/ApiRes.types";
 import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
 import { Card } from "../../components/Card/Card";
 import { usePaginationParams } from "../../hooks/usePaginationParams";
-import { SearchBar } from "../../components/SearchBar/SearchBar";
+import { SearchBar } from "../../components/searchbar/SearchBar";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
 import { Message } from "../../components/Message/Message";
 
@@ -28,7 +28,7 @@ export const FilmsPage: FC = () => {
         <SearchBar
           value={query}
           placeholder="Search Film..."
-          onChange={(value) => setParams({ query: value, page: 1 })}
+          onChange={(value: string) => setParams({ query: value, page: 1 })}
         />
         <div className="homePage_paginationPanelDesktop__rootContainer">
           <PaginationPanel
