@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import { Outlet } from "react-router-dom";
-import NavbarRoot from "../components/navigation/NavbarRoot/NavbarRoot";
 import styles from "./RootLayout.module.css";
+import NavbarRoot from "../components/navigation/NavBarRoot/NavBarRoot";
 
 export const RootLayout: FC = () => {
   return (
