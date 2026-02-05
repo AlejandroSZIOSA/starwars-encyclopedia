@@ -1,6 +1,6 @@
 //IMPORTANT:This page model is used in all [home pages]
 import { type FC } from "react";
-import { SearchBar } from "../../components/SearchBar/SearchBar";
+import { SearchBar } from "../../components/Searchbar/SearchBar";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
 import { usePaginationParams } from "../../hooks/usePaginationParams";
 import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";

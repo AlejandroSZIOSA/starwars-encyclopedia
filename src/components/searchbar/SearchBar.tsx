@@ -6,7 +6,7 @@ type Props = {
   placeholder: string;
   onChange: (value: string) => void;
 };
-
+//test
 export const SearchBar: FC<Props> = ({ value, placeholder, onChange }) => {
   return (
     <input

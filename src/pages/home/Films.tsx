@@ -4,7 +4,7 @@ import { type DataResFilm } from "../../services/ApiRes.types";
 import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
 import { Card } from "../../components/Card/Card";
 import { usePaginationParams } from "../../hooks/usePaginationParams";
-import { SearchBar } from "../../components/SearchBar/SearchBar";
+import { SearchBar } from "../../components/Searchbar/SearchBar";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
 import { Message } from "../../components/Message/Message";
 

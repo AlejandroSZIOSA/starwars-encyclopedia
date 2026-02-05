@@ -5,7 +5,7 @@ import { type DataResPeople } from "../../services/ApiRes.types";
 import { Card } from "../../components/Card/Card";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
 import { usePaginationParams } from "../../hooks/usePaginationParams";
-import { SearchBar } from "../../components/SearchBar/SearchBar";
+import { SearchBar } from "../../components/Searchbar/SearchBar";
 import { Message } from "../../components/Message/Message";
 
 export const PeoplePage: FC = () => {
