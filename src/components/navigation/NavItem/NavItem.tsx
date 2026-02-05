@@ -1,16 +1,18 @@
-import { type FC } from "react";
+import { type FC, type ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 
-interface NavItemProps {
+export type NavItemProps = {
   htmlAddress: string;
-  label: string;
-}
+  /* label: string; */
+  children?: ReactNode;
+};
 
-export const NavItem: FC<NavItemProps> = ({ htmlAddress, label }) => {
+export const NavItem: FC<NavItemProps> = ({ htmlAddress, children }) => {
   return (
     <li>
       <NavLink to={htmlAddress} style={{ textDecoration: "none" }}>
-        <p>{label}</p>
+        {/* <p>{label}</p> */}
+        {children}
       </NavLink>
     </li>
   );

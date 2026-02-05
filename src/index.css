@@ -51,6 +51,8 @@ nav {
   width: 100%;
   padding: 0.5rem 0;
   background-color: #9b9b9b;
+  font-size: medium;
+  font-weight: 500;
 }
 
 ul {
@@ -188,6 +190,7 @@ h3 {
   nav {
     width: fit-content;
     padding-right: 1rem;
+    font-size: larger;
   }
   h1 {
     font-size: 3rem;
