@@ -1,12 +1,12 @@
 import { type FC, type ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 
-export type NavItemProps = {
+export type NavbarItemProps = {
   htmlAddress: string;
   children: ReactNode;
 };
 
-export const NavItem: FC<NavItemProps> = ({ htmlAddress, children }) => {
+export const NavbarItem: FC<NavbarItemProps> = ({ htmlAddress, children }) => {
   return (
     <li>
       <NavLink to={htmlAddress} style={{ textDecoration: "none" }}>

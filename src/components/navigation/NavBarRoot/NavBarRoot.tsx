@@ -1,18 +1,18 @@
 import { type FC, type ReactNode } from "react";
 import styles from "./NavBarRoot.module.css";
 
-import { type NavItemProps } from "../NavItem/NavItem";
-import { NavItem } from "../NavItem/NavItem";
+import { type NavbarItemProps } from "../NavbarItem/NavbarItem";
+import { NavbarItem } from "../NavbarItem/NavbarItem";
 
-type NavBarRootProps = {
+type NavbarRootProps = {
   children: ReactNode;
 };
 
-type NavBarComponent = FC<NavBarRootProps> & {
-  Item: FC<NavItemProps>;
+type NavbarRootComponent = FC<NavbarRootProps> & {
+  Item: FC<NavbarItemProps>;
 };
 
-const NavBarRoot: NavBarComponent = ({ children }) => {
+const NavbarRoot: NavbarRootComponent = ({ children }) => {
   return (
     <nav>
       <ul className={styles.navBarInnerUl}>{children}</ul>
@@ -20,5 +20,5 @@ const NavBarRoot: NavBarComponent = ({ children }) => {
   );
 };
 
-NavBarRoot.Item = NavItem; //Add new property to the object :)
-export default NavBarRoot;
+NavbarRoot.Item = NavbarItem; //Add new property to the object :)
+export default NavbarRoot;
