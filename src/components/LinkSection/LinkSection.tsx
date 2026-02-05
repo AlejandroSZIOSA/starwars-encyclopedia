@@ -37,7 +37,7 @@ export const LinkSection: FC<LinkSectionProps> = ({
             ) : "name" in link ? (
               <p>{link.name}</p>
             ) : null}
-            <Link to={`/${rootLinkAddress}/${link.id}`}>Details</Link>
+            <Link to={`/${rootLinkAddress}/${link.id}`}>Link</Link>
           </li>
         ))}
       </ul>
