@@ -28,7 +28,7 @@ export const FilmsPage: FC = () => {
         <SearchBar
           value={query}
           placeholder="Search Film..."
-          onChange={(value: string) => setParams({ query: value, page: 1 })}
+          onChange={(value) => setParams({ query: value, page: 1 })}
         />
         <div className="homePage_paginationPanelDesktop__rootContainer">
           <PaginationPanel
