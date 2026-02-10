@@ -1,3 +1,4 @@
+//Fixed: Using type guards to ensure correct data handling based on the variant prop, and added a link to the details page for each card. This approach allows us to safely access properties specific to each data type while maintaining a clean and reusable card component.
 import { type FC } from "react";
 import type {
   DataResFilm,
@@ -11,199 +12,223 @@ import { Link } from "react-router-dom";
 import { AtributesSection } from "../AtributesSection/AtributesSection";
 import styles from "./Card.module.css";
 
-interface CardProps<T> {
-  data: T;
-  variant?: "film" | "character" | "planet" | "specie" | "starship" | "vehicle";
-}
+type CardData =
+  | DataResFilm
+  | DataResPeople
+  | DataResPlanet
+  | DataResSpecies
+  | DataResStarship
+  | DataResVehicles;
 
-export const Card: FC<
-  CardProps<
-    | DataResFilm
-    | DataResPeople
-    | DataResPlanet
-    | DataResSpecies
-    | DataResStarship
-    | DataResVehicles
-  >
-> = ({ data, variant }) => {
+interface CardProps {
+  data: CardData;
+  variant: "film" | "character" | "planet" | "specie" | "starship" | "vehicle";
+}
+export const Card: FC<CardProps> = ({ data, variant }) => {
   const { id } = data; //extract any type ids
 
-  //prepare atributes for film variant
-  const { title, image_url, episode_id, release_date, characters_count } =
-    data as DataResFilm;
-  const filmAtributes = [
-    { title: "Episode", value: episode_id },
-    { title: "Release Date", value: release_date },
-    { title: "Characters", value: characters_count },
-  ];
+  //Using type guards
+  function isFilm(data: unknown): data is DataResFilm {
+    return (
+      typeof data === "object" &&
+      data !== null &&
+      "episode_id" in data &&
+      "release_date" in data
+    );
+  }
 
-  //prepare atributes for character variant
-  const {
-    name,
-    image_url: imageUrlCharacter,
-    birth_year,
-    homeworld,
-    films_count,
-  } = data as DataResPeople;
-  const characterAtributes = [
-    { title: "Born", value: birth_year },
-    { title: "Homeworld", value: homeworld?.name || "Unknown" },
-  ];
+  //Using type guards
+  function isCharacter(data: unknown): data is DataResPeople {
+    return (
+      typeof data === "object" &&
+      data !== null &&
+      "birth_year" in data &&
+      "homeworld" in data
+    );
+  }
 
-  //prepare atributes for planet variant
-  const {
-    name: namePlanet,
-    climate,
-    terrain,
-    residents_count,
-    films_count: films_countPlanet,
-  } = data as DataResPlanet;
-  const planetAtributes = [
-    { title: "Climate", value: climate },
-    { title: "Terrain", value: terrain },
-    { title: "Residents", value: residents_count },
-  ];
+  //Using type guards
+  function isPlanet(data: unknown): data is DataResPlanet {
+    return (
+      typeof data === "object" &&
+      data !== null &&
+      "climate" in data &&
+      "terrain" in data
+    );
+  }
 
-  //prepare atributes for specie variant
-  const {
-    name: nameSpecies,
-    classification,
-    designation,
-    people_count,
-    films_count: filmsCountSpecies,
-  } = data as DataResSpecies;
-  const specieAtributes = [
-    { title: "Classification", value: classification },
-    { title: "Designation", value: designation },
-    { title: "People", value: people_count },
-  ];
+  //Using type guards
+  function isSpecie(data: unknown): data is DataResSpecies {
+    return (
+      typeof data === "object" && data !== null && "classification" in data
+    );
+  }
 
-  //prepare atributes for starship variant
-  const {
-    name: nameStarship,
-    model,
-    cost_in_credits,
-    pilots_count,
-    films_count: films_countStarship,
-  } = data as DataResStarship;
-  const starshipAtributes = [
-    { title: "Model", value: model },
-    { title: "Cost", value: cost_in_credits },
-    { title: "Pilots", value: pilots_count },
-  ];
+  //Using type guards
+  function isStarship(data: unknown): data is DataResStarship {
+    return (
+      typeof data === "object" &&
+      data !== null &&
+      "cost_in_credits" in data &&
+      "model" in data
+    );
+  }
 
-  //prepare atributes for vehicle variant
-  const {
-    name: nameVehicle,
-    model: modelVehicle,
-    cost_in_credits: costInCreditsVehicle,
-    pilots_count: pilotsCountVehicle,
-    films_count: filmsCountVehicle,
-  } = data as DataResVehicles;
-  const vehicleAtributes = [
-    { title: "Model", value: modelVehicle },
-    { title: "Cost", value: costInCreditsVehicle },
-    { title: "Pilots", value: pilotsCountVehicle },
-  ];
+  //Using type guards
+  function isVehicle(data: unknown): data is DataResVehicles {
+    return (
+      typeof data === "object" &&
+      data !== null &&
+      "cost_in_credits" in data &&
+      "pilots_count" in data
+    );
+  }
 
   return (
     <div className={styles.cardRootContainer}>
-      {variant === "film" && (
+      {variant === "film" && isFilm(data) && (
         <>
           <div className={styles.cardInnerIntroContainer}>
-            {image_url && <img src={image_url} alt={title} />}
+            {data.image_url && <img src={data.image_url} alt={data.title} />}
+
             <p>
-              <strong>{title}</strong>
+              <strong>{data.title}</strong>
             </p>
-            <hr></hr>
+
+            <hr />
           </div>
 
           <div className={styles.cardInnerDetailsContainer}>
-            <AtributesSection atributeList={filmAtributes} />
+            <AtributesSection
+              atributeList={[
+                { title: "Episode", value: data.episode_id },
+                { title: "Release Date", value: data.release_date },
+                { title: "Characters", value: data.characters_count },
+              ]}
+            />
           </div>
         </>
       )}
-      {variant === "character" && (
+
+      {variant === "character" && isCharacter(data) && (
         <>
           <div className={styles.cardInnerIntroContainer}>
-            {imageUrlCharacter && <img src={imageUrlCharacter} alt={name} />}
-            <p>{name}</p>
-            <hr></hr>
+            {data.image_url && <img src={data.image_url} alt={data.name} />}
+
+            <p>{data.name}</p>
+
+            <hr />
           </div>
 
           <div className={styles.cardInnerDetailsContainer}>
-            <AtributesSection atributeList={characterAtributes} />
+            <AtributesSection
+              atributeList={[
+                { title: "Born", value: data.birth_year },
+                {
+                  title: "Homeworld",
+                  value: data.homeworld?.name || "Unknown",
+                },
+              ]}
+            />
+
             <p>
-              In {films_count} <strong>films</strong>
+              In {data.films_count} <strong>films</strong>
             </p>
           </div>
         </>
       )}
-      {variant === "planet" && (
+
+      {variant === "planet" && isPlanet(data) && (
         <>
           <div className={styles.cardInnerIntroContainer}>
             <h3>
-              <strong>{namePlanet}</strong>
+              <strong>{data.name}</strong>
             </h3>
             <hr></hr>
           </div>
 
           <div className={styles.cardInnerDetailsContainer}>
-            <AtributesSection atributeList={planetAtributes} />
+            <AtributesSection
+              atributeList={[
+                { title: "Climate", value: data.climate },
+                { title: "Terrain", value: data.terrain },
+                { title: "Residents", value: data.residents_count },
+              ]}
+            />
             <p>
-              In {films_countPlanet} <strong>films</strong>
-            </p>
-          </div>
-        </>
-      )}
-      {variant === "specie" && (
-        <>
-          <div className={styles.cardInnerIntroContainer}>
-            <h3>
-              <strong>{nameSpecies}</strong>
-            </h3>
-            <hr></hr>
-          </div>
-
-          <div className={styles.cardInnerDetailsContainer}>
-            <AtributesSection atributeList={specieAtributes} />
-            <p>
-              In {filmsCountSpecies} <strong>films</strong>
+              In {data.films_count} <strong>films</strong>
             </p>
           </div>
         </>
       )}
 
-      {variant === "starship" && (
+      {variant === "specie" && isSpecie(data) && (
         <>
           <div className={styles.cardInnerIntroContainer}>
             <h3>
-              <strong>{nameStarship}</strong>
+              <strong>{data.name}</strong>
             </h3>
             <hr></hr>
           </div>
 
           <div className={styles.cardInnerDetailsContainer}>
-            <AtributesSection atributeList={starshipAtributes} />
+            <AtributesSection
+              atributeList={[
+                { title: "Classification", value: data.classification },
+                { title: "Designation", value: data.designation },
+                { title: "People", value: data.people_count },
+              ]}
+            />
             <p>
-              In {films_countStarship} <strong>films</strong>
+              In {data.films_count} <strong>films</strong>
             </p>
           </div>
         </>
       )}
-      {variant === "vehicle" && (
+
+      {variant === "starship" && isStarship(data) && (
         <>
           <div className={styles.cardInnerIntroContainer}>
             <h3>
-              <strong>{nameVehicle}</strong>
+              <strong>{data.name}</strong>
             </h3>
             <hr></hr>
           </div>
 
           <div className={styles.cardInnerDetailsContainer}>
-            <AtributesSection atributeList={vehicleAtributes} />
+            <AtributesSection
+              atributeList={[
+                { title: "Model", value: data.model },
+                { title: "Cost", value: data.cost_in_credits },
+                { title: "Pilots", value: data.pilots_count },
+              ]}
+            />
             <p>
-              In {filmsCountVehicle} <strong>films</strong>
+              In {data.films_count} <strong>films</strong>
+            </p>
+          </div>
+        </>
+      )}
+
+      {variant === "vehicle" && isVehicle(data) && (
+        <>
+          <div className={styles.cardInnerIntroContainer}>
+            <h3>
+              <strong>{data.name}</strong>
+            </h3>
+            <hr></hr>
+          </div>
+
+          <div className={styles.cardInnerDetailsContainer}>
+            <AtributesSection
+              atributeList={[
+                { title: "Model", value: data.model },
+                { title: "Cost", value: data.cost_in_credits },
+                { title: "Pilots", value: data.pilots_count },
+              ]}
+            />
+            <p>
+              In {data.films_count} <strong>films</strong>
             </p>
           </div>
         </>

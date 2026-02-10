@@ -16,7 +16,7 @@ export function useGetAndSearchAPI<T>(params: string) {
         setLoading(true);
         //fixed: infers datatypes
         const resData = await EnciclopediaAPIs.getData<T>(params);
-        setData(resData.data as T);
+        setData(resData.data);
         setCurrentPage(resData.current_page);
         setNextPage(resData.next_page_url);
         setPrevPage(resData.prev_page_url);

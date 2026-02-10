@@ -12,7 +12,7 @@ export function useGetDetailsAPI<T>(params: string) {
         setLoading(true);
         //fixed using generics infers the type T from the function call
         const resData = await EncyclopediaAPIs.getDetails<T>(params);
-        setData(resData as T);
+        setData(resData);
       } catch (error) {
         setError((error as Error).message);
       } finally {
