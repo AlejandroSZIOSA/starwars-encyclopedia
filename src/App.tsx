@@ -1,18 +1,18 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { FilmsPage } from "./pages/home/Films";
-import { PlanetsPage } from "./pages/home/Planets";
-import { PeoplePage } from "./pages/home/People";
-import { SpeciesPage } from "./pages/home/Species";
-import { StarshipsPage } from "./pages/home/Starships";
-import { StarshipDetailsPage } from "./pages/details/StarshipDetails";
-import { VehiclesPage } from "./pages/home/Vehicles";
+import { FilmsHomePage } from "./pages/home/Films";
+import { PlanetsHomePage } from "./pages/home/Planets";
+import { PeopleHomePage } from "./pages/home/People";
+import { SpeciesHomePage } from "./pages/home/Species";
+import { StarshipsHomePage } from "./pages/home/Starships";
+import { StarshipDetailsPage } from "./pages/details/Starship";
+import { VehiclesHomePage } from "./pages/home/Vehicles";
 import { RootLayout } from "./layout/RootLayout";
-import { DetailsFilmPage } from "./pages/details/DetailsFilm";
-import { CharacterDetailsPage } from "./pages/details/CharacterDetails";
-import { PlanetDetailsPage } from "./pages/details/PlanetDetails";
-import { SpecieDetailsPage } from "./pages/details/SpecieDetails";
-import { VehicleDetailsPage } from "./pages/details/VehicleDetails";
+import { DetailsFilmPage } from "./pages/details/Film";
+import { CharacterDetailsPage } from "./pages/details/Character";
+import { PlanetDetailsPage } from "./pages/details/Planet";
+import { SpecieDetailsPage } from "./pages/details/Specie";
+import { VehicleDetailsPage } from "./pages/details/Vehicle";
 
 function App() {
   const router = createBrowserRouter([
@@ -20,17 +20,17 @@ function App() {
       path: "/",
       element: <RootLayout />,
       children: [
-        { path: "/", index: true, element: <FilmsPage /> },
+        { path: "/", index: true, element: <FilmsHomePage /> },
         { path: "/film/:id", element: <DetailsFilmPage /> },
-        { path: "/people", element: <PeoplePage /> },
+        { path: "/people", element: <PeopleHomePage /> },
         { path: "/character/:id", element: <CharacterDetailsPage /> },
-        { path: "/planets", element: <PlanetsPage /> },
+        { path: "/planets", element: <PlanetsHomePage /> },
         { path: "/planet/:id", element: <PlanetDetailsPage /> },
-        { path: "/species", element: <SpeciesPage /> },
+        { path: "/species", element: <SpeciesHomePage /> },
         { path: "/specie/:id", element: <SpecieDetailsPage /> },
-        { path: "/starships", element: <StarshipsPage /> },
+        { path: "/starships", element: <StarshipsHomePage /> },
         { path: "/starship/:id", element: <StarshipDetailsPage /> },
-        { path: "/vehicles", element: <VehiclesPage /> },
+        { path: "/vehicles", element: <VehiclesHomePage /> },
         { path: "/vehicle/:id", element: <VehicleDetailsPage /> },
       ],
     },

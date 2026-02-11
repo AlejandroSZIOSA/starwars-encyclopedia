@@ -8,7 +8,7 @@ import { type DataResStarship } from "../../services/ApiRes.types";
 import { Card } from "../../components/Card/Card";
 import { Message } from "../../components/Message/Message";
 
-export const StarshipsPage: FC = () => {
+export const StarshipsHomePage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
   const {
     data: starships,

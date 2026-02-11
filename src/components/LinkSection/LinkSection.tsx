@@ -32,12 +32,13 @@ export const LinkSection: FC<LinkSectionProps> = ({
       <ul>
         {links.map((link) => (
           <li key={link.id}>
-            {"title" in link && rootLinkAddress === "film" ? (
-              <p>{link.title}</p>
-            ) : "name" in link ? (
-              <p>{link.name}</p>
-            ) : null}
-            <Link to={`/${rootLinkAddress}/${link.id}`}>Link</Link>
+            <Link to={`/${rootLinkAddress}/${link.id}`}>
+              {"title" in link && rootLinkAddress === "film" ? (
+                <p>{link.title}</p>
+              ) : "name" in link ? (
+                <p>{link.name}</p>
+              ) : null}
+            </Link>
           </li>
         ))}
       </ul>

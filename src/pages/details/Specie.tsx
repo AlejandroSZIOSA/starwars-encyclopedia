@@ -1,32 +1,43 @@
 //IMPORTANT:This page model is used in all [details pages]
 import { type FC } from "react";
-import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
-import type { DataResDetailsStarship } from "../../services/ApiRes.types";
 import { useNavigate, useParams } from "react-router-dom";
+import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
+import type { DataResDetailsSpecie } from "../../services/ApiRes.types";
 import { LinkSection } from "../../components/LinkSection/LinkSection";
 import { AtributesSection } from "../../components/AtributesSection/AtributesSection";
-import type { Atribute } from "./DetailsFilm";
+import type { Atribute } from "./Film";
 import { Message } from "../../components/Message/Message";
 
-export const StarshipDetailsPage: FC = () => {
+export const SpecieDetailsPage: FC = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const numericId = Number(id);
 
   const {
-    data: starship,
+    data: specie,
     loading,
     error,
-  } = useGetDetailsAPI<DataResDetailsStarship>("/starships/" + numericId);
+  } = useGetDetailsAPI<DataResDetailsSpecie>("/species/" + numericId);
 
-  const { name, model, starship_class, manufacturer, crew, pilots, films } =
-    starship || {};
+  const {
+    name,
+    homeworld,
+    classification,
+    designation,
+    average_lifespan,
+    average_height,
+    language,
+    people,
+    films,
+  } = specie || {};
 
   const atributes: Atribute[] = [
-    { title: "Model", value: model },
-    { title: "Starship Class", value: starship_class },
-    { title: "Manufacturer", value: manufacturer },
-    { title: "Crew", value: crew },
+    { title: "Homeworld", value: homeworld?.name },
+    { title: "Classification", value: classification },
+    { title: "Designation", value: designation },
+    { title: "Average Lifespan", value: average_lifespan },
+    { title: "Average Height", value: average_height },
+    { title: "Language", value: language },
   ];
 
   return (
@@ -45,10 +56,10 @@ export const StarshipDetailsPage: FC = () => {
 
           <section className="detailsPage_relatedLinks__Section">
             <h3>Related Links</h3>
-            {pilots && pilots.length !== 0 && (
+            {people && people.length !== 0 && (
               <LinkSection
-                title="Pilots"
-                links={pilots}
+                title="Residents"
+                links={people}
                 rootLinkAddress="character"
               />
             )}

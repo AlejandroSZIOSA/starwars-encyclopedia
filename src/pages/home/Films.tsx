@@ -8,7 +8,7 @@ import { SearchBar } from "../../components/searchbar/SearchBar";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
 import { Message } from "../../components/Message/Message";
 
-export const FilmsPage: FC = () => {
+export const FilmsHomePage: FC = () => {
   // Custom hook thats manage some pagination and query logic
   const { page, query, setParams } = usePaginationParams();
 

@@ -8,7 +8,7 @@ import { usePaginationParams } from "../../hooks/usePaginationParams";
 import { SearchBar } from "../../components/searchbar/SearchBar";
 import { Message } from "../../components/Message/Message";
 
-export const PeoplePage: FC = () => {
+export const PeopleHomePage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
   const {
     data: people,

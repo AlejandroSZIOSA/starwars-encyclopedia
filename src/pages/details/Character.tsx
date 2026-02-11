@@ -6,7 +6,7 @@ import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
 import { LinkSection } from "../../components/LinkSection/LinkSection";
 import { AtributesSection } from "../../components/AtributesSection/AtributesSection";
 
-import type { Atribute } from "../../pages/details/DetailsFilm";
+import type { Atribute } from "./Film";
 import { Message } from "../../components/Message/Message";
 
 export const CharacterDetailsPage: FC = () => {
@@ -62,7 +62,14 @@ export const CharacterDetailsPage: FC = () => {
             <h3>
               <strong>Links</strong>
             </h3>
-            <p>Homeworld: {homeworld?.name}</p>
+
+            {homeworld && (
+              <LinkSection
+                title="Homeworld"
+                links={[homeworld]}
+                rootLinkAddress="planet"
+              />
+            )}
             {films && films.length !== 0 && (
               <LinkSection title="Films" links={films} rootLinkAddress="film" />
             )}

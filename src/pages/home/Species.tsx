@@ -8,7 +8,7 @@ import { SearchBar } from "../../components/searchbar/SearchBar";
 import { usePaginationParams } from "../../hooks/usePaginationParams";
 import { Message } from "../../components/Message/Message";
 
-export const SpeciesPage: FC = () => {
+export const SpeciesHomePage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
   const {
     data: species,

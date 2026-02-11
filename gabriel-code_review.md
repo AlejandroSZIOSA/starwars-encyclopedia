@@ -26,3 +26,5 @@ Du har kvar kommentarer som `//preguntar?` och `//extract any type ids` (trots a
 
 **Vercel vs Netlify:**  
 Uppgiften nämner helst Netlify, men du har använt Vercel. Detta är inget funktionellt problem eftersom applikationen fungerar bra, men värt att notera om läraren har specifika krav på plattform.
+
+FIXED! :)

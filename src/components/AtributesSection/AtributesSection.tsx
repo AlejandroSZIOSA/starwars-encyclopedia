@@ -1,5 +1,5 @@
 import { type FC } from "react";
-import type { Atribute } from "../../pages/details/DetailsFilm";
+import type { Atribute } from "../../pages/details/Film";
 import styles from "./AtributesSection.module.css";
 
 interface AtributesSectionProps {

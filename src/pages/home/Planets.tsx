@@ -8,7 +8,7 @@ import { Card } from "../../components/Card/Card";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
 import { Message } from "../../components/Message/Message";
 
-export const PlanetsPage: FC = () => {
+export const PlanetsHomePage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
   const {
     data: planets,

@@ -1,32 +1,33 @@
 //IMPORTANT:This page model is used in all [details pages]
 import { type FC } from "react";
-import type { Atribute } from "./DetailsFilm";
-import type { DataResDetailsVehicle } from "../../services/ApiRes.types";
-import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import type { DataResDetailPlanet } from "../../services/ApiRes.types";
 import { LinkSection } from "../../components/LinkSection/LinkSection";
+import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
+import { useNavigate } from "react-router-dom";
+import type { Atribute } from "./Film";
 import { AtributesSection } from "../../components/AtributesSection/AtributesSection";
 import { Message } from "../../components/Message/Message";
 
-export const VehicleDetailsPage: FC = () => {
+export const PlanetDetailsPage: FC = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const numericId = Number(id);
 
   const {
-    data: vehicle,
+    data: planet,
     loading,
     error,
-  } = useGetDetailsAPI<DataResDetailsVehicle>("/vehicles/" + numericId);
+  } = useGetDetailsAPI<DataResDetailPlanet>("/planets/" + numericId);
 
-  const { name, vehicle_class, length, crew, passengers, pilots, films } =
-    vehicle || {};
+  const { name, diameter, climate, gravity, terrain, residents, films } =
+    planet || {};
 
   const atributes: Atribute[] = [
-    { title: "Vehicle Class", value: vehicle_class },
-    { title: "Length", value: length },
-    { title: "Crew", value: crew },
-    { title: "Passengers", value: passengers },
+    { title: "Diameter", value: diameter },
+    { title: "Climate", value: climate },
+    { title: "Gravity", value: gravity },
+    { title: "Terrain", value: terrain },
   ];
 
   return (
@@ -45,10 +46,10 @@ export const VehicleDetailsPage: FC = () => {
 
           <section className="detailsPage_relatedLinks__Section">
             <h3>Related Links</h3>
-            {pilots && pilots.length !== 0 && (
+            {residents && residents.length !== 0 && (
               <LinkSection
-                title="Pilots"
-                links={pilots}
+                title="Residents"
+                links={residents}
                 rootLinkAddress="character"
               />
             )}

@@ -8,7 +8,7 @@ import { PaginationPanel } from "../../components/PaginationPanel/PaginationPane
 import { Card } from "../../components/Card/Card";
 import { Message } from "../../components/Message/Message";
 
-export const VehiclesPage: FC = () => {
+export const VehiclesHomePage: FC = () => {
   const { page, query, setParams } = usePaginationParams();
   const {
     data: vehicles,
