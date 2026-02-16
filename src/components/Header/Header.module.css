@@ -1,0 +1,17 @@
+.innerLogoNavContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .innerLogoNavContainer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .headerTitle {
+    padding-left: 1rem;
+  }
+}

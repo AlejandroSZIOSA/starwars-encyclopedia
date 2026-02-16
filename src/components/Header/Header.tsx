@@ -1,12 +1,15 @@
-import { type FC } from "react";
-import { Outlet } from "react-router-dom";
-import styles from "./RootLayout.module.css";
-import NavbarRoot from "../components/navigation/NavBarRoot/NavBarRoot";
+import type { FC, ReactNode } from "react";
+import styles from "./Header.module.css";
+import NavbarRoot from "../navigation/NavBarRoot/NavBarRoot";
 
-export const RootLayout: FC = () => {
+interface HeaderProps {
+  children: ReactNode;
+}
+
+const Header: FC<HeaderProps> = ({ children }) => {
   return (
-    <>
-      <header>
+    <header>
+      <div className={styles.innerLogoNavContainer}>
         <h2 className={styles.headerTitle}>Star Wars Encyclopedia</h2>
         <NavbarRoot>
           <NavbarRoot.Item htmlAddress="/">Film</NavbarRoot.Item>
@@ -16,10 +19,10 @@ export const RootLayout: FC = () => {
           <NavbarRoot.Item htmlAddress="/starships">Starships</NavbarRoot.Item>
           <NavbarRoot.Item htmlAddress="/vehicles">Vehicles</NavbarRoot.Item>
         </NavbarRoot>
-      </header>
-      <main>
-        <Outlet />
-      </main>
-    </>
+      </div>
+      {children}
+    </header>
   );
 };
+
+export default Header;

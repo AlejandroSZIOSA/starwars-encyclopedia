@@ -181,9 +181,9 @@ h3 {
 @media (min-width: 1024px) {
   /* Global styles Desktop */
   header {
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    height: 3.2vw;
+    /* height: 3.2vw; */
     justify-content: space-between;
   }
 

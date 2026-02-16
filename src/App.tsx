@@ -7,7 +7,6 @@ import { SpeciesHomePage } from "./pages/home/Species";
 import { StarshipsHomePage } from "./pages/home/Starships";
 import { StarshipDetailsPage } from "./pages/details/Starship";
 import { VehiclesHomePage } from "./pages/home/Vehicles";
-import { RootLayout } from "./layout/RootLayout";
 import { DetailsFilmPage } from "./pages/details/Film";
 import { CharacterDetailsPage } from "./pages/details/Character";
 import { PlanetDetailsPage } from "./pages/details/Planet";
@@ -18,7 +17,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <RootLayout />,
+      /* element: <RootLayout />, */
       children: [
         { path: "/", index: true, element: <FilmsHomePage /> },
         { path: "/film/:id", element: <DetailsFilmPage /> },
