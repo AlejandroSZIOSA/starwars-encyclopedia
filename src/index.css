@@ -52,7 +52,6 @@ nav {
   padding: 0.5rem 0;
   background-color: #9b9b9b;
   font-size: medium;
-  /*   font-weight: 500; */
 }
 
 ul {
@@ -62,7 +61,7 @@ ul {
 ol {
   list-style: none;
   width: 90vw;
-  /* margin: auto; */
+  margin-bottom: 3rem;
 }
 
 h1 {
@@ -182,8 +181,6 @@ h3 {
   /* Global styles Desktop */
   header {
     flex-direction: column;
-    align-items: center;
-    height: 3.2vw;
     justify-content: space-between;
   }
 
@@ -214,7 +211,7 @@ h3 {
     flex-wrap: wrap;
     justify-content: left;
     gap: 1rem;
-    padding-top: 1.5rem;
+    padding: 1.5rem;
     width: auto;
   }
 

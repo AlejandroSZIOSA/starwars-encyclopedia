@@ -9,6 +9,7 @@
   .innerLogoNavContainer {
     flex-direction: row;
     justify-content: space-between;
+    height: 4vh;
   }
 
   .headerTitle {
