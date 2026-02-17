@@ -35,8 +35,7 @@ export function useGetAndSearchAPI<T>(params: string) {
     loading,
     error,
     currentPage,
-    setCurrentPage,
-    nextPage,
     prevPage,
+    nextPage,
   };
 }

@@ -11,16 +11,18 @@ import Header from "../../components/Header/Header";
 
 export const FilmsHomePage: FC = () => {
   // Custom hook thats manage some pagination and query logic
-  const { page, query, setParams } = usePaginationParams();
+  const { pageParam, queryParam, setParams } = usePaginationParams();
 
   // Custom hook to fetch films with pagination and search logic
   const {
     data: films,
     loading,
     error,
+    currentPage,
+    prevPage,
     nextPage,
   } = useGetAndSearchAPI<DataResFilm[]>(
-    `/films?page=${page}&search=${encodeURIComponent(query)}`,
+    `/films?page=${pageParam}&search=${encodeURIComponent(queryParam)}`,
   );
 
   return (
@@ -28,18 +30,20 @@ export const FilmsHomePage: FC = () => {
       <Header>
         <div className="homePage_searchBar__rootContainer">
           <SearchBar
-            value={query}
+            value={queryParam}
             placeholder="Search Film..."
             onChange={(value) => setParams({ query: value, page: 1 })}
           />
           <div className="homePage_paginationPanelDesktop__rootContainer">
             <PaginationPanel
-              page={page}
+              page={currentPage}
               onNext={() => {
-                setParams({ page: page + 1 });
+                setParams({ page: currentPage + 1 });
               }}
               nextPageUrl={nextPage}
-              onPrev={() => setParams({ page: Math.max(1, page - 1) })}
+              onPrev={() =>
+                setParams(prevPage ? { page: currentPage - 1 } : { page: 1 })
+              }
             />
           </div>
         </div>
@@ -65,12 +69,14 @@ export const FilmsHomePage: FC = () => {
 
         <div className="homePage_paginationPanelMobile__rootContainer">
           <PaginationPanel
-            page={page}
+            page={currentPage}
             onNext={() => {
-              setParams({ page: page + 1 });
+              setParams({ page: currentPage + 1 });
             }}
             nextPageUrl={nextPage}
-            onPrev={() => setParams({ page: Math.max(1, page - 1) })}
+            onPrev={() =>
+              setParams(prevPage ? { page: currentPage - 1 } : { page: 1 })
+            }
           />
         </div>
       </main>

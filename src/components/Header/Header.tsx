@@ -12,7 +12,7 @@ const Header: FC<HeaderProps> = ({ children }) => {
       <div className={styles.innerLogoNavContainer}>
         <h2 className={styles.headerTitle}>Star Wars Encyclopedia</h2>
         <NavbarRoot>
-          <NavbarRoot.Item htmlAddress="/">Film</NavbarRoot.Item>
+          <NavbarRoot.Item htmlAddress="/">Films</NavbarRoot.Item>
           <NavbarRoot.Item htmlAddress="/people">People</NavbarRoot.Item>
           <NavbarRoot.Item htmlAddress="/planets">Planets</NavbarRoot.Item>
           <NavbarRoot.Item htmlAddress="/species">Species</NavbarRoot.Item>
