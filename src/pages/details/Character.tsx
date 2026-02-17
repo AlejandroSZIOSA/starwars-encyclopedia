@@ -8,6 +8,7 @@ import { AtributesSection } from "../../components/AtributesSection/AtributesSec
 
 import type { Atribute } from "./Film";
 import { Message } from "../../components/Message/Message";
+import Header from "../../components/Header/Header";
 
 export const CharacterDetailsPage: FC = () => {
   const navigate = useNavigate();
@@ -47,67 +48,74 @@ export const CharacterDetailsPage: FC = () => {
 
   return (
     <>
-      {loading ? (
-        <Message message="Loading..." variant="loading" />
-      ) : error ? (
-        <Message message={error} variant="error" />
-      ) : (
-        <div className="detailsPage__rootContainer detailsPage_character___rootContainer">
-          <section className="detailsPage_intro__Section detailsPage_character_intro__Section">
-            <h2>{name}</h2>
-            {image_url && <img src={image_url} alt={name} />}
-          </section>
-          <AtributesSection atributeList={atributes} variant="mobile-ui" />
-          <section className="detailsPage_links__Section">
-            <h3>
-              <strong>Links</strong>
-            </h3>
+      <Header />
+      <main>
+        {loading ? (
+          <Message message="Loading..." variant="loading" />
+        ) : error ? (
+          <Message message={error} variant="error" />
+        ) : (
+          <div className="detailsPage__rootContainer detailsPage_character___rootContainer">
+            <section className="detailsPage_intro__Section detailsPage_character_intro__Section">
+              <h2>{name}</h2>
+              {image_url && <img src={image_url} alt={name} />}
+            </section>
+            <AtributesSection atributeList={atributes} variant="mobile-ui" />
+            <section className="detailsPage_links__Section">
+              <h3>
+                <strong>Links</strong>
+              </h3>
 
-            {homeworld && (
-              <LinkSection
-                title="Homeworld"
-                links={[homeworld]}
-                rootLinkAddress="planet"
-              />
-            )}
-            {films && films.length !== 0 && (
-              <LinkSection title="Films" links={films} rootLinkAddress="film" />
-            )}
+              {homeworld && (
+                <LinkSection
+                  title="Homeworld"
+                  links={[homeworld]}
+                  rootLinkAddress="planet"
+                />
+              )}
+              {films && films.length !== 0 && (
+                <LinkSection
+                  title="Films"
+                  links={films}
+                  rootLinkAddress="film"
+                />
+              )}
 
-            {species && species.length !== 0 && (
-              <LinkSection
-                title="Species"
-                links={species}
-                rootLinkAddress="specie"
-              />
-            )}
+              {species && species.length !== 0 && (
+                <LinkSection
+                  title="Species"
+                  links={species}
+                  rootLinkAddress="specie"
+                />
+              )}
 
-            {starships && starships.length !== 0 && (
-              <LinkSection
-                title="Starships"
-                links={starships}
-                rootLinkAddress="starship"
-              />
-            )}
+              {starships && starships.length !== 0 && (
+                <LinkSection
+                  title="Starships"
+                  links={starships}
+                  rootLinkAddress="starship"
+                />
+              )}
 
-            {vehicles && vehicles.length !== 0 && (
-              <LinkSection
-                title="Vehicles"
-                links={vehicles}
-                rootLinkAddress="vehicle"
-              />
-            )}
-          </section>
-          <div className="detailsPage_buttonBack__Container">
-            <button
-              className="detailsPage__ButtonBack"
-              onClick={() => navigate(-1)}
-            >
-              Go Back
-            </button>
+              {vehicles && vehicles.length !== 0 && (
+                <LinkSection
+                  title="Vehicles"
+                  links={vehicles}
+                  rootLinkAddress="vehicle"
+                />
+              )}
+            </section>
+            <div className="detailsPage_buttonBack__Container">
+              <button
+                className="detailsPage__ButtonBack"
+                onClick={() => navigate(-1)}
+              >
+                Go Back
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </main>
     </>
   );
 };

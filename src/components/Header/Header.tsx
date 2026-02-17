@@ -3,7 +3,7 @@ import styles from "./Header.module.css";
 import NavbarRoot from "../navigation/NavBarRoot/NavBarRoot";
 
 interface HeaderProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const Header: FC<HeaderProps> = ({ children }) => {

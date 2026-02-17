@@ -6,6 +6,7 @@ import { LinkSection } from "../../components/LinkSection/LinkSection";
 import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
 import { AtributesSection } from "../../components/AtributesSection/AtributesSection";
 import { Message } from "../../components/Message/Message";
+import Header from "../../components/Header/Header";
 
 export type Atribute = {
   title: string;
@@ -47,71 +48,74 @@ export const DetailsFilmPage: FC = () => {
 
   return (
     <>
-      {loading ? (
-        <Message message="Loading..." variant="loading" />
-      ) : error ? (
-        <Message message={error} variant="error" />
-      ) : (
-        <div className="detailsPage__rootContainer">
-          <section className="detailsPage_intro__Section">
-            <img src={image_url} alt={title} />
-            <h2 className="detailsPage_introMobile__Title">{title}</h2>
-            <article>
-              <h2 className="detailsPage_introDesktop__Title">{title}</h2>
-              <p>{opening_crawl}</p>
-            </article>
-          </section>
+      <Header />
+      <main>
+        {loading ? (
+          <Message message="Loading..." variant="loading" />
+        ) : error ? (
+          <Message message={error} variant="error" />
+        ) : (
+          <div className="detailsPage__rootContainer">
+            <section className="detailsPage_intro__Section">
+              <img src={image_url} alt={title} />
+              <h2 className="detailsPage_introMobile__Title">{title}</h2>
+              <article>
+                <h2 className="detailsPage_introDesktop__Title">{title}</h2>
+                <p>{opening_crawl}</p>
+              </article>
+            </section>
 
-          <AtributesSection atributeList={atributes} variant="mobile-ui" />
+            <AtributesSection atributeList={atributes} variant="mobile-ui" />
 
-          <section className="detailsPage_relatedLinks__Section">
-            <h3>Related Links</h3>
-            {characters && characters.length !== 0 && (
-              <LinkSection
-                title="Characters"
-                links={characters}
-                rootLinkAddress="character"
-              />
-            )}
-            {planets && planets.length !== 0 && (
-              <LinkSection
-                title="Planets"
-                links={planets}
-                rootLinkAddress="planet"
-              />
-            )}
-            {species && species.length !== 0 && (
-              <LinkSection
-                title="Species"
-                links={species}
-                rootLinkAddress="specie"
-              />
-            )}
-            {starships && starships.length !== 0 && (
-              <LinkSection
-                title="Starships"
-                links={starships}
-                rootLinkAddress="starship"
-              />
-            )}
-            {vehicles && vehicles.length !== 0 && (
-              <LinkSection
-                title="Vehicles"
-                links={vehicles}
-                rootLinkAddress="vehicle"
-              />
-            )}
-          </section>
-          <div className="detailsPage_buttonBack__Container">
-            <button
-              className="detailsPage__ButtonBack"
-              onClick={() => navigate(-1)}
-            >
-              Go Back
-            </button>
+            <section className="detailsPage_relatedLinks__Section">
+              <h3>Related Links</h3>
+              {characters && characters.length !== 0 && (
+                <LinkSection
+                  title="Characters"
+                  links={characters}
+                  rootLinkAddress="character"
+                />
+              )}
+              {planets && planets.length !== 0 && (
+                <LinkSection
+                  title="Planets"
+                  links={planets}
+                  rootLinkAddress="planet"
+                />
+              )}
+              {species && species.length !== 0 && (
+                <LinkSection
+                  title="Species"
+                  links={species}
+                  rootLinkAddress="specie"
+                />
+              )}
+              {starships && starships.length !== 0 && (
+                <LinkSection
+                  title="Starships"
+                  links={starships}
+                  rootLinkAddress="starship"
+                />
+              )}
+              {vehicles && vehicles.length !== 0 && (
+                <LinkSection
+                  title="Vehicles"
+                  links={vehicles}
+                  rootLinkAddress="vehicle"
+                />
+              )}
+            </section>
+            <div className="detailsPage_buttonBack__Container">
+              <button
+                className="detailsPage__ButtonBack"
+                onClick={() => navigate(-1)}
+              >
+                Go Back
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </main>
     </>
   );
 };
