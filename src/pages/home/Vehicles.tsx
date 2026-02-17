@@ -29,7 +29,7 @@ export const VehiclesHomePage: FC = () => {
         <div className="homePage_searchBar__rootContainer">
           <SearchBar
             value={queryParam}
-            placeholder="Search Vehicle..."
+            placeholder="Search vehicle..."
             onChange={(value) => setParams({ query: value, page: 1 })}
           />
           <div className="homePage_paginationPanelDesktop__rootContainer">

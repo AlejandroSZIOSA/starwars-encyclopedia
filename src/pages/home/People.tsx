@@ -29,7 +29,7 @@ export const PeopleHomePage: FC = () => {
         <div className="homePage_searchBar__rootContainer">
           <SearchBar
             value={queryParam}
-            placeholder="Search Character..."
+            placeholder="Search character..."
             onChange={(value) => setParams({ query: value, page: 1 })}
           />
           <div className="homePage_paginationPanelDesktop__rootContainer">

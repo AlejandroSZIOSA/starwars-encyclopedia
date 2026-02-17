@@ -31,7 +31,7 @@ export const FilmsHomePage: FC = () => {
         <div className="homePage_searchBar__rootContainer">
           <SearchBar
             value={queryParam}
-            placeholder="Search Film..."
+            placeholder="Search movie..."
             onChange={(value) => setParams({ query: value, page: 1 })}
           />
           <div className="homePage_paginationPanelDesktop__rootContainer">
