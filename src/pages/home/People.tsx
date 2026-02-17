@@ -1,16 +1,16 @@
 //IMPORTANT:This page model is used in all [home pages]
 import { type FC } from "react";
-import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
+import { useGetHomeData } from "../../hooks/useGetHomeData";
 import { type DataResPeople } from "../../services/ApiRes.types";
 import { Card } from "../../components/Card/Card";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
-import { usePaginationParams } from "../../hooks/usePaginationParams";
+import { usePagination } from "../../hooks/usePagination";
 import { SearchBar } from "../../components/searchbar/SearchBar";
 import { Message } from "../../components/Message/Message";
 import Header from "../../components/Header/Header";
 
 export const PeopleHomePage: FC = () => {
-  const { pageParam, queryParam, setParams } = usePaginationParams();
+  const { pageParam, queryParam, setParams } = usePagination();
 
   const {
     data: people,
@@ -19,7 +19,7 @@ export const PeopleHomePage: FC = () => {
     currentPage,
     prevPage,
     nextPage,
-  } = useGetAndSearchAPI<DataResPeople[]>(
+  } = useGetHomeData<DataResPeople[]>(
     `people?page=${pageParam}&search=${encodeURIComponent(queryParam)}`,
   );
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import * as EnciclopediaAPIs from "../services/ApiRes";
 
-export function useGetAndSearchAPI<T>(params: string) {
+export function useGetHomeData<T>(params: string) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);

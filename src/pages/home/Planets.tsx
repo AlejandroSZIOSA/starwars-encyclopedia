@@ -1,16 +1,16 @@
 //IMPORTANT:This page model is used in all [home pages]
 import { type FC } from "react";
 import { SearchBar } from "../../components/searchbar/SearchBar";
-import { usePaginationParams } from "../../hooks/usePaginationParams";
+import { usePagination } from "../../hooks/usePagination";
 import { type DataResPlanet } from "../../services/ApiRes.types";
-import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
+import { useGetHomeData } from "../../hooks/useGetHomeData";
 import { Card } from "../../components/Card/Card";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
 import { Message } from "../../components/Message/Message";
 import Header from "../../components/Header/Header";
 
 export const PlanetsHomePage: FC = () => {
-  const { pageParam, queryParam, setParams } = usePaginationParams();
+  const { pageParam, queryParam, setParams } = usePagination();
 
   const {
     data: planets,
@@ -19,7 +19,7 @@ export const PlanetsHomePage: FC = () => {
     currentPage,
     prevPage,
     nextPage,
-  } = useGetAndSearchAPI<DataResPlanet[]>(
+  } = useGetHomeData<DataResPlanet[]>(
     `planets?page=${pageParam}&search=${encodeURIComponent(queryParam)}`,
   );
 

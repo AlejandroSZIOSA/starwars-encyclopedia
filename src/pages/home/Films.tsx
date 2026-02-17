@@ -1,19 +1,19 @@
 //IMPORTANT:This page model is used in all [home pages]
 import { type FC } from "react";
 import { type DataResFilm } from "../../services/ApiRes.types";
-import { useGetAndSearchAPI } from "../../hooks/useGetAndSearchAPI";
+import { useGetHomeData } from "../../hooks/useGetHomeData";
 import { Card } from "../../components/Card/Card";
-import { usePaginationParams } from "../../hooks/usePaginationParams";
+import { usePagination } from "../../hooks/usePagination";
 import { SearchBar } from "../../components/searchbar/SearchBar";
 import { PaginationPanel } from "../../components/PaginationPanel/PaginationPanel";
 import { Message } from "../../components/Message/Message";
 import Header from "../../components/Header/Header";
 
 export const FilmsHomePage: FC = () => {
-  // Custom hook thats manage some pagination and query logic
-  const { pageParam, queryParam, setParams } = usePaginationParams();
+  // Custom hook thats manage pagination logic
+  const { pageParam, queryParam, setParams } = usePagination();
 
-  // Custom hook to fetch films with pagination and search logic
+  // Custom hook to fetch data with pagination and search logic
   const {
     data: films,
     loading,
@@ -21,7 +21,7 @@ export const FilmsHomePage: FC = () => {
     currentPage,
     prevPage,
     nextPage,
-  } = useGetAndSearchAPI<DataResFilm[]>(
+  } = useGetHomeData<DataResFilm[]>(
     `/films?page=${pageParam}&search=${encodeURIComponent(queryParam)}`,
   );
 

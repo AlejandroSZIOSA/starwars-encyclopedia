@@ -2,7 +2,7 @@
 import { type FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import type { DataResDetailsCharacter } from "../../services/ApiRes.types";
-import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
+import { useGetDetailsData } from "../../hooks/useGetDetailsData";
 import { LinkSection } from "../../components/LinkSection/LinkSection";
 import { AtributesSection } from "../../components/AtributesSection/AtributesSection";
 
@@ -19,7 +19,7 @@ export const CharacterDetailsPage: FC = () => {
     data: character,
     loading,
     error,
-  } = useGetDetailsAPI<DataResDetailsCharacter>("/people/" + numericId);
+  } = useGetDetailsData<DataResDetailsCharacter>("/people/" + numericId);
 
   const {
     image_url,

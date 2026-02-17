@@ -3,7 +3,7 @@ import { type FC } from "react";
 import { useParams } from "react-router-dom";
 import type { DataResDetailPlanet } from "../../services/ApiRes.types";
 import { LinkSection } from "../../components/LinkSection/LinkSection";
-import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
+import { useGetDetailsData } from "../../hooks/useGetDetailsData";
 import { useNavigate } from "react-router-dom";
 import type { Atribute } from "./Film";
 import { AtributesSection } from "../../components/AtributesSection/AtributesSection";
@@ -19,7 +19,7 @@ export const PlanetDetailsPage: FC = () => {
     data: planet,
     loading,
     error,
-  } = useGetDetailsAPI<DataResDetailPlanet>("/planets/" + numericId);
+  } = useGetDetailsData<DataResDetailPlanet>("/planets/" + numericId);
 
   const { name, diameter, climate, gravity, terrain, residents, films } =
     planet || {};

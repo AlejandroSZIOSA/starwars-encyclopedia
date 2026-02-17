@@ -3,7 +3,7 @@ import { type FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import type { DataResDetailsFilm } from "../../services/ApiRes.types";
 import { LinkSection } from "../../components/LinkSection/LinkSection";
-import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
+import { useGetDetailsData } from "../../hooks/useGetDetailsData";
 import { AtributesSection } from "../../components/AtributesSection/AtributesSection";
 import { Message } from "../../components/Message/Message";
 import Header from "../../components/Header/Header";
@@ -22,7 +22,7 @@ export const DetailsFilmPage: FC = () => {
     data: film,
     loading,
     error,
-  } = useGetDetailsAPI<DataResDetailsFilm>("/films/" + numericId);
+  } = useGetDetailsData<DataResDetailsFilm>("/films/" + numericId);
 
   const {
     image_url,

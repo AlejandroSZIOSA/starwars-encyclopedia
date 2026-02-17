@@ -1,12 +1,13 @@
 //IMPORTANT:This page model is used in all [details pages]
 import { type FC } from "react";
-import type { Atribute } from "./Film";
-import type { DataResDetailsVehicle } from "../../services/ApiRes.types";
-import { useGetDetailsAPI } from "../../hooks/useGetDetailsAPI";
+import { type Atribute } from "./Film";
+import { type DataResDetailsVehicle } from "../../services/ApiRes.types";
+import { useGetDetailsData } from "../../hooks/useGetDetailsData";
 import { useNavigate, useParams } from "react-router-dom";
 import { LinkSection } from "../../components/LinkSection/LinkSection";
 import { AtributesSection } from "../../components/AtributesSection/AtributesSection";
 import { Message } from "../../components/Message/Message";
+import Header from "../../components/Header/Header";
 
 export const VehicleDetailsPage: FC = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export const VehicleDetailsPage: FC = () => {
     data: vehicle,
     loading,
     error,
-  } = useGetDetailsAPI<DataResDetailsVehicle>("/vehicles/" + numericId);
+  } = useGetDetailsData<DataResDetailsVehicle>("/vehicles/" + numericId);
 
   const { name, vehicle_class, length, crew, passengers, pilots, films } =
     vehicle || {};
@@ -31,41 +32,48 @@ export const VehicleDetailsPage: FC = () => {
 
   return (
     <>
-      {loading ? (
-        <Message message="Loading..." variant="loading" />
-      ) : error ? (
-        <Message message={error} variant="error" />
-      ) : (
-        <div className="detailsPage__rootContainer detailsPage_character___rootContainer">
-          <section className="detailsPage_intro__Section detailsPage_character_intro__Section">
-            <h2>{name}</h2>
-          </section>
+      <Header />
+      <main>
+        {loading ? (
+          <Message message="Loading..." variant="loading" />
+        ) : error ? (
+          <Message message={error} variant="error" />
+        ) : (
+          <div className="detailsPage__rootContainer detailsPage_character___rootContainer">
+            <section className="detailsPage_intro__Section detailsPage_character_intro__Section">
+              <h2>{name}</h2>
+            </section>
 
-          <AtributesSection atributeList={atributes} variant="mobile-ui" />
+            <AtributesSection atributeList={atributes} variant="mobile-ui" />
 
-          <section className="detailsPage_relatedLinks__Section">
-            <h3>Related Links</h3>
-            {pilots && pilots.length !== 0 && (
-              <LinkSection
-                title="Pilots"
-                links={pilots}
-                rootLinkAddress="character"
-              />
-            )}
-            {films && films.length !== 0 && (
-              <LinkSection title="Films" links={films} rootLinkAddress="film" />
-            )}
-          </section>
-          <div className="detailsPage_buttonBack__Container">
-            <button
-              className="detailsPage__ButtonBack"
-              onClick={() => navigate(-1)}
-            >
-              Go Back
-            </button>
+            <section className="detailsPage_relatedLinks__Section">
+              <h3>Related Links</h3>
+              {pilots && pilots.length !== 0 && (
+                <LinkSection
+                  title="Pilots"
+                  links={pilots}
+                  rootLinkAddress="character"
+                />
+              )}
+              {films && films.length !== 0 && (
+                <LinkSection
+                  title="Films"
+                  links={films}
+                  rootLinkAddress="film"
+                />
+              )}
+            </section>
+            <div className="detailsPage_buttonBack__Container">
+              <button
+                className="detailsPage__ButtonBack"
+                onClick={() => navigate(-1)}
+              >
+                Go Back
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </main>
     </>
   );
 };
